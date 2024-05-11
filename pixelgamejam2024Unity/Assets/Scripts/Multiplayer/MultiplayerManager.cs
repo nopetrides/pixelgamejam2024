@@ -6,11 +6,21 @@ public class MultiplayerManager : MonoBehaviour
 {
     public Action<PlayroomKit.Player> OnPlayerJoined;
     
-    // Start is called before the first frame update
-    void Start()
+    public void SetLobbyCodeAndStart(string lobbyCode)
+    {
+        StartLobby(lobbyCode);
+    }
+
+    public void HostNewLobby()
+    {
+        StartLobby();
+    }
+
+    private void StartLobby(string lobbyCode = null)
     {
         var initOptions = new PlayroomKit.InitOptions()
         {
+            roomCode = lobbyCode,
             gameId = "JCIWV1N4joeKV1xc5Cc4",
             maxPlayersPerRoom = 4,
             // Lobby-wide states
