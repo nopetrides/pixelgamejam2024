@@ -3212,6 +3212,7 @@ MonoBehaviour:
   playerLobbyPrefab: {fileID: 609405321325519309, guid: c8871f74644b44540a8fa096615f460a, type: 3}
   _playerLobbyParent: {fileID: 440721690}
   LobbyCode: {fileID: 1144582876}
+  StartGameButton: {fileID: 861549718}
 --- !u!1 &2071402554
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,6 +4,8 @@ using Playroom;
 
 public class MultiplayerManager : MonoBehaviour
 {
+    
+    public Action OnPlayroomInit;
     public Action<PlayroomKit.Player> OnPlayerJoined;
     
     public void SetLobbyCodeAndStart(string lobbyCode)
@@ -42,6 +44,8 @@ public class MultiplayerManager : MonoBehaviour
 
     void OnPlayerStartLobby()
     {
+        Debug.Log($"Lobby created!");
+        OnPlayroomInit?.Invoke();
         PlayroomKit.OnPlayerJoin(OnPlayerJoinLobby);
     }
 
@@ -54,12 +58,5 @@ public class MultiplayerManager : MonoBehaviour
     {
         Debug.Log($"{player.id} joined lobby!");
         OnPlayerJoined?.Invoke(player);
-        
-    }
-    
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
