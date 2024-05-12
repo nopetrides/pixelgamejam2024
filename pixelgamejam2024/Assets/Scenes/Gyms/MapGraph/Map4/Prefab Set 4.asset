@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dded20f928340d3bd4366169cdae5a5, type: 3}
+  m_Name: Prefab Set 4
+  m_EditorClassIdentifier: 
+  serializedObjectVersion:
+    version: 1.25.1
+  prefabWidth: 1
+  prefabHeight: 1
+  prefabTypes: []
+  openPrefabSet:
+    elements:
+    - id: 0efabba0-37aa-4518-853e-eae45e08c925
+      name: Wall
+      isWeightEnabled: 0
+      totalWeight: 1
+      prefabs:
+      - weight: 1
+        prefab: {fileID: 7620574474223716474, guid: a06291fbe9377384792eec7c4370787a,
+          type: 3}
+    - id: 297b3e8a-b35e-4651-9832-e2be4be58558
+      name: Floor
+      isWeightEnabled: 0
+      totalWeight: 1
+      prefabs:
+      - weight: 1
+        prefab: {fileID: 3552293010743194950, guid: 4342468cf610d4647b8727781bf1ca68,
+          type: 3}
+    - id: 66aa8495-cc9b-4311-824a-0fed90395f4a
+      name: TreasureSpawner
+      isWeightEnabled: 0
+      totalWeight: 1
+      prefabs:
+      - weight: 1
+        prefab: {fileID: 3552293010743194950, guid: b30cbe5f4fac51a47b31ac7ceeb8ebda,
+          type: 3}
+    - id: 2e8a5ba5-ecdf-436c-8c4e-734c98be2899
+      name: EnemySpawner
+      isWeightEnabled: 0
+      totalWeight: 1
+      prefabs:
+      - weight: 1
+        prefab: {fileID: 3552293010743194950, guid: c73069011415d9b44961be886804808b,
+          type: 3}
+    - id: e349c002-6590-482f-9cea-52549ac67d83
+      name: Decor
+      isWeightEnabled: 0
+      totalWeight: 1
+      prefabs:
+      - weight: 1
+        prefab: {fileID: 3552293010743194950, guid: af6e6c5d222410b4d969597dba11ae75,
+          type: 3}
+    orderedIds:
+    - 0efabba0-37aa-4518-853e-eae45e08c925
+    - 297b3e8a-b35e-4651-9832-e2be4be58558
+    - 66aa8495-cc9b-4311-824a-0fed90395f4a
+    - 2e8a5ba5-ecdf-436c-8c4e-734c98be2899
+    - e349c002-6590-482f-9cea-52549ac67d83
