@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 569777edb9bd6174a827caf085e86e5b, type: 3}
-  m_Name: Player2
+  m_Name: Player3
   m_EditorClassIdentifier: 
   _health: 0
   _attack: 0
-  _moveSpeed: 0
-  Sprite: {fileID: 0}
-  Animator: {fileID: 0}
+  _moveSpeed: 1
+  Icon: {fileID: 0}
   _carryCapacity: 0
+  _characterType: 2

@@ -1,10 +1,10 @@
 using System;
+using Multiplayer;
 using UnityEngine;
 using Playroom;
 
 public class MultiplayerManager : MonoBehaviour
 {
-    
     public Action OnPlayroomInit;
     public Action<PlayroomKit.Player> OnPlayerJoined;
     
@@ -28,12 +28,13 @@ public class MultiplayerManager : MonoBehaviour
             // Lobby-wide states
             defaultStates = new()
             {
-                {"score", 0}
+                {GameConstants.GameStateData.Score.ToString(), 0}
             }, 
             // Player dependant states
             defaultPlayerStates = new()
             {
-                {"pos", Vector3.zero}
+                {GameConstants.PlayerStateData.Position.ToString(), Vector3.zero},
+                {GameConstants.PlayerStateData.CharacterType.ToString(), GameConstants.CharacterTypes.Alpha}
             },
             skipLobby = true, // we will make a custom lobby ui
             matchmaking = false, // true for creating auto-match lobbies with MatchmakingOptions

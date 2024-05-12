@@ -10,7 +10,7 @@ public class SpriteBillboard : MonoBehaviour
 
     
 
-    void Update()
+    void FixedUpdate()
     {
         if (freezeXZAxis)
         {

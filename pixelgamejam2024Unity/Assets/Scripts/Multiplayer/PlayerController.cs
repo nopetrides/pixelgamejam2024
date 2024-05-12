@@ -1,13 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
     private PlayerCharacterSO _playerSO;
+    
     private float _maxSpeed;
     private float _carryCapacity;
     private int _health;
@@ -29,10 +26,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Camera _cam;
     private Transform _camTransform;
+
+    private bool _alive;
+    private bool _canControl;
+
+    public bool AliveAndReady => _alive && _canControl;
     
 
-    private void Awake()
+    public void SetAsCharacter(PlayerCharacterSO characterData)
     {
+        _playerSO = characterData;
         Cursor.lockState = CursorLockMode.Locked;
         _maxSpeed = _playerSO.MoveSpeed;
         _carryCapacity = _playerSO.CarryCapacity;
@@ -41,6 +44,9 @@ public class PlayerController : MonoBehaviour
         _input = new PlayerControls();
         _rb = GetComponent<Rigidbody>();
         _camTransform = _cam.transform;
+        
+        _alive = true;
+        _canControl = true;
     }
 
     private void OnEnable()

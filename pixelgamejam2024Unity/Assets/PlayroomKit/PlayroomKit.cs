@@ -43,7 +43,7 @@ namespace Playroom
             public bool skipLobby = false;
             public int reconnectGracePeriod = 0;
             public int? maxPlayersPerRoom;
-            public string? gameId;
+            public string gameId;
             public bool discord = false;
 
             public Dictionary<string, object> defaultStates = null;

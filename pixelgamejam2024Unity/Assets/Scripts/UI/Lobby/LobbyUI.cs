@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 
 public class LobbyUI : MonoBehaviour
 {
+    [Header("Scene References")]
     [SerializeField] private MultiplayerManager _multiplayerManager;
     [SerializeField] private MainMenuUI _mainMenu;
     

@@ -1,25 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
+using System.Linq;
+using Multiplayer;
 using Playroom;
 using UnityEngine;
 
 public class PlayerNetworkController : MonoBehaviour
 {
-    private PlayroomKit.Player _localPlayerObject;
+    [SerializeField] private PlayerController _controller;
     
-    // Start is called before the first frame update
-    void Start()
+    private PlayroomKit.Player _playroomPlayer;
+    private GameStateManager _manager;
+    
+    
+    public void Setup(PlayroomKit.Player player, GameStateManager manager)
     {
-        _localPlayerObject = PlayroomKit.MyPlayer();
-        if (_localPlayerObject != null)
-            Debug.Log($"[PlayerNetworkController] started with player {_localPlayerObject.id}");
-        else
-            Debug.LogError("[PlayerNetworkController] no Playroom Player found");
+        _playroomPlayer = player;
+        _manager = manager;
+        var characterTypeState = player.GetState<GameConstants.CharacterTypes>(GameConstants.PlayerStateData.CharacterType.ToString());
+        var characterData = PlayerCharactersData.Characters[characterTypeState];
+        if (characterData == null)
+        {
+            Debug.LogError($"Failed to determine character for type {characterTypeState}");
+            return;
+        }
+        SetAsCharacter(characterData);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void SetAsCharacter(PlayerCharacterSO characterData)
     {
-        
+        _controller.SetAsCharacter(characterData);
     }
 }
