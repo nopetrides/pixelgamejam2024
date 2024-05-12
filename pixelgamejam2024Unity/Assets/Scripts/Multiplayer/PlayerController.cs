@@ -98,14 +98,16 @@ public class PlayerController : MonoBehaviour
     {
         _forceDir += _movementAxis.x * GetCameraRight(_cam) * _moveForce;
         _forceDir += _movementAxis.y * GetCameraForward(_cam) * _moveForce;
+        //transform.forward = _forceDir;
         _rb.AddForce(_forceDir, ForceMode.Impulse);
-        transform.forward = _forceDir;
         _forceDir = Vector3.zero;
 
         Vector3 horizontalVelocity = _rb.velocity;
         horizontalVelocity.y = 0f;
         if (horizontalVelocity.sqrMagnitude > _maxSpeed * _maxSpeed)
             _rb.velocity = horizontalVelocity.normalized * _maxSpeed;
+        
+        LookAt();
     }
 
     private Vector3 GetCameraRight(Camera cam)
@@ -130,7 +132,11 @@ public class PlayerController : MonoBehaviour
         if (_movementAxis.sqrMagnitude > 0.1f && direction.sqrMagnitude > 0.1f)
         {
             _rb.rotation = Quaternion.LookRotation(direction, Vector3.up);
-        } 
+        }
+        else
+        {
+            _rb.angularVelocity = Vector3.zero;
+        }
     }
 
     private void Move(Vector3 move)
