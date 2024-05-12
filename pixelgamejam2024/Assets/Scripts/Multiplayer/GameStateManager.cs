@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class GameStateManager : MonoBehaviour
 {
-    [SerializeField] private PlayerNetworkController PlayerPrefab;
+    [SerializeField] private PlayerNetworkControllerV2 PlayerPrefab;
     
-    private Dictionary<string, PlayerNetworkController> Players = new();
+    private Dictionary<string, PlayerNetworkControllerV2> Players = new();
     
     void Awake()
     {
