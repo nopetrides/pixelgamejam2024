@@ -8,6 +8,9 @@ using UnityEngine;
 public class PlayerNetworkControllerV2 : MonoBehaviour
 {
     [SerializeField] private AdvancedWalkerController _controller;
+    [SerializeField] private PlayerHealth _playerHealth;
+
+    
     // todo, player controller that handles the other game mechanics
     
     private PlayroomKit.Player _playroomPlayer;
@@ -31,6 +34,7 @@ public class PlayerNetworkControllerV2 : MonoBehaviour
     private void SetAsCharacter(PlayerCharacterSO characterData)
     {
         _controller.movementSpeed = characterData.MoveSpeed;
+        _playerHealth.MaxHealth = characterData.Health;
         // todo, other data driven fields - modify a different controller that handles player stats like hp and carrying.
     }
 }
