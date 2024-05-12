@@ -18,3 +18,4 @@ MonoBehaviour:
   Icon: {fileID: 0}
   _carryCapacity: 0
   _characterType: 1
+  _characterColor: {r: 1, g: 1, b: 0, a: 1}

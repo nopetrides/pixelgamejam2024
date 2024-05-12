@@ -17,3 +17,5 @@ MonoBehaviour:
   _moveSpeed: 5
   Icon: {fileID: 0}
   _carryCapacity: 0
+  _characterType: 0
+  _characterColor: {r: 1, g: 0, b: 0, a: 1}

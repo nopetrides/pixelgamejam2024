@@ -15,8 +15,8 @@ public class PlayerNetworkController : MonoBehaviour
     {
         _playroomPlayer = player;
         _manager = manager;
-        var characterTypeState = player.GetState<GameConstants.CharacterTypes>(GameConstants.PlayerStateData.CharacterType.ToString());
-        var characterData = PlayerCharactersData.Characters[characterTypeState];
+        var characterTypeState = player.GetState<int>(GameConstants.PlayerStateData.CharacterType.ToString());
+        var characterData = PlayerCharactersData.Characters[(GameConstants.CharacterTypes)characterTypeState];
         if (characterData == null)
         {
             Debug.LogError($"Failed to determine character for type {characterTypeState}");

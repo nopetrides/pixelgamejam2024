@@ -34,7 +34,7 @@ public class MultiplayerManager : MonoBehaviour
             defaultPlayerStates = new()
             {
                 {GameConstants.PlayerStateData.Position.ToString(), Vector3.zero},
-                {GameConstants.PlayerStateData.CharacterType.ToString(), GameConstants.CharacterTypes.Alpha}
+                {GameConstants.PlayerStateData.CharacterType.ToString(), (int)GameConstants.CharacterTypes.Alpha}
             },
             skipLobby = true, // we will make a custom lobby ui
             matchmaking = false, // true for creating auto-match lobbies with MatchmakingOptions

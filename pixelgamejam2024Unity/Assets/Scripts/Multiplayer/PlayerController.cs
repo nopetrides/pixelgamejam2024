@@ -41,16 +41,18 @@ public class PlayerController : MonoBehaviour
         _carryCapacity = _playerSO.CarryCapacity;
         _health = _playerSO.Health;
         _attack = _playerSO.Attack;
-        _input = new PlayerControls();
         _rb = GetComponent<Rigidbody>();
         _camTransform = _cam.transform;
+        _input = new PlayerControls();
         
         _alive = true;
         _canControl = true;
+        OnEnable();
     }
 
     private void OnEnable()
     {
+        if (!AliveAndReady) return;
         _input.Gameplay.Enable();
         _input.Gameplay.Movement.performed += OnMovementPressed;
         _input.Gameplay.Movement.canceled += OnMovementReleased;

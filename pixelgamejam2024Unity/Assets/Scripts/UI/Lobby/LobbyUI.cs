@@ -39,6 +39,7 @@ public class LobbyUI : MonoBehaviour
         {
             Debug.Log("Registering Start Game Callback");
             PlayroomKit.RpcRegister("Start", StartGameCallback, "Loading Response");
+            PlayroomKit.RpcRegister("RefreshLobby", OnRefreshLobbyRPC, "Refreshing Lobby..");
         }
         StartGameButton.gameObject.SetActive(PlayroomKit.IsHost());
     }
@@ -52,7 +53,7 @@ public class LobbyUI : MonoBehaviour
         }
         Debug.Log($"Player joined lobby {playerJoined.id}");
         var newPlayerUI = Instantiate(playerLobbyPrefab, _playerLobbyParent);
-        newPlayerUI.Setup(playerJoined, PlayersList.Count-1);
+        newPlayerUI.Setup(playerJoined, this);
         _playerLobbyItems.Add(playerJoined.id, newPlayerUI);
         playerJoined.OnQuit(RemovePlayer);
 
@@ -106,5 +107,20 @@ public class LobbyUI : MonoBehaviour
         _playerLobbyItems.Clear();
         
         _mainMenu.ShowMenu();
+    }
+
+    public void RefreshLobby()
+    {
+        if (PlayroomKit.IsRunningInBrowser()) PlayroomKit.RpcCall("RefreshLobby", "Change Character", PlayroomKit.RpcMode.ALL, LobbyRefreshConfirmedCallback);
+    }
+
+    private void OnRefreshLobbyRPC(string data, string senderId)
+    {
+        _playerLobbyItems[senderId].RefreshUI();
+    }
+
+    private void LobbyRefreshConfirmedCallback()
+    {
+        Debug.Log("Refresh Confirmed");
     }
 }

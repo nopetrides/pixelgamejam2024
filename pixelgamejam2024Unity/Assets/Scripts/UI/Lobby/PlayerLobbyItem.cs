@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using Multiplayer;
+﻿using Multiplayer;
 using Playroom;
 using TMPro;
 using UnityEngine;
@@ -11,59 +9,67 @@ using UnityEngine.UI;
 /// </summary>
 public class PlayerLobbyItem : MonoBehaviour
 {
+    [SerializeField] private Image CharacterBG;
     [SerializeField] private Image CharacterIcon;
-    [SerializeField] private Color[] TempCharacterColors;
+    [SerializeField] private GameObject ControlsParent;
     [SerializeField] private TMP_Text CharacterNameText;
 
     private int _currentCharacterSelection;
 
     private PlayroomKit.Player _representsPlayer;
-    private int _playerIndex;
+    private LobbyUI _manager;
 
-    public void Setup(PlayroomKit.Player setupAsPlayer, int playerIndex)
+    public void Setup(PlayroomKit.Player setupAsPlayer, LobbyUI manager)
     {
         _representsPlayer = setupAsPlayer;
-        _playerIndex = playerIndex;
-        _representsPlayer.SetState(GameConstants.PlayerStateData.CharacterType.ToString(), (GameConstants.CharacterTypes)_playerIndex);
-        
+        _manager = manager;
+        ControlsParent.SetActive(PlayroomKit.Me() == setupAsPlayer);
         ChangeCharacter();
     }
 
     public void ButtonPreviousCharacter()
     {
-        var characterType = CurrentCharacter();
-        characterType = characterType.Previous();
-        _representsPlayer.SetState(GameConstants.PlayerStateData.CharacterType.ToString(), characterType);
+        var character = CurrentCharacter();
+        var characterType = character.CharacterType.Previous();
+        _representsPlayer.SetState(GameConstants.PlayerStateData.CharacterType.ToString(), (int)characterType, true);
         ChangeCharacter();
+        _manager.RefreshLobby();
     }
 
     public void ButtonNextCharacter()
     {
-        var characterType = CurrentCharacter();
-        characterType = characterType.Next();
-        _representsPlayer.SetState(GameConstants.PlayerStateData.CharacterType.ToString(), characterType);
+        var character = CurrentCharacter();
+        var characterType = character.CharacterType.Next();
+        _representsPlayer.SetState(GameConstants.PlayerStateData.CharacterType.ToString(), (int)characterType, true);
+        ChangeCharacter();
+        _manager.RefreshLobby();
+    }
+
+    public void RefreshUI()
+    {
         ChangeCharacter();
     }
     
     private void ChangeCharacter()
     {
-        var characterType = CurrentCharacter();
+        var character = CurrentCharacter();
         
         // change visual to match character
-        CharacterIcon.color = TempCharacterColors[(int)characterType];
-        CharacterNameText.text = characterType.ToString();
+        CharacterBG.color = character.CharacterColor;
+        CharacterIcon.color = character.CharacterColor;
+        CharacterNameText.text = character.CharacterType.ToString();
     }
 
-    private GameConstants.CharacterTypes CurrentCharacter()
+    private PlayerCharacterSO CurrentCharacter()
     {
-        var characterTypeState = _representsPlayer.GetState<GameConstants.CharacterTypes>(GameConstants.PlayerStateData.CharacterType.ToString());
-        var characterData = PlayerCharactersData.Characters[characterTypeState];
+        var characterTypeState = _representsPlayer.GetState<int>(GameConstants.PlayerStateData.CharacterType.ToString());
+        var characterData = PlayerCharactersData.Characters[(GameConstants.CharacterTypes)characterTypeState];
         if (characterData == null)
         {
             Debug.LogError($"Failed to determine character for type {characterTypeState}");
-            return GameConstants.CharacterTypes.Alpha;
+            return PlayerCharactersData.Characters[GameConstants.CharacterTypes.Alpha];
         }
 
-        return characterData.CharacterType;
+        return characterData;
     }
 }

@@ -9,6 +9,8 @@ public class PlayerCharacterSO : EntitySO
 
     [SerializeField] private GameConstants.CharacterTypes _characterType;
 
+    [SerializeField] private Color _characterColor;
+
     public float CarryCapacity
     {
         get => _carryCapacity;
@@ -19,5 +21,11 @@ public class PlayerCharacterSO : EntitySO
     {
         get => _characterType;
         private set => _characterType = value;
+    }
+
+    public Color CharacterColor
+    {
+        get => _characterColor;
+        private set => _characterColor = value;
     }
 }
