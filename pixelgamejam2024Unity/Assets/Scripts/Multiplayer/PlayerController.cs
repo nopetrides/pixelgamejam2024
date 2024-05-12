@@ -1,14 +1,20 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
     private PlayerCharacterSO _playerSO;
-    
+    private float _moveSpeed;
     private float _maxSpeed;
     private float _carryCapacity;
+    private float _currentCarriedWeight;
     private int _health;
     private int _attack;
+    private bool _attackCooldown;
     [SerializeField]
     private float _moveForce = 1f;
     private Vector3 _move;
@@ -27,6 +33,12 @@ public class PlayerController : MonoBehaviour
     private Camera _cam;
     private Transform _camTransform;
 
+    [SerializeField]
+    private CapsuleCollider _pickupZone;
+    [SerializeField]
+    private GameObject _attackZone;
+
+    
     private bool _alive;
     private bool _canControl;
 
@@ -91,12 +103,12 @@ public class PlayerController : MonoBehaviour
     
     private void OnPickupPressed(InputAction.CallbackContext obj)
     {
-        
+        Grab();
     }
 
     private void OnAttackPressed(InputAction.CallbackContext obj)
     {
-        
+        if(!_attackCooldown) Attack();
     }
     
     #endregion
@@ -106,14 +118,16 @@ public class PlayerController : MonoBehaviour
     {
         _forceDir += _movementAxis.x * GetCameraRight(_cam) * _moveForce;
         _forceDir += _movementAxis.y * GetCameraForward(_cam) * _moveForce;
+        //transform.forward = _forceDir;
         _rb.AddForce(_forceDir, ForceMode.Impulse);
-        transform.forward = _forceDir;
         _forceDir = Vector3.zero;
 
         Vector3 horizontalVelocity = _rb.velocity;
         horizontalVelocity.y = 0f;
-        if (horizontalVelocity.sqrMagnitude > _maxSpeed * _maxSpeed)
-            _rb.velocity = horizontalVelocity.normalized * _maxSpeed;
+        if (horizontalVelocity.sqrMagnitude > _moveSpeed * _moveSpeed)
+            _rb.velocity = horizontalVelocity.normalized * _moveSpeed;
+        
+        LookAt();
     }
 
     private Vector3 GetCameraRight(Camera cam)
@@ -138,7 +152,11 @@ public class PlayerController : MonoBehaviour
         if (_movementAxis.sqrMagnitude > 0.1f && direction.sqrMagnitude > 0.1f)
         {
             _rb.rotation = Quaternion.LookRotation(direction, Vector3.up);
-        } 
+        }
+        else
+        {
+            _rb.angularVelocity = Vector3.zero;
+        }
     }
 
     private void Move(Vector3 move)
@@ -162,5 +180,58 @@ public class PlayerController : MonoBehaviour
     {
         _facingLeft = !_facingLeft;
         _spriteRenderer.flipX = !_spriteRenderer.flipX;
+    }
+
+    private void Grab()
+    {
+        Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(transform.position, _pickupZone.radius);
+        foreach (Collider2D collider2D in collider2Ds)
+        {
+            if (collider2D.GetComponent<Pickup>() != null)
+            {
+                if (_currentCarriedWeight >= _carryCapacity)
+                {
+                    //Print fail message
+                    return;
+                }
+                collider2D.GetComponent<Pickup>()?.Interact();
+                //Pickup object; add weight
+                SetMaxSpeed();
+                //FixedJoint2D fj = transform.gameObject.AddComponent(typeof(FixedJoint2D)) as FixedJoint2D;
+            }
+
+            if (collider2D.GetComponent<Conveyour>() != null && _currentCarriedWeight > 0)
+            {
+                //Unload
+                SetMaxSpeed();
+            }
+        }
+    }
+
+    private void SetMaxSpeed()
+    {
+        if (_currentCarriedWeight <= _carryCapacity * 0.25f)
+        {
+            _moveSpeed = _maxSpeed; 
+        }else if (_currentCarriedWeight <= _carryCapacity * 0.5f)
+        {
+            _moveSpeed = _maxSpeed * 0.75f;
+        }else if (_currentCarriedWeight <= _carryCapacity * 0.75f)
+        {
+            _moveSpeed = _maxSpeed * 0.5f;
+        }
+        else
+        {
+            _moveSpeed = _maxSpeed * 0.25f;
+        }
+    }
+
+    private async void Attack()
+    {
+        _attackZone.SetActive(true);
+        _attackCooldown = true;
+        await Task.Delay(250);
+        _attackZone.SetActive(false);
+        _attackCooldown = false;
     }
 }
