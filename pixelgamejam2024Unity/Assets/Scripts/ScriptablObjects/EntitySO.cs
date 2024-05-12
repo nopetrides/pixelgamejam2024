@@ -14,9 +14,7 @@ public class EntitySO : ScriptableObject
     [SerializeField]
     private float _moveSpeed;
 
-    public Sprite Sprite;
-    public Animator Animator;
-
+    public Sprite Icon;
 
     public int Health
     {

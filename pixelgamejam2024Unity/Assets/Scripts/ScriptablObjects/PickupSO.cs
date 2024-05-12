@@ -14,7 +14,7 @@ public class PickupSO : ScriptableObject
     [SerializeField]
     private float _heatChange;
 
-    public Sprite Sprite;
+    public Sprite Icon;
 
     public float Weight
     {

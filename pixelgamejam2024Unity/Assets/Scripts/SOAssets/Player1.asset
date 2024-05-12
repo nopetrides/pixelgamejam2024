@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: 0
   _attack: 0
-  _moveSpeed: 0
-  Sprite: {fileID: 0}
-  Animator: {fileID: 0}
+  _moveSpeed: 5
+  Icon: {fileID: 0}
   _carryCapacity: 0
