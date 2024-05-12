@@ -16,10 +16,15 @@ public class GameStateManager : MonoBehaviour
 
         foreach (var p in players.Values)
         {
-            var startPos = p.GetState<Vector3>(GameConstants.PlayerStateData.Position.ToString());
+            Debug.Log($"[GameStateManager] 1");
+            var startPos = Vector3.zero;
+            Debug.Log($"[GameStateManager] 2");
             var newPlayerObject = Instantiate(PlayerPrefab, startPos, Quaternion.identity);
+            Debug.Log($"[GameStateManager] 3");
             newPlayerObject.Setup(p, this);
+            Debug.Log($"[GameStateManager] 4");
             Players.Add(p.id, newPlayerObject);
+            Debug.Log($"[GameStateManager] 5");
         }
     }
 }
