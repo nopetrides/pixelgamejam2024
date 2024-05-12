@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9594bfd1a6e5c144a7b3cd550101403, type: 3}
   m_Name: ResolutionMonitor
   m_EditorClassIdentifier: 
-  optimizedResolutionFallback: {x: 1080, y: 1920}
+  optimizedResolutionFallback: {x: 1920, y: 1080}
   optimizedDpiFallback: 96
-  fallbackName: Portrait
+  fallbackName: HD
   staticSizerMethods:
   - assemblyName: Assembly-CSharp
     typeName: 
@@ -56,6 +56,6 @@ MonoBehaviour:
       screenTag: 
       isActive: 0
     optimizedScreenInfo:
-      resolution: {x: 1920, y: 1080}
+      resolution: {x: 640, y: 360}
       dpi: 96
     fallbacks: []

@@ -4,13 +4,25 @@ using Playroom;
 
 public class MultiplayerManager : MonoBehaviour
 {
+    
+    public Action OnPlayroomInit;
     public Action<PlayroomKit.Player> OnPlayerJoined;
     
-    // Start is called before the first frame update
-    void Start()
+    public void SetLobbyCodeAndStart(string lobbyCode)
+    {
+        StartLobby(lobbyCode);
+    }
+
+    public void HostNewLobby()
+    {
+        StartLobby();
+    }
+
+    private void StartLobby(string lobbyCode = null)
     {
         var initOptions = new PlayroomKit.InitOptions()
         {
+            roomCode = lobbyCode,
             gameId = "JCIWV1N4joeKV1xc5Cc4",
             maxPlayersPerRoom = 4,
             // Lobby-wide states
@@ -32,6 +44,8 @@ public class MultiplayerManager : MonoBehaviour
 
     void OnPlayerStartLobby()
     {
+        Debug.Log($"Lobby created!");
+        OnPlayroomInit?.Invoke();
         PlayroomKit.OnPlayerJoin(OnPlayerJoinLobby);
     }
 
@@ -44,12 +58,5 @@ public class MultiplayerManager : MonoBehaviour
     {
         Debug.Log($"{player.id} joined lobby!");
         OnPlayerJoined?.Invoke(player);
-        
-    }
-    
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
