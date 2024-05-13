@@ -14,7 +14,7 @@ public class MapChunksManager : MonoBehaviour
     [SerializeField] private Camera _cam;
     [SerializeField] private int _chunkSize = 25;
     [SerializeField] private int _spawnRange = 25;
-    //[SerializeField] private Transform _mapObjectsContainer;
+    [SerializeField] private Transform _mapObjectsContainer;
 
     private Queue<Vector2Int> queuedChunks;
     private HashSet<Vector2Int> existingChunkCoords;
@@ -127,6 +127,12 @@ public class MapChunksManager : MonoBehaviour
 
         _runner.SetIn("ChunkSize", _chunkSize);
         _runner.SetIn("Coordinates", chunkCoords);
+        var startPosition = _mapObjectsContainer.transform.position;
+        var chunkParent = Instantiate(_mapObjectsContainer, _mapObjectsContainer.parent);
+        chunkParent.position =
+            new Vector3(startPosition.x + chunkCoords.x, startPosition.y, startPosition.z + chunkCoords.y);
+        _runner.SetIn("Container", chunkParent.gameObject);
+        _runner.SetIn("SafeZoneFlagSize", chunkCoords == Vector2Int.zero ? new Vector2Int(_chunkSize, _chunkSize) : Vector2Int.zero);
         _runner.Run();
     }
 
@@ -143,24 +149,24 @@ public class MapChunksManager : MonoBehaviour
         
         var xMin = camPos.x - _spawnRange;
         var xMax = camPos.x + _spawnRange;
-        var yMin = camPos.y - _spawnRange;
-        var yMax = camPos.y + _spawnRange;
+        var zMin = camPos.z - _spawnRange;
+        var zMax = camPos.z + _spawnRange;
         chunkSpawningArea = new Rect(
-            xMin, yMin, xMax - xMin, yMax - yMin
+            xMin, zMin, xMax - xMin, zMax - zMin
         );
 
         // Find the min. chunk coordinates in the current area.
-        var minChunkCoords = new Vector2Int(
-            Mathf.FloorToInt(RoundToClosestMultiple(xMin - halfSize, _chunkSize)),
-            Mathf.FloorToInt(RoundToClosestMultiple(yMin - halfSize, _chunkSize))
-        );
+        var minChunkCoordsX = 
+            Mathf.FloorToInt(RoundToClosestMultiple(xMin - halfSize, _chunkSize));
+        var minChunkCoordsZ =
+            Mathf.FloorToInt(RoundToClosestMultiple(zMin - halfSize, _chunkSize));
 
         // Find all the chunk coords that are instead of the current area.
         chunkCoordsInRange.Clear();
-        for (var x = minChunkCoords.x; x < xMax - halfSize; x += _chunkSize)
-        for (var y = minChunkCoords.y; y < yMax - halfSize; y += _chunkSize)
+        for (var x = minChunkCoordsX; x < xMax - halfSize; x += _chunkSize)
+        for (var z = minChunkCoordsZ; z < zMax - halfSize; z += _chunkSize)
         {
-            var chunkCoords = new Vector2Int(x, y);
+            var chunkCoords = new Vector2Int(x, z);
             chunkCoordsInRange.Add(chunkCoords);
 
             if (existingChunkCoords.Contains(chunkCoords)) continue;    // A chunk has already been generated for these coords.
@@ -176,20 +182,20 @@ public class MapChunksManager : MonoBehaviour
         Gizmos.color = Color.cyan;
         
         // Draw lines that display the area in which new chunks get generated.
-        Gizmos.DrawLine(chunkSpawningArea.min, new Vector2(chunkSpawningArea.xMin, chunkSpawningArea.yMax));
-        Gizmos.DrawLine(chunkSpawningArea.min, new Vector2(chunkSpawningArea.xMax, chunkSpawningArea.yMin));
-        Gizmos.DrawLine(new Vector2(chunkSpawningArea.xMin, chunkSpawningArea.yMax), chunkSpawningArea.max);
-        Gizmos.DrawLine(new Vector2(chunkSpawningArea.xMax, chunkSpawningArea.yMin), chunkSpawningArea.max);
+        Gizmos.DrawLine(new Vector3(chunkSpawningArea.xMin, 0f, chunkSpawningArea.yMin), new Vector3(chunkSpawningArea.xMin, 0f, chunkSpawningArea.yMax));
+        Gizmos.DrawLine(new Vector3(chunkSpawningArea.xMin, 0f, chunkSpawningArea.yMin), new Vector3(chunkSpawningArea.xMax, 0f, chunkSpawningArea.yMin));
+        Gizmos.DrawLine(new Vector3(chunkSpawningArea.xMin, 0f, chunkSpawningArea.yMax), new Vector3(chunkSpawningArea.xMax, 0f, chunkSpawningArea.yMax));
+        Gizmos.DrawLine(new Vector3(chunkSpawningArea.xMax, 0f, chunkSpawningArea.yMin), new Vector3(chunkSpawningArea.xMax, 0f, chunkSpawningArea.yMax));
         
         if (chunkCoordsInRange == null) return;
 
         // Draw the center point of chunks within visible range.
         foreach (var coord in chunkCoordsInRange)
         {
-            var chunkOrigin = new Vector2(coord.x, coord.y);
             var halfSize = _chunkSize * .5f;
-            var chunkCenter = new Vector2(chunkOrigin.x + halfSize, chunkOrigin.y + halfSize);
-            Gizmos.DrawWireSphere(new Vector3(chunkCenter.x, chunkCenter.y, 0), .1f);
+            var chunkCenterX = coord.x + halfSize;
+            var chunkCenterZ = coord.y + halfSize;
+            Gizmos.DrawWireSphere(new Vector3(chunkCenterX, 2f, chunkCenterZ), .2f);
         }
     }
     

@@ -41,12 +41,18 @@ MonoBehaviour:
       color:
         serializedVersion: 2
         rgba: 4278255360
+    - id: 77f89bf6-f1d2-45d5-b521-07d6b650afae
+      name: Water
+      color:
+        serializedVersion: 2
+        rgba: 4294901760
     orderedIds:
     - ac6f5de4-1b5c-4ee0-95b8-3964df316c9b
     - 401f5cf5-9676-41cd-855b-ffdfce24bb77
     - 4d21079d-5e2d-41ca-8cff-bb2d202e8342
     - 0012020b-8b67-42c3-8652-c3cdb22ffda9
     - a0473d59-1a7b-4fa8-a7ce-1fcf38566a09
+    - 77f89bf6-f1d2-45d5-b521-07d6b650afae
   serializedNames: []
   serializedColors: []
   serializedLinkedSets: []

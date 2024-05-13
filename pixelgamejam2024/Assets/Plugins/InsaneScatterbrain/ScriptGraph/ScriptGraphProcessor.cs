@@ -641,7 +641,7 @@ namespace InsaneScatterbrain.ScriptGraph
         public bool ContainsInParameterId(string id)
         {
             Prepare();
-            
+            if (graphInstance == null || graphInstance.InputParameters == null) return false;
             return graphInstance.InputParameters.ContainsId(id);
         }
 
@@ -691,6 +691,7 @@ namespace InsaneScatterbrain.ScriptGraph
         {
             Prepare();
 
+            if (graphInstance == null || graphInstance.InputParameters == null) return new List<string>();
             return graphInstance.InputParameters.OrderedIds;
         }
 
