@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using AOT;
+using Multiplayer;
 using UnityEngine;
 using Playroom;
 using TheraBytes.BetterUi;
@@ -39,9 +40,11 @@ public class LobbyUI : MonoBehaviour
         {
             Debug.Log("Registering Start Game Callback");
             PlayroomKit.RpcRegister("Start", StartGameCallback, "Loading Response");
-            PlayroomKit.RpcRegister("RefreshLobby", OnRefreshLobbyRPC, "Refreshing Lobby..");
+            PlayroomKit.RpcRegister("RefreshLobby", OnRefreshLobbyRPC, "Refreshing Lobby...");
+            PlayroomKit.RpcRegister("JoinedLobby", OnLobbyDataRequest, "Joined the lobby and requesting updates...");
         }
         StartGameButton.gameObject.SetActive(PlayroomKit.IsHost());
+        LobbyCode.text = PlayroomKit.IsRunningInBrowser() ? PlayroomKit.GetRoomCode() : "Mock Mode";
     }
 
     private void AddPlayerToLobby(PlayroomKit.Player playerJoined)
@@ -52,12 +55,35 @@ public class LobbyUI : MonoBehaviour
             return;
         }
         Debug.Log($"Player joined lobby {playerJoined.id}");
-        var newPlayerUI = Instantiate(playerLobbyPrefab, _playerLobbyParent);
-        newPlayerUI.Setup(playerJoined, this);
-        _playerLobbyItems.Add(playerJoined.id, newPlayerUI);
-        playerJoined.OnQuit(RemovePlayer);
+        if (PlayroomKit.IsRunningInBrowser())
+        {
+            var self = PlayroomKit.Me();
+            if (self == playerJoined)
+            {
+                // We added a player to our local lobby, we should update with all the states from the other players
+                playerJoined.SetState(GameConstants.PlayerStateData.CharacterType.ToString(), (int)GameConstants.CharacterTypes.Alpha, true);
+                CreatePlayerLobbyItem(playerJoined);
+                RequestLobbyPlayerStates();
+            }
+            else
+            {
+                CreatePlayerLobbyItem(playerJoined);
+            }
+        }
+        else
+        {
+            playerJoined.SetState(GameConstants.PlayerStateData.CharacterType.ToString(), (int)GameConstants.CharacterTypes.Alpha, true);
+            CreatePlayerLobbyItem(playerJoined);
+        }
+    }
 
-        LobbyCode.text = PlayroomKit.IsRunningInBrowser() ? PlayroomKit.GetRoomCode() : "Mock Mode";
+    private void CreatePlayerLobbyItem(PlayroomKit.Player player)
+    {
+        var newPlayerUI = Instantiate(playerLobbyPrefab, _playerLobbyParent);
+
+        newPlayerUI.Setup(player, this);
+        _playerLobbyItems.Add(player.id, newPlayerUI);
+        player.OnQuit(RemovePlayer);
     }
     
     [MonoPInvokeCallback(typeof(Action<string>))]
@@ -111,16 +137,36 @@ public class LobbyUI : MonoBehaviour
 
     public void RefreshLobby()
     {
+        Debug.Log($"[RefreshLobby] Sending Refresh message");
         if (PlayroomKit.IsRunningInBrowser()) PlayroomKit.RpcCall("RefreshLobby", "Change Character", PlayroomKit.RpcMode.ALL, LobbyRefreshConfirmedCallback);
     }
 
     private void OnRefreshLobbyRPC(string data, string senderId)
     {
+        Debug.Log($"[OnRefreshLobbyRPC]" + data);
         _playerLobbyItems[senderId].RefreshUI();
     }
 
     private void LobbyRefreshConfirmedCallback()
     {
         Debug.Log("Refresh Confirmed");
+    }
+
+    private void RequestLobbyPlayerStates()
+    {
+        PlayroomKit.RpcCall("JoinedLobby", "New Player Joined", PlayroomKit.RpcMode.OTHERS, LobbyRefreshConfirmedCallback);
+    }
+
+    private void OnLobbyDataRequest(string data, string senderId)
+    {
+        var self = PlayroomKit.Me();
+        string key = GameConstants.PlayerStateData.CharacterType.ToString();
+        self.SetState(key, self.GetState<int>(key), true);
+        PlayroomKit.RpcCall("RefreshLobby", "Change Character", PlayroomKit.RpcMode.OTHERS, LobbyDataRequestConfirmed);
+    }
+    
+    private void LobbyDataRequestConfirmed()
+    {
+        Debug.Log("Data Request Confirmed");
     }
 }

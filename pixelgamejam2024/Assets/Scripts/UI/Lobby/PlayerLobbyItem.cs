@@ -24,7 +24,6 @@ public class PlayerLobbyItem : MonoBehaviour
         _representsPlayer = setupAsPlayer;
         _manager = manager;
         ControlsParent.SetActive(PlayroomKit.Me() == setupAsPlayer);
-        _representsPlayer.SetState(GameConstants.PlayerStateData.CharacterType.ToString(), (int)GameConstants.CharacterTypes.Alpha, true);
         ChangeCharacter();
     }
 
