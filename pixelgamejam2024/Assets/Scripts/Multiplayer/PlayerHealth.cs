@@ -19,6 +19,7 @@ public class PlayerHealth : MonoBehaviour
     {
         int healthChanger = HealthEffectsManager.Instance.CanCurrentlyAffectHealth(other.attachedRigidbody);
         if (healthChanger == 0) return;
+        if (healthChanger > 0 && _currentHealth == MaxHealth) return;
         
         if (healthChanger > 0)
         {
