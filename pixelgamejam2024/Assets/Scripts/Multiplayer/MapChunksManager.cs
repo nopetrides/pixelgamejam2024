@@ -20,11 +20,13 @@ public class MapChunksManager : MonoBehaviour
     private HashSet<Vector2Int> existingChunkCoords;
     private List<Vector2Int> chunkCoordsInRange;
 
+    private bool _setupComplete;
     private bool graphRunnerActive;
     private Rect chunkSpawningArea;
 
     private void Awake()
     {
+        Debug.Log("[MapChunksManager] Awake");
         Pools.Clear();    // Make sure the map is clear before we start using it.
         
         queuedChunks = new Queue<Vector2Int>();
@@ -33,6 +35,7 @@ public class MapChunksManager : MonoBehaviour
 
         if (!PlayroomKit.IsRunningInBrowser())
         {
+            Debug.Log("[MapChunksManager] Awake - Skipping playroom initialization.");
             InitializeMapChunks();
         }
     }
@@ -41,25 +44,32 @@ public class MapChunksManager : MonoBehaviour
     {
         if (!PlayroomKit.IsRunningInBrowser())
         {
+            Debug.Log("[MapChunksManager] InitializeMapChunks - skipping playroom");
             string dateSeed = DateTime.Now.ToString(CultureInfo.CurrentCulture);
             SetupFromServer(GetRandomSeed(dateSeed));
             return;
         }
         if (PlayroomKit.IsHost())
         {
+            Debug.Log("[MapChunksManager] InitializeMapChunks - We are host, setting random seed");
             string dateSeed = DateTime.Now.ToString(CultureInfo.CurrentCulture);
             PlayroomKit.SetState(GameConstants.GameStateData.MapSeed.ToString(), dateSeed, true);
             SetupFromServer(GetRandomSeed(dateSeed));
+            Debug.Log($"[MapChunksManager] InitializeMapChunks - Host seed is set as {dateSeed}");
         }
         else
         {
+            Debug.Log("[MapChunksManager] InitializeMapChunks - Client waiting on map seed");
+            _runner.SetIn("NoiseRNGState", GetRandomSeed(DateTime.Now.ToString(CultureInfo.CurrentCulture))); // doesn't do anything but maybe stop a failure
             PlayroomKit.WaitForState(GameConstants.GameStateData.MapSeed.ToString(), OnSeedReceived);
         }
     }
 
     private void OnSeedReceived()
     {
+        Debug.Log("[MapChunksManager] OnSeedReceived - Received seed, trying to retrieve state...");
         string seed = PlayroomKit.GetState<string>(GameConstants.GameStateData.MapSeed.ToString());
+        Debug.Log($"[MapChunksManager] OnSeedReceived - Seed is {seed}");
         SetupFromServer(GetRandomSeed(seed));
     }
 
@@ -101,6 +111,7 @@ public class MapChunksManager : MonoBehaviour
         }
         }*/
 
+        Debug.Log($"[MapChunksManager] SetupFromServer - Setting up");
         // Set the state for the Perlin Noise Fill Texture nodes.
         _runner.SetIn("NoiseRNGState", noiseRngState);
 
@@ -110,13 +121,15 @@ public class MapChunksManager : MonoBehaviour
             graphRunnerActive = false;
             RunNextChunk();
         };
-
+        _setupComplete = true;
         // Run the first chunk.
         RunNextChunk();
     }
 
     private void RunNextChunk()
     {
+        if (!_setupComplete) return;
+        Debug.Log($"[MapChunksManager] RunNextChunk - Checking if we generate a chunk");
         if (queuedChunks.Count < 1) return; // No new chunks to generate.
 
         if (graphRunnerActive) return;      // The runner's busy with another chunk, so we wait for it to finish.
@@ -133,11 +146,13 @@ public class MapChunksManager : MonoBehaviour
             new Vector3(startPosition.x + chunkCoords.x, startPosition.y, startPosition.z + chunkCoords.y);
         _runner.SetIn("Container", chunkParent.gameObject);
         _runner.SetIn("SafeZoneFlagSize", chunkCoords == Vector2Int.zero ? new Vector2Int(_chunkSize, _chunkSize) : Vector2Int.zero);
+        Debug.Log($"[MapChunksManager] RunNextChunk - Chunk Generation beginning");
         _runner.Run();
     }
 
     private void LateUpdate()
     {
+        if (!_setupComplete) return;
         if (_cam == null)
             _cam = Camera.main;
         if (_cam == null) return;

@@ -36,7 +36,8 @@ public class GameStateManager : MonoBehaviour
             newPlayerObject.Setup(p, this);
             Players.Add(p.id, newPlayerObject);
         }
-        
+
+        MapManager.enabled = true;
         MapManager.InitializeMapChunks();
     }
 }
