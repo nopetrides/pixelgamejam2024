@@ -20,6 +20,7 @@ public class MultiplayerManager : MonoBehaviour
 
     private void StartLobby(string lobbyCode = null)
     {
+        DontDestroyOnLoad(gameObject);
         var initOptions = new PlayroomKit.InitOptions()
         {
             roomCode = lobbyCode,
@@ -31,10 +32,10 @@ public class MultiplayerManager : MonoBehaviour
                 {GameConstants.GameStateData.Score.ToString(), 0}
             }, 
             // Player dependant states
+            // Caution, these will reset any data set before a player joined our lobby.
             defaultPlayerStates = new()
             {
-                {GameConstants.PlayerStateData.Position.ToString(), Vector3.zero},
-                {GameConstants.PlayerStateData.CharacterType.ToString(), (int)GameConstants.CharacterTypes.Alpha}
+                {GameConstants.PlayerStateData.Position.ToString(), Vector3.zero}
             },
             skipLobby = true, // we will make a custom lobby ui
             matchmaking = false, // true for creating auto-match lobbies with MatchmakingOptions

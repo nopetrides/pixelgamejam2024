@@ -7,6 +7,7 @@ namespace Multiplayer
         public enum GameStateData
         {
             Score = 0,
+            MapSeed = 1,
         }
 
         public enum PlayerStateData

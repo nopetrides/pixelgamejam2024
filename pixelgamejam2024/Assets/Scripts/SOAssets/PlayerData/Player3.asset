@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: 0
   _attack: 0
-  _moveSpeed: 1
+  _moveSpeed: 3
   Icon: {fileID: 0}
   _carryCapacity: 0
   _characterType: 2
-  _characterColor: {r: 0, g: 0, b: 1, a: 1}
+  _characterColor: {r: 0.5529412, g: 0, b: 1, a: 1}
