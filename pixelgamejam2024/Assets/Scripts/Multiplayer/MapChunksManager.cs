@@ -154,8 +154,14 @@ public class MapChunksManager : MonoBehaviour
     {
         if (!_setupComplete) return;
         if (_cam == null)
-            _cam = Camera.main;
-        if (_cam == null) return;
+            try
+            {
+                _cam = Camera.main;
+            }
+            catch
+            {
+                Debug.LogWarning("Camera not yet ready");
+            }
         
         var camPos = _cam.transform.position;
         

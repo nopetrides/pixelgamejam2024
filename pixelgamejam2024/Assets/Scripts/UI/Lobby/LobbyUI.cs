@@ -34,14 +34,24 @@ public class LobbyUI : MonoBehaviour
         StartGameButton.gameObject.SetActive(false);
     }
 
+
+    private void OnDestroy()
+    {
+        if (_multiplayerManager != null)
+        {
+            _multiplayerManager.OnPlayerJoined -= AddPlayerToLobby;
+            _multiplayerManager.OnPlayroomInit -= PlayroomInit;
+        }
+    }
+
     private void PlayroomInit()
     {
         if (PlayroomKit.IsRunningInBrowser())
         {
             Debug.Log("Registering Start Game Callback");
-            PlayroomKit.RpcRegister("Start", StartGameCallback, "Loading Response");
+            PlayroomKit.RpcRegister("Start", StartGameRPC, "Loading Response");
             PlayroomKit.RpcRegister("RefreshLobby", OnRefreshLobbyRPC, "Refreshing Lobby...");
-            PlayroomKit.RpcRegister("JoinedLobby", OnLobbyDataRequest, "Joined the lobby and requesting updates...");
+            //PlayroomKit.RpcRegister("JoinedLobby", OnLobbyDataRPC, "Joined the lobby and requesting updates...");
         }
         StartGameButton.gameObject.SetActive(PlayroomKit.IsHost());
         LobbyCode.text = PlayroomKit.IsRunningInBrowser() ? PlayroomKit.GetRoomCode() : "Mock Mode";
@@ -63,7 +73,7 @@ public class LobbyUI : MonoBehaviour
                 // We added a player to our local lobby, we should update with all the states from the other players
                 playerJoined.SetState(GameConstants.PlayerStateData.CharacterType.ToString(), (int)GameConstants.CharacterTypes.Alpha, true);
                 CreatePlayerLobbyItem(playerJoined);
-                RequestLobbyPlayerStates();
+                //RequestLobbyPlayerStates();
             }
             else
             {
@@ -99,7 +109,7 @@ public class LobbyUI : MonoBehaviour
         Debug.Log("Start Game Pressed!");
         if (!PlayroomKit.IsRunningInBrowser())
         {
-            StartGameCallback("GameScene", PlayroomKit.Me().id);
+            StartGameRPC("GameScene", PlayroomKit.Me().id);
             return;
         }
         if (PlayroomKit.IsHost())
@@ -111,7 +121,7 @@ public class LobbyUI : MonoBehaviour
             Debug.LogError("[ButtonStartGame] Hey, how did you get to this?");
     }
     
-    private void StartGameCallback(string data, string senderId)
+    private void StartGameRPC(string data, string senderId)
     {
         Debug.Log($"Received data: {data}");
         SceneManager.LoadScene(data.Trim('\"','\''));
@@ -157,7 +167,7 @@ public class LobbyUI : MonoBehaviour
         PlayroomKit.RpcCall("JoinedLobby", "New Player Joined", PlayroomKit.RpcMode.OTHERS, LobbyRefreshConfirmedCallback);
     }
 
-    private void OnLobbyDataRequest(string data, string senderId)
+    private void OnLobbyDataRPC(string data, string senderId)
     {
         var self = PlayroomKit.Me();
         string key = GameConstants.PlayerStateData.CharacterType.ToString();

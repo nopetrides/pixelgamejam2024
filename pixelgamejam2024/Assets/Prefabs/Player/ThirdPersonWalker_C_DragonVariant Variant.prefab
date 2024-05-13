@@ -335,7 +335,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4825812044729052684}
   - component: {fileID: 331281349089808514}
-  - component: {fileID: 4186577449381543747}
+  - component: {fileID: 4121702972019184306}
   m_Layer: 0
   m_Name: bw_temp_character
   m_TagString: Untagged
@@ -410,22 +410,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4186577449381543747
+--- !u!114 &4121702972019184306
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8362848637711291926}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28f625fafc0c6c44c9831015f06845e4, type: 3}
+  m_Script: {fileID: 11500000, guid: 9e67911c76fd5984bb71b9968335554f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 7796538647729891957}
-  smoothSpeed: 30
-  extrapolateRotation: 0
-  updateType: 0
+  freezeXZAxis: 1
+  _cam: {fileID: 0}
 --- !u!1001 &7791854411941959567
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -602,7 +600,8 @@ PrefabInstance:
       propertyPath: m_Center.y
       value: 0.875
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114019615616029806, guid: 02db1269cd824a742a44596330eb0f28, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4755226239647226, guid: 02db1269cd824a742a44596330eb0f28,
@@ -700,6 +699,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _controller: {fileID: 7906733690493107849}
+  _inputHandler: {fileID: 7904976377479849363}
+  _cameraRoot: {fileID: 7793145931022504315}
 --- !u!114 &2209371131485247188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -715,6 +716,12 @@ MonoBehaviour:
   lockCursorAtGameStart: 1
   unlockKeyCode: 27
   lockKeyCode: 323
+--- !u!1 &7793145931022504315 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1383884771870452, guid: 02db1269cd824a742a44596330eb0f28,
+    type: 3}
+  m_PrefabInstance: {fileID: 7791854411941959567}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7796538647729891957 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4755226239647226, guid: 02db1269cd824a742a44596330eb0f28,
@@ -727,6 +734,18 @@ Camera:
     type: 3}
   m_PrefabInstance: {fileID: 7791854411941959567}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7904976377479849363 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114318903812174364, guid: 02db1269cd824a742a44596330eb0f28,
+    type: 3}
+  m_PrefabInstance: {fileID: 7791854411941959567}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7792930805349255775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9819db9f56d8ad4c83e05807a209fc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7906733690493107849 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114954128155224326, guid: 02db1269cd824a742a44596330eb0f28,

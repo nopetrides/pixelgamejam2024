@@ -31,6 +31,8 @@ public class GameStateManager : MonoBehaviour
         {
             var characterTypeState = p.GetState<int>(GameConstants.PlayerStateData.CharacterType.ToString());
             var startPos = SpawnLocator[characterTypeState].position;
+            if (PlayroomKit.Me() == p) 
+                p.SetState(GameConstants.PlayerStateData.Position.ToString(), transform.position);
             Vector3 direction = (DragonTurtleLocation.position - startPos).normalized;
             var newPlayerObject = Instantiate(PlayerPrefab, startPos, Quaternion.LookRotation(direction));
             newPlayerObject.Setup(p, this);
