@@ -290,6 +290,10 @@ namespace Playroom
             UnsubscribeOnPlayerJoinInternal(CallbackID);
         }
 
+        public static Dictionary<string, Player> GetPlayersOrNull()
+        {
+            return !isPlayRoomInitialized ? null : GetPlayers();
+        }
 
         public static Dictionary<string, Player> GetPlayers()
         {

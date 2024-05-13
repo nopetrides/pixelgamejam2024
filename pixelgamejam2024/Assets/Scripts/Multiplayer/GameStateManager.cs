@@ -5,26 +5,38 @@ using UnityEngine;
 
 public class GameStateManager : MonoBehaviour
 {
+    [SerializeField] private Transform DragonTurtleLocation;
+    [SerializeField] private Transform[] SpawnLocator;
     [SerializeField] private PlayerNetworkControllerV2 PlayerPrefab;
+    [SerializeField] private MapChunksManager MapManager;
     
     private Dictionary<string, PlayerNetworkControllerV2> Players = new();
     
-    void Awake()
+    void Start()
     {
-        var players = PlayroomKit.GetPlayers();
+        var players = PlayroomKit.GetPlayersOrNull();
+
+        if (players == null)
+        {
+            // we didn't set up playroom first, so lets fake it for testing purposes
+            var startPos = SpawnLocator[0].position;
+            Vector3 direction = (DragonTurtleLocation.position - startPos).normalized;
+            var newPlayerObject = Instantiate(PlayerPrefab, startPos, Quaternion.LookRotation(direction));
+            return;
+        }
+        
         Debug.Log($"Loaded into the game with {players.Count} connected players");
 
         foreach (var p in players.Values)
         {
-            Debug.Log($"[GameStateManager] 1");
-            var startPos = Vector3.zero;
-            Debug.Log($"[GameStateManager] 2");
-            var newPlayerObject = Instantiate(PlayerPrefab, startPos, Quaternion.identity);
-            Debug.Log($"[GameStateManager] 3");
+            var characterTypeState = p.GetState<int>(GameConstants.PlayerStateData.CharacterType.ToString());
+            var startPos = SpawnLocator[characterTypeState].position;
+            Vector3 direction = (DragonTurtleLocation.position - startPos).normalized;
+            var newPlayerObject = Instantiate(PlayerPrefab, startPos, Quaternion.LookRotation(direction));
             newPlayerObject.Setup(p, this);
-            Debug.Log($"[GameStateManager] 4");
             Players.Add(p.id, newPlayerObject);
-            Debug.Log($"[GameStateManager] 5");
         }
+        
+        MapManager.InitializeMapChunks();
     }
 }

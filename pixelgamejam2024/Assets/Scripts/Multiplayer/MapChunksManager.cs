@@ -23,7 +23,7 @@ public class MapChunksManager : MonoBehaviour
     private bool graphRunnerActive;
     private Rect chunkSpawningArea;
 
-    private void Start()
+    private void Awake()
     {
         Pools.Clear();    // Make sure the map is clear before we start using it.
         
