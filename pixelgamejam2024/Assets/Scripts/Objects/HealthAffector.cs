@@ -11,12 +11,20 @@ public class HealthAffector : MonoBehaviour
     
     private Rigidbody _rb;
     private int _healthChangeValue;
+    
+    [Tooltip("< 0 means infinite LifeSpan")]
+    [SerializeField]
+    protected float _lifeSpan = -1f;
+
+    public int PoolID;
+    protected WaitForSeconds _waitTime;
+    protected Coroutine _disabler;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
         _healthChangeValue = _healthAffectorSo.HealthChangeValue;
-        gameObject.SetActive(false);
+        HealthEffectsManager.Instance.CreatePool(_rb, _healthChangeValue, 1);
     }
 
     public Rigidbody GetRigidbody()
@@ -27,5 +35,39 @@ public class HealthAffector : MonoBehaviour
     public int GetHealthChangeValue()
     {
         return _healthChangeValue;
+    }
+    
+    protected void OnEnable()
+    {
+        if (_lifeSpan >= 0f)
+        {
+            _waitTime = new WaitForSeconds(_lifeSpan);
+            _disabler = StartCoroutine(DisableCoroutine());
+        }
+    }
+    
+    protected void OnDisable()
+    {
+        HealthAffectorPool.ReAddObjectToPool(PoolID, this);
+    }
+
+    private IEnumerator DisableCoroutine()
+    {
+        yield return _waitTime;
+        DisablePoolableObject();
+    }
+
+    private void DisablePoolableObject()
+    {
+        ClearCoroutine();
+        gameObject.SetActive(false);
+    }
+
+    private void ClearCoroutine()
+    {
+        if(_disabler == null) return;
+        
+        StopCoroutine(_disabler);
+        _disabler = null;
     }
 }

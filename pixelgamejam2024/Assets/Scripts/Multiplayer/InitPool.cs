@@ -10,9 +10,15 @@ public class InitPool : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < _healthAffectors.Length; i++)
-        {
-            HealthEffectsManager.Instance.CreatePool(_healthAffectors[i].GetRigidbody(), _healthAffectors[i].GetHealthChangeValue(), 10);
-        }
+        // for (int i = 0; i < _healthAffectors.Length; i++)
+        // {
+        //     HealthEffectsManager.Instance.CreatePool(_healthAffectors[i].GetRigidbody(), _healthAffectors[i].GetHealthChangeValue(), 10);
+        // }
+    }
+
+    private void Update()
+    {
+        // if (Input.GetKeyDown(KeyCode.Alpha1)) Instantiate(_healthAffectors[0]);
+        // if (Input.GetKeyDown(KeyCode.Alpha2)) Instantiate(_healthAffectors[1]);
     }
 }

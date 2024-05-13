@@ -30,7 +30,7 @@ public class HealthEffectsManager : MonoBehaviour
     {
         for (int i = 0; i < capacity; i++)
         {
-            Rigidbody obj = Instantiate(prefab);
+            Rigidbody obj = prefab;
             obj.gameObject.SetActive(false);
             ActiveHealthAffectors.Add(obj, healthChangeValue);
         }
