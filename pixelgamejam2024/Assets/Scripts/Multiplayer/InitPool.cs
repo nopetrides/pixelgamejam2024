@@ -6,7 +6,7 @@ using UnityEngine;
 public class InitPool : MonoBehaviour
 {
     [SerializeField]
-    private HealthAffector[] _healthAffectors;
+    private PoolableObject _poolableObject;
 
     private void Start()
     {
@@ -18,7 +18,10 @@ public class InitPool : MonoBehaviour
 
     private void Update()
     {
-        // if (Input.GetKeyDown(KeyCode.Alpha1)) Instantiate(_healthAffectors[0]);
-        // if (Input.GetKeyDown(KeyCode.Alpha2)) Instantiate(_healthAffectors[1]);
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            //PoolSystem.Instance.CreatePool(_poolableObject);
+            PoolSystem.Instance.Spawn();
+        }
     }
 }
