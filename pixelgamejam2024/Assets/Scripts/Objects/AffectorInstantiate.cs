@@ -9,7 +9,7 @@ public class AffectorInstantiate : MonoBehaviour
 
     public void CreateInstance()
     {
-        HealthAffectorPool.GetNext(_healthAffector, new Vector3(0, 0, 0), Quaternion.identity);
+        HealthAffectorPool.Instance.GetNext(_healthAffector, new Vector3(0, 0, 0), Quaternion.identity);
     }
     
     private void Update()

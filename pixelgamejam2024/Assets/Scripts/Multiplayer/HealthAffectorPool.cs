@@ -2,56 +2,79 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class HealthAffectorPool
+public class HealthAffectorPool : MonoBehaviour
 {
-    private const int _initialPoolSize = 10;
-    
+    private const int _initialPoolSize = 5;
 
     private static Dictionary<Rigidbody, int> HealthAffectors = new();
     
     private static Dictionary<int, Queue<HealthAffector>> _affectorPools = new ();
+    public static HealthAffectorPool Instance;
+    
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else {
+            Destroy(gameObject);
+        }
+    }
         
-    public static int CanCurrentlyAffectHealth(Rigidbody rb)
+    public int CanCurrentlyAffectHealth(Rigidbody rb)
     {
         return HealthAffectors.TryGetValue(rb, out var affector) ? affector : 0;
     }
     
-    public static void CreatePool(HealthAffector prefab, int capacity)
+    public void CreatePool(HealthAffector prefab, int capacity)
     {
         int poolId = prefab.GetInstanceID();
         _affectorPools[poolId] = new Queue<HealthAffector>(capacity);
+        
         prefab.gameObject.SetActive(false);
-        Rigidbody rb = prefab.GetRigidbody();
-        if (!HealthAffectors.ContainsKey(rb))
-        {
-            HealthAffectors.Add(rb, prefab.GetHealthChangeValue());
-        }
         for (int i = 0; i < capacity; i++)
         {
             CreateObjectInPool(poolId, prefab);
         }
+        
+        
+        foreach (var obj in HealthAffectors)
+        {
+            Debug.Log($"{obj.Key} : {obj.Value}");
+        }
     }
 
     //this is the method that is called above to instantiate each prefab in the pool
-    private static HealthAffector CreateObjectInPool(int poolId, HealthAffector prefab)
+    private HealthAffector CreateObjectInPool(int poolId, HealthAffector prefab)
     {
-        var clone = GameObject.Instantiate(prefab);
+        var clone = Instantiate(prefab);
+        clone.Setup();
+        Rigidbody rb = clone.GetRigidbody();
+        Debug.Log($"{clone.name}");
+        if (!HealthAffectors.ContainsKey(rb))
+        {
+            Debug.Log($"add to dic");
+            HealthAffectors.Add(rb, clone.GetHealthChangeValue());
+        }
         clone.PoolID = poolId;
         _affectorPools[poolId].Enqueue(clone);
         return clone;
     }
 
     //this method is the one called to "recycle" the prefabs, reactivating it with the desired parameters
-    public static HealthAffector GetNext(HealthAffector prefab, Vector3 pos, Quaternion rot, bool setActive = true)
+    public HealthAffector GetNext(HealthAffector prefab, Vector3 pos, Quaternion rot, bool setActive = true)
     {
         var clone = GetNext(prefab);
         clone.transform.SetPositionAndRotation(pos, rot);
         clone.gameObject.SetActive(setActive);
+        Rigidbody rb = prefab.GetRigidbody();
+        Debug.Log($"{rb}");
         return clone;
     }
 
     //this method is called above to iterate over the pool to activate the next in the queue or create another prefab in the pool if none are available to "reuse"
-    private static HealthAffector GetNext(HealthAffector prefab)
+    private HealthAffector GetNext(HealthAffector prefab)
     {
         int poolId = prefab.GetInstanceID();
         if (!_affectorPools.ContainsKey(poolId))
@@ -74,7 +97,7 @@ public static class HealthAffectorPool
     }
 
     //this method re-adds the prefab to the queue
-    public static void ReAddObjectToPool(int poolId, HealthAffector clone)
+    public void ReAddObjectToPool(int poolId, HealthAffector clone)
     {
         _affectorPools[poolId].Enqueue(clone);
     }

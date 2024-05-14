@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6865807280903905864
 Transform:
   m_ObjectHideFlags: 0
@@ -147,3 +147,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthAffectorSo: {fileID: 11400000, guid: fd73944378c11044d9dc64a710f4ebcd, type: 2}
+  _lifeSpan: -1
+  PoolID: 0

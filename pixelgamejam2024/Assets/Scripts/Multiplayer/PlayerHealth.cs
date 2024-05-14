@@ -17,7 +17,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        int healthChanger = HealthEffectsManager.Instance.CanCurrentlyAffectHealth(other.attachedRigidbody);
+        int healthChanger = HealthAffectorPool.Instance.CanCurrentlyAffectHealth(other.attachedRigidbody);
         Debug.Log(healthChanger);
         if (healthChanger == 0) return;
         if (healthChanger > 0 && _currentHealth == MaxHealth) return;

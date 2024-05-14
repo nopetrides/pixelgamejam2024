@@ -22,9 +22,15 @@ public class HealthAffector : MonoBehaviour
 
     private void Awake()
     {
+        //_rb = GetComponent<Rigidbody>();
+        //_healthChangeValue = _healthAffectorSo.HealthChangeValue;
+        //HealthEffectsManager.Instance.CreatePool(_rb, _healthChangeValue, 1);
+    }
+
+    public void Setup()
+    {
         _rb = GetComponent<Rigidbody>();
         _healthChangeValue = _healthAffectorSo.HealthChangeValue;
-        HealthEffectsManager.Instance.CreatePool(_rb, _healthChangeValue, 1);
     }
 
     public Rigidbody GetRigidbody()
@@ -48,7 +54,7 @@ public class HealthAffector : MonoBehaviour
     
     protected void OnDisable()
     {
-        HealthAffectorPool.ReAddObjectToPool(PoolID, this);
+        HealthAffectorPool.Instance.ReAddObjectToPool(PoolID, this);
     }
 
     private IEnumerator DisableCoroutine()
