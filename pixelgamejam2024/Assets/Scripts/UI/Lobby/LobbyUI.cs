@@ -148,7 +148,7 @@ public class LobbyUI : MonoBehaviour
     public void RefreshLobby()
     {
         Debug.Log($"[RefreshLobby] Sending Refresh message");
-        if (PlayroomKit.IsRunningInBrowser()) PlayroomKit.RpcCall("RefreshLobby", "Change Character", PlayroomKit.RpcMode.ALL, LobbyRefreshConfirmedCallback);
+        if (PlayroomKit.IsRunningInBrowser()) PlayroomKit.RpcCall("RefreshLobby", "Change Character", PlayroomKit.RpcMode.OTHERS, LobbyRefreshConfirmedCallback);
     }
 
     private void OnRefreshLobbyRPC(string data, string senderId)

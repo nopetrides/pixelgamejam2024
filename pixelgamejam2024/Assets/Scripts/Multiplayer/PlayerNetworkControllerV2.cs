@@ -51,11 +51,11 @@ public class PlayerNetworkControllerV2 : MonoBehaviour
     private void SetAsCharacter(PlayerCharacterSO characterData)
     {
         _controller.movementSpeed = characterData.MoveSpeed;
-        _playerHealth.MaxHealth = characterData.Health;
+        //_playerHealth.MaxHealth = characterData.Health;
         // todo, other data driven fields - modify a different controller that handles player stats like hp and carrying.
     }
 
-    public void LateUpdate()
+    public void Update()
     {
         if (!_warmedUp)
         {
@@ -64,7 +64,10 @@ public class PlayerNetworkControllerV2 : MonoBehaviour
                 _warmedUp = true;
             return;
         }
-        if (!PlayroomKit.IsRunningInBrowser() || _playroomPlayer == PlayroomKit.Me())
+
+        if (!PlayroomKit.IsRunningInBrowser()) return;
+        
+        if ( _playroomPlayer == PlayroomKit.Me())
         {
             // we are this player
             _playroomPlayer.SetState(GameConstants.PlayerStateData.Position.ToString(), transform.position);
