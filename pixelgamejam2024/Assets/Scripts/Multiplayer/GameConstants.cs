@@ -28,6 +28,15 @@ namespace Multiplayer
             Gamma = 2,
             Delta = 3
         }
+
+        [Flags]
+        public enum DragonStats
+        {
+            Heat = 1, 
+            Temper = 2, 
+            Energy = 4,
+            Chewing = 8, 
+        }
     }
     public static class Extensions
     {
