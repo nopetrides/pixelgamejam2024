@@ -1,3 +1,4 @@
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using Multiplayer;
 using TMPro;
@@ -26,7 +27,7 @@ public class GameUI : MonoBehaviour
         _statusSliders.Add(GameConstants.DragonStats.Chewing.ToString(), _statVisuals[3]);
     }
 
-    private void DragonStatusRefresh(Dictionary<string, DragonNetworkController.DragonStatus> dragonData)
+    private void DragonStatusRefresh(ConcurrentDictionary<string, DragonNetworkController.DragonStatus> dragonData)
     {
         foreach (var kvp in dragonData)
         {

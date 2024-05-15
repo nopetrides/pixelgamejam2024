@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using Multiplayer;
@@ -23,9 +24,9 @@ public class DragonNetworkController : MonoBehaviour
 
     [SerializeField] private DragonStatus[] DragonStats;
 
-    public Action<Dictionary<string, DragonStatus>> OnDragonDataRefresh;
+    public Action<ConcurrentDictionary<string, DragonStatus>> OnDragonDataRefresh;
 
-    private Dictionary<string, DragonStatus> _currentDragonStatus = new();
+    private ConcurrentDictionary<string, DragonStatus> _currentDragonStatus = new();
     private Dictionary<string, int> _networkedDragonData;
 
     private long _timestampGameStart;
@@ -58,10 +59,10 @@ public class DragonNetworkController : MonoBehaviour
         var energyStat = DragonStats.FirstOrDefault(stat => stat.Stat == EnergyStat);
         var chewingStat = DragonStats.FirstOrDefault(stat => stat.Stat == ChewingStat);
 
-        _currentDragonStatus.Add(HeatStat.ToString(), heatStat);
-        _currentDragonStatus.Add(TemperStat.ToString(), temperStat);
-        _currentDragonStatus.Add(EnergyStat.ToString(), energyStat);
-        _currentDragonStatus.Add(ChewingStat.ToString(), chewingStat);
+        _currentDragonStatus.TryAdd(HeatStat.ToString(), heatStat);
+        _currentDragonStatus.TryAdd(TemperStat.ToString(), temperStat);
+        _currentDragonStatus.TryAdd(EnergyStat.ToString(), energyStat);
+        _currentDragonStatus.TryAdd(ChewingStat.ToString(), chewingStat);
     }
 
     // Update is called once per frame
@@ -113,11 +114,13 @@ public class DragonNetworkController : MonoBehaviour
 
         foreach (var kvp in _currentDragonStatus)
         {
-            int last = _currentDragonStatus[kvp.Key].Current;
-            int updated = _networkedDragonData[kvp.Key];
-            _currentDragonStatus[kvp.Key].Current = updated;
-            _currentDragonStatus[kvp.Key].ChangeThisFrame =
-                updated - last; // positive if increased, negative if decreased
+            var original = _currentDragonStatus[kvp.Key];
+            var copy = _currentDragonStatus[kvp.Key];
+            var lastValue = _currentDragonStatus[kvp.Key].Current;
+            var updated = _networkedDragonData[kvp.Key];
+            copy.Current = updated;
+            copy.ChangeThisFrame = updated - lastValue;
+            _currentDragonStatus.TryUpdate(kvp.Key, copy, original);
         }
     }
 
