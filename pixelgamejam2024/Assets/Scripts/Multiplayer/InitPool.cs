@@ -8,20 +8,22 @@ public class InitPool : MonoBehaviour
     [SerializeField]
     private PoolableObject _poolableObject;
 
+    private string _poolableObjectName;
+
     private void Start()
     {
-        // for (int i = 0; i < _healthAffectors.Length; i++)
-        // {
-        //     HealthEffectsManager.Instance.CreatePool(_healthAffectors[i].GetRigidbody(), _healthAffectors[i].GetHealthChangeValue(), 10);
-        // }
+        _poolableObjectName = _poolableObject.GetName();
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            //PoolSystem.Instance.CreatePool(_poolableObject);
-            PoolSystem.Instance.Spawn();
+            PoolSystem.Instance.CreatePool(_poolableObjectName, _poolableObject);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            PoolSystem.Instance.Spawn(_poolableObjectName, _poolableObject);
         }
     }
 }

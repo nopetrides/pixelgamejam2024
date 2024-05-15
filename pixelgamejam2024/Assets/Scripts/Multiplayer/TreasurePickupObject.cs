@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class TreasurePickupObject : MonoBehaviour
+public class TreasurePickupObject : PoolableObject
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private List<int> _weightAndValue;
+
+    
+
+    protected override void OnEnable()
     {
-        
+        base.OnEnable();
+        PoolSystem.Instance.AddTreasure(_name, _weightAndValue);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }

@@ -7,9 +7,11 @@ using Random = UnityEngine.Random;
 
 public class PoolSystem : MonoBehaviour
 {
-    [SerializeField]
-    private PoolableObject _poolableObject;
     private ObjectPool<PoolableObject> _pool;
+    
+    private Dictionary<string, ObjectPool<PoolableObject>> _pools = new();
+    
+    private Dictionary<string,List<int>> _treasures = new();
 
     [SerializeField]
     private int _initialSize = 10;
@@ -35,11 +37,11 @@ public class PoolSystem : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void CreatePool(string objectType, PoolableObject obj)
     {
-        _pool = new ObjectPool<PoolableObject>(() =>
+        var pool = new ObjectPool<PoolableObject>(() =>
         {
-            return Instantiate(_poolableObject);
+            return Instantiate(obj);
         }, pooledObject =>
         {
             pooledObject.gameObject.SetActive(true);
@@ -50,35 +52,36 @@ public class PoolSystem : MonoBehaviour
         {
             Destroy(pooledObject.gameObject);
         }, true, _initialSize, _maxSize);
+        
+        _pools.Add(objectType, pool);
     }
 
-    public void CreatePool(PoolableObject obj)
+    public GameObject Spawn(string objectType , PoolableObject obj)
     {
-        _poolableObject = obj;
-        // Debug.Log($"{_poolableObject.name}");
-        // _pool = new ObjectPool<PoolableObject>(() =>
-        // {
-        //     return Instantiate(_poolableObject);
-        // }, pooledObject =>
-        // {
-        //     pooledObject.gameObject.SetActive(true);
-        // }, pooledObject =>
-        // {
-        //     pooledObject.gameObject.SetActive(false);
-        // }, pooledObject =>
-        // {
-        //     Destroy(pooledObject.gameObject);
-        // }, true, _initialSize, _maxSize);
+        if(!_pools.ContainsKey(objectType)) CreatePool(objectType, obj);
+        if (_pools.TryGetValue(objectType, out var pool))
+        {
+            var pooledObject = pool.Get();
+            pooledObject.transform.position = transform.position + Random.insideUnitSphere * 10; //Modify, or perhaps add this logic to the instantiator
+            return pooledObject.gameObject;
+        }
+        return null;
+    }
+    
+    public void DeSpawn(string objectType, PoolableObject obj)
+    {
+        if (_pools.TryGetValue(objectType, out var pool))
+        {
+            pool.Release(obj);
+        }
     }
 
-    public void Spawn()
+    public void AddTreasure(string objectType, List<int> values)
     {
-        var pooledObject = _pool.Get();
-        pooledObject.transform.position = transform.position + Random.insideUnitSphere * 10;
-    }
-
-    public void DeSpawn(PoolableObject obj)
-    {
-        _pool.Release(obj);
+        _treasures.Add(objectType, values);
+        foreach (var kvp in _treasures)
+        {
+            Debug.Log($"Key: {kvp.Key}, Values: {string.Join(", ", kvp.Value)}");
+        }
     }
 }
