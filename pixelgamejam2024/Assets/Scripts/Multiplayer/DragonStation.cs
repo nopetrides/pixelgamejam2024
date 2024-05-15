@@ -1,45 +1,51 @@
 using HighlightPlus;
 using Playroom;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class DragonStation : MonoBehaviour
 {
+    [FormerlySerializedAs("DragonController")]
     [Header("Dragon Controller")] 
-    [SerializeField] private DragonNetworkController DragonController;
+    [SerializeField] private DragonNetworkController _dragonController;
+    [FormerlySerializedAs("StationData")]
     [Header("Station")]
-    [SerializeField] private DragonStationSO StationData;
-    [SerializeField] private HighlightEffect GlowHighlight;
+    [SerializeField] private DragonStationSO _stationData;
+    [FormerlySerializedAs("GlowHighlight")] 
+    [SerializeField] private HighlightEffect _glowHighlight;
 
     private void Awake()
     {
         if (PlayroomKit.IsRunningInBrowser())
         {
-            PlayroomKit.RpcRegister($"DragonStation{StationData.AffectsDragonStats}", OnActivateStationRPC, $"Station {StationData} Activated!");
+            PlayroomKit.RpcRegister($"DragonStation{_stationData.AffectsDragonStats}", 
+                OnActivateStationRPC, 
+                $"Station {_stationData} Activated!");
         }
     }
 
     private void OnActivateStationRPC(string dataJson, string senderJson)
     {
-        DragonController.OnDragonStationUsed(dataJson, StationData.AffectValue);
+        _dragonController.OnDragonStationUsed(dataJson, _stationData.AffectValue);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         // Enable Interact
-        Debug.Log($"Entered Station {StationData.AffectsDragonStats.ToString()}");
-        GlowHighlight.highlighted = true;
+        Debug.Log($"Entered Station {_stationData.AffectsDragonStats.ToString()}");
+        _glowHighlight.highlighted = true;
     }
 
     private void OnTriggerExit(Collider other)
     {
         // Disable Interact
-        Debug.Log($"Exited Station {StationData.AffectsDragonStats.ToString()}");
-        GlowHighlight.highlighted = false;
+        Debug.Log($"Exited Station {_stationData.AffectsDragonStats.ToString()}");
+        _glowHighlight.highlighted = false;
     }
 
     private void Update()
     {
-        if (GlowHighlight.highlighted)
+        if (_glowHighlight.highlighted)
             AffectDragon();
     }
 
@@ -47,16 +53,16 @@ public class DragonStation : MonoBehaviour
     {
         if (!PlayroomKit.IsRunningInBrowser())
         {
-            OnActivateStationRPC(StationData.AffectsDragonStats.ToString(), "");
+            OnActivateStationRPC(_stationData.AffectsDragonStats.ToString(), "");
             return;
         }
         if (PlayroomKit.IsHost())
         {
-            OnActivateStationRPC(StationData.AffectsDragonStats.ToString(), PlayroomKit.Me().id);
+            OnActivateStationRPC(_stationData.AffectsDragonStats.ToString(), PlayroomKit.Me().id);
         }
         else
         {
-            PlayroomKit.RpcCall($"DragonStation{StationData.AffectsDragonStats}", StationData.AffectsDragonStats.ToString(), PlayroomKit.RpcMode.HOST,
+            PlayroomKit.RpcCall($"DragonStation{_stationData.AffectsDragonStats}", _stationData.AffectsDragonStats.ToString(), PlayroomKit.RpcMode.HOST,
                 AffectDragonRPCConfirm);
         }
     }

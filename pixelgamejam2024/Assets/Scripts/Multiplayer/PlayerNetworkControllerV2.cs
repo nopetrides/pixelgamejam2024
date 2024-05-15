@@ -67,13 +67,18 @@ public class PlayerNetworkControllerV2 : MonoBehaviour
 
         if (!PlayroomKit.IsRunningInBrowser()) return;
         
-        if ( _playroomPlayer == PlayroomKit.Me())
+        if (_playroomPlayer == PlayroomKit.Me())
         {
             // we are this player
             _playroomPlayer.SetState(GameConstants.PlayerStateData.Position.ToString(), transform.position);
             return;
         }
 
+        if (_playroomPlayer == null)
+        {
+            Destroy(gameObject);
+            return;
+        }
         transform.position = _playroomPlayer.GetState<Vector3>(GameConstants.PlayerStateData.Position.ToString());
     }
 }

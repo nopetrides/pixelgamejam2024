@@ -40,10 +40,28 @@ public class DragonNetworkController : MonoBehaviour
     private void Awake()
     {
         _timestampGameStart = DateTime.Now.Ticks;
+        InitializeDragonStatusDict();
+        
         if (!PlayroomKit.IsRunningInBrowser() || PlayroomKit.IsHost())
         {
             InitializeDragonData();
+            return;
         }
+
+        PlayroomKit.WaitForState(nameof(_networkedDragonData), InitComplete);
+    }
+
+    private void InitializeDragonStatusDict()
+    {
+        var heatStat = DragonStats.FirstOrDefault(stat => stat.Stat == HeatStat);
+        var temperStat = DragonStats.FirstOrDefault(stat => stat.Stat == TemperStat);
+        var energyStat = DragonStats.FirstOrDefault(stat => stat.Stat == EnergyStat);
+        var chewingStat = DragonStats.FirstOrDefault(stat => stat.Stat == ChewingStat);
+
+        _currentDragonStatus.Add(HeatStat.ToString(), heatStat);
+        _currentDragonStatus.Add(TemperStat.ToString(), temperStat);
+        _currentDragonStatus.Add(EnergyStat.ToString(), energyStat);
+        _currentDragonStatus.Add(ChewingStat.ToString(), chewingStat);
     }
 
     // Update is called once per frame
@@ -76,7 +94,6 @@ public class DragonNetworkController : MonoBehaviour
     {
         if (!_initialized)
         {
-            PlayroomKit.WaitForState(nameof(_networkedDragonData), InitComplete);
             return;
         }
 
@@ -120,16 +137,6 @@ public class DragonNetworkController : MonoBehaviour
 
     private void InitializeDragonData()
     {
-        var heatStat = DragonStats.FirstOrDefault(stat => stat.Stat == HeatStat);
-        var temperStat = DragonStats.FirstOrDefault(stat => stat.Stat == TemperStat);
-        var energyStat = DragonStats.FirstOrDefault(stat => stat.Stat == EnergyStat);
-        var chewingStat = DragonStats.FirstOrDefault(stat => stat.Stat == ChewingStat);
-
-        _currentDragonStatus.Add(HeatStat.ToString(), heatStat);
-        _currentDragonStatus.Add(TemperStat.ToString(), temperStat);
-        _currentDragonStatus.Add(EnergyStat.ToString(), energyStat);
-        _currentDragonStatus.Add(ChewingStat.ToString(), chewingStat);
-
         InitComplete();
         if (PlayroomKit.IsRunningInBrowser() && PlayroomKit.IsHost())
             SendDragonStatusToNetwork();
@@ -220,7 +227,10 @@ public class DragonNetworkController : MonoBehaviour
     /// <param name="stationDataAffectValue"></param>
     public void OnDragonStationUsed(string stat, int stationDataAffectValue)
     {
-        
+        if (!_initialized)
+        {
+            return;
+        }
         _currentDragonStatus[stat].ChangeThisFrame -= stationDataAffectValue;
 
         if (stat != TemperStat.ToString())
