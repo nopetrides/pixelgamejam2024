@@ -409,7 +409,7 @@ MonoBehaviour:
         rect:
           serializedVersion: 2
           x: 6994
-          y: 206
+          y: 264
           width: 111
           height: 41
         note: 
@@ -436,7 +436,7 @@ MonoBehaviour:
         rect:
           serializedVersion: 2
           x: 6999
-          y: 265
+          y: 323
           width: 106
           height: 41
         note: 
@@ -463,7 +463,7 @@ MonoBehaviour:
         rect:
           serializedVersion: 2
           x: 7043
-          y: 318
+          y: 376
           width: 62
           height: 41
         note: 
