@@ -2828,8 +2828,8 @@ GameObject:
   - component: {fileID: 384132234}
   - component: {fileID: 384132233}
   - component: {fileID: 384132235}
-  - component: {fileID: 384132236}
   - component: {fileID: 384132237}
+  - component: {fileID: 384132238}
   m_Layer: 0
   m_Name: DragonStationEnergy
   m_TagString: Untagged
@@ -2888,7 +2888,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7e08ce8b4fc7bc447a0cded23d4a7913, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2911,7 +2911,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: -4830538019291660703, guid: 93fa5a8d1e435c84d8ba9a4646a3767e,
     type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8078432, g: 0.6666667, b: 0.9294118, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2958,13 +2958,13 @@ MonoBehaviour:
   normalsOption: 0
   ignore: 0
   _highlighted: 0
-  fadeInDuration: 0.5
-  fadeOutDuration: 0.5
+  fadeInDuration: 0
+  fadeOutDuration: 0
   flipY: 0
   constantWidth: 1
   subMeshMask: -1
-  overlay: 1
-  overlayMode: 0
+  overlay: 0
+  overlayMode: 10
   overlayColor: {r: 0.5529412, g: 0, b: 1, a: 1}
   overlayAnimationSpeed: 1
   overlayMinIntensity: 1
@@ -2973,9 +2973,9 @@ MonoBehaviour:
   overlayTextureUVSpace: 0
   overlayTextureScale: 1
   overlayTextureScrolling: {x: 0, y: 0}
-  overlayVisibility: 2
+  overlayVisibility: 0
   outline: 1
-  outlineColor: {r: 0.5529412, g: 0, b: 1, a: 1}
+  outlineColor: {r: 0.8078432, g: 0.6666667, b: 0.9294118, a: 1}
   outlineColorStyle: 0
   outlineGradient:
     serializedVersion: 2
@@ -3026,7 +3026,7 @@ MonoBehaviour:
   glowQuality: 2
   glowBlurMethod: 0
   glowDownsampling: 1
-  glowHQColor: {r: 0.5529412, g: 0, b: 1, a: 1}
+  glowHQColor: {r: 0.8078432, g: 0.6666667, b: 0.9294118, a: 1}
   glowDithering: 1
   glowDitheringStyle: 0
   glowMagicNumber1: 0.75
@@ -3102,8 +3102,23 @@ MonoBehaviour:
   hitFxFadeOutDuration: 0.25
   hitFxColor: {r: 1, g: 1, b: 1, a: 1}
   hitFxRadius: 0.5
---- !u!65 &384132236
-BoxCollider:
+--- !u!114 &384132237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384132231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb0af20af1a252242be4a268d692e2a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dragonController: {fileID: 691524664}
+  _stationData: {fileID: 11400000, guid: acba39f098dd05a4790b5e148f907fe6, type: 2}
+  _glowHighlight: {fileID: 384132235}
+--- !u!136 &384132238
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -3120,24 +3135,11 @@ BoxCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1.28, z: 1}
-  m_Center: {x: 0, y: 0.64, z: -0.5}
---- !u!114 &384132237
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 384132231}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb0af20af1a252242be4a268d692e2a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DragonController: {fileID: 691524664}
-  StationData: {fileID: 11400000, guid: acba39f098dd05a4790b5e148f907fe6, type: 2}
-  GlowHighlight: {fileID: 384132235}
+  serializedVersion: 2
+  m_Radius: 0.92
+  m_Height: 1.28
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.2, z: 0}
 --- !u!1 &398224915
 GameObject:
   m_ObjectHideFlags: 0
@@ -4236,13 +4238,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 498791801}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5555702, y: 0, z: 0, w: 0.8314697}
-  m_LocalPosition: {x: 0, y: 3, z: -1}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 384132232}
-  m_LocalEulerAnglesHint: {x: 67.5, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &498791803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4277,7 +4279,7 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 0.5529412, g: 0, b: 1, a: 1}
+  m_Color: {r: 0.8078432, g: 0.6666667, b: 0.9294118, a: 1}
   m_Intensity: 100
   m_Range: 10
   m_SpotAngle: 30
@@ -4460,13 +4462,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 503717795}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5555702, y: 0, z: 0, w: 0.8314697}
-  m_LocalPosition: {x: 0, y: 3, z: -1}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1920096717}
-  m_LocalEulerAnglesHint: {x: 67.5, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &503717797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5365,7 +5367,7 @@ Transform:
   m_GameObject: {fileID: 602891291}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3, y: 0, z: -3}
+  m_LocalPosition: {x: 3, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5820,6 +5822,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 264130204347147636, guid: 17a246dc4d579c94aadeff60a0227d3e,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.15294118
+      objectReference: {fileID: 0}
+    - target: {fileID: 264130204347147636, guid: 17a246dc4d579c94aadeff60a0227d3e,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.15294118
+      objectReference: {fileID: 0}
+    - target: {fileID: 264130204347147636, guid: 17a246dc4d579c94aadeff60a0227d3e,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.8000001
+      objectReference: {fileID: 0}
     - target: {fileID: 479259657904112370, guid: 17a246dc4d579c94aadeff60a0227d3e,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -5859,6 +5876,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1728649762532864227, guid: 17a246dc4d579c94aadeff60a0227d3e,
+        type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.9294118
+      objectReference: {fileID: 0}
+    - target: {fileID: 1728649762532864227, guid: 17a246dc4d579c94aadeff60a0227d3e,
+        type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.6666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 1728649762532864227, guid: 17a246dc4d579c94aadeff60a0227d3e,
+        type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.8078432
+      objectReference: {fileID: 0}
+    - target: {fileID: 1728649762532864227, guid: 17a246dc4d579c94aadeff60a0227d3e,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4293765838
       objectReference: {fileID: 0}
     - target: {fileID: 2236048558248217333, guid: 17a246dc4d579c94aadeff60a0227d3e,
         type: 3}
@@ -5960,6 +5997,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2634441974459006590, guid: 17a246dc4d579c94aadeff60a0227d3e,
+        type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.15294118
+      objectReference: {fileID: 0}
+    - target: {fileID: 2634441974459006590, guid: 17a246dc4d579c94aadeff60a0227d3e,
+        type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.15294118
+      objectReference: {fileID: 0}
+    - target: {fileID: 2634441974459006590, guid: 17a246dc4d579c94aadeff60a0227d3e,
+        type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.8000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 2634441974459006590, guid: 17a246dc4d579c94aadeff60a0227d3e,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4280756172
+      objectReference: {fileID: 0}
     - target: {fileID: 3442921705256083512, guid: 17a246dc4d579c94aadeff60a0227d3e,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -5969,6 +6026,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3519686035942697961, guid: 17a246dc4d579c94aadeff60a0227d3e,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.9294118
+      objectReference: {fileID: 0}
+    - target: {fileID: 3519686035942697961, guid: 17a246dc4d579c94aadeff60a0227d3e,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.6666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 3519686035942697961, guid: 17a246dc4d579c94aadeff60a0227d3e,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.8078432
       objectReference: {fileID: 0}
     - target: {fileID: 3878904222994435183, guid: 17a246dc4d579c94aadeff60a0227d3e,
         type: 3}
@@ -6035,6 +6107,41 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5659219969645843251, guid: 17a246dc4d579c94aadeff60a0227d3e,
+        type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.8000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5659219969645843251, guid: 17a246dc4d579c94aadeff60a0227d3e,
+        type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.5372549
+      objectReference: {fileID: 0}
+    - target: {fileID: 5659219969645843251, guid: 17a246dc4d579c94aadeff60a0227d3e,
+        type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.15294118
+      objectReference: {fileID: 0}
+    - target: {fileID: 5659219969645843251, guid: 17a246dc4d579c94aadeff60a0227d3e,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4291594535
+      objectReference: {fileID: 0}
+    - target: {fileID: 6303947196787444232, guid: 17a246dc4d579c94aadeff60a0227d3e,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.20000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 6303947196787444232, guid: 17a246dc4d579c94aadeff60a0227d3e,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.81568635
+      objectReference: {fileID: 0}
+    - target: {fileID: 6303947196787444232, guid: 17a246dc4d579c94aadeff60a0227d3e,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.56078434
+      objectReference: {fileID: 0}
     - target: {fileID: 6904685934589042978, guid: 17a246dc4d579c94aadeff60a0227d3e,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -6095,6 +6202,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7614633237852735545, guid: 17a246dc4d579c94aadeff60a0227d3e,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.8000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7614633237852735545, guid: 17a246dc4d579c94aadeff60a0227d3e,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.5372549
+      objectReference: {fileID: 0}
+    - target: {fileID: 7614633237852735545, guid: 17a246dc4d579c94aadeff60a0227d3e,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.15294118
+      objectReference: {fileID: 0}
     - target: {fileID: 7913885906363080078, guid: 17a246dc4d579c94aadeff60a0227d3e,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -6109,6 +6231,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095524424801063170, guid: 17a246dc4d579c94aadeff60a0227d3e,
+        type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.20000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095524424801063170, guid: 17a246dc4d579c94aadeff60a0227d3e,
+        type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.81568635
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095524424801063170, guid: 17a246dc4d579c94aadeff60a0227d3e,
+        type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.56078434
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095524424801063170, guid: 17a246dc4d579c94aadeff60a0227d3e,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4281585807
       objectReference: {fileID: 0}
     - target: {fileID: 8187362791088288277, guid: 17a246dc4d579c94aadeff60a0227d3e,
         type: 3}
@@ -7592,8 +7734,8 @@ GameObject:
   - component: {fileID: 785581517}
   - component: {fileID: 785581516}
   - component: {fileID: 785581518}
-  - component: {fileID: 785581519}
   - component: {fileID: 785581520}
+  - component: {fileID: 785581521}
   m_Layer: 0
   m_Name: DragonStationCooldown
   m_TagString: Untagged
@@ -7652,7 +7794,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7e08ce8b4fc7bc447a0cded23d4a7913, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7675,7 +7817,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: -4830538019291660703, guid: 93fa5a8d1e435c84d8ba9a4646a3767e,
     type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.15294118, g: 0.5372549, b: 0.8000001, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -7722,13 +7864,13 @@ MonoBehaviour:
   normalsOption: 0
   ignore: 0
   _highlighted: 0
-  fadeInDuration: 0.5
-  fadeOutDuration: 0.5
+  fadeInDuration: 0
+  fadeOutDuration: 0
   flipY: 0
   constantWidth: 1
   subMeshMask: -1
-  overlay: 1
-  overlayMode: 0
+  overlay: 0
+  overlayMode: 10
   overlayColor: {r: 0, g: 0, b: 1, a: 1}
   overlayAnimationSpeed: 1
   overlayMinIntensity: 1
@@ -7737,9 +7879,9 @@ MonoBehaviour:
   overlayTextureUVSpace: 0
   overlayTextureScale: 1
   overlayTextureScrolling: {x: 0, y: 0}
-  overlayVisibility: 2
+  overlayVisibility: 0
   outline: 1
-  outlineColor: {r: 0, g: 0, b: 1, a: 1}
+  outlineColor: {r: 0.15294118, g: 0.5372549, b: 0.8000001, a: 1}
   outlineColorStyle: 0
   outlineGradient:
     serializedVersion: 2
@@ -7790,7 +7932,7 @@ MonoBehaviour:
   glowQuality: 2
   glowBlurMethod: 0
   glowDownsampling: 1
-  glowHQColor: {r: 0, g: 0, b: 1, a: 1}
+  glowHQColor: {r: 0.15294118, g: 0.5372549, b: 0.8000001, a: 1}
   glowDithering: 1
   glowDitheringStyle: 0
   glowMagicNumber1: 0.75
@@ -7866,8 +8008,23 @@ MonoBehaviour:
   hitFxFadeOutDuration: 0.25
   hitFxColor: {r: 1, g: 1, b: 1, a: 1}
   hitFxRadius: 0.5
---- !u!65 &785581519
-BoxCollider:
+--- !u!114 &785581520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 785581514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb0af20af1a252242be4a268d692e2a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dragonController: {fileID: 691524664}
+  _stationData: {fileID: 11400000, guid: 0c0640db4c9eaf5419dabec58d32a9b9, type: 2}
+  _glowHighlight: {fileID: 785581518}
+--- !u!136 &785581521
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -7884,24 +8041,11 @@ BoxCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1.28, z: 1}
-  m_Center: {x: 0, y: 0.64, z: -0.5}
---- !u!114 &785581520
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 785581514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb0af20af1a252242be4a268d692e2a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DragonController: {fileID: 691524664}
-  StationData: {fileID: 11400000, guid: 0c0640db4c9eaf5419dabec58d32a9b9, type: 2}
-  GlowHighlight: {fileID: 785581518}
+  serializedVersion: 2
+  m_Radius: 0.92
+  m_Height: 1.28
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.2, z: 0}
 --- !u!1 &792140035
 GameObject:
   m_ObjectHideFlags: 0
@@ -8033,7 +8177,7 @@ Transform:
   m_GameObject: {fileID: 801795678}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3, y: 0, z: -3}
+  m_LocalPosition: {x: 0, y: 0, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9439,13 +9583,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 999422544}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5555702, y: 0, z: 0, w: 0.8314697}
-  m_LocalPosition: {x: 0, y: 3, z: -1}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1289440902}
-  m_LocalEulerAnglesHint: {x: 67.5, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &999422546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9480,7 +9624,7 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 1, g: 0.6862745, b: 0, a: 1}
+  m_Color: {r: 0.8000001, g: 0.15294118, b: 0.15294118, a: 1}
   m_Intensity: 100
   m_Range: 10
   m_SpotAngle: 30
@@ -9549,7 +9693,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1005888204
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11902,8 +12046,8 @@ GameObject:
   - component: {fileID: 1289440904}
   - component: {fileID: 1289440903}
   - component: {fileID: 1289440905}
-  - component: {fileID: 1289440906}
   - component: {fileID: 1289440907}
+  - component: {fileID: 1289440908}
   m_Layer: 0
   m_Name: DragonStationChewing
   m_TagString: Untagged
@@ -11962,7 +12106,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7e08ce8b4fc7bc447a0cded23d4a7913, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11985,7 +12129,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: -4830538019291660703, guid: 93fa5a8d1e435c84d8ba9a4646a3767e,
     type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8000001, g: 0.15294118, b: 0.15294118, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -12032,13 +12176,13 @@ MonoBehaviour:
   normalsOption: 0
   ignore: 0
   _highlighted: 0
-  fadeInDuration: 0.5
-  fadeOutDuration: 0.5
+  fadeInDuration: 0
+  fadeOutDuration: 0
   flipY: 0
   constantWidth: 1
   subMeshMask: -1
-  overlay: 1
-  overlayMode: 0
+  overlay: 0
+  overlayMode: 10
   overlayColor: {r: 1, g: 0.6862745, b: 0.015686275, a: 1}
   overlayAnimationSpeed: 1
   overlayMinIntensity: 1
@@ -12047,9 +12191,9 @@ MonoBehaviour:
   overlayTextureUVSpace: 0
   overlayTextureScale: 1
   overlayTextureScrolling: {x: 0, y: 0}
-  overlayVisibility: 2
+  overlayVisibility: 0
   outline: 1
-  outlineColor: {r: 1, g: 0.6862745, b: 0, a: 1}
+  outlineColor: {r: 0.8000001, g: 0.15294118, b: 0.15294118, a: 1}
   outlineColorStyle: 0
   outlineGradient:
     serializedVersion: 2
@@ -12100,7 +12244,7 @@ MonoBehaviour:
   glowQuality: 2
   glowBlurMethod: 0
   glowDownsampling: 1
-  glowHQColor: {r: 1, g: 0.6862745, b: 0, a: 1}
+  glowHQColor: {r: 0.8000001, g: 0.15294118, b: 0.15294118, a: 1}
   glowDithering: 1
   glowDitheringStyle: 0
   glowMagicNumber1: 0.75
@@ -12176,8 +12320,23 @@ MonoBehaviour:
   hitFxFadeOutDuration: 0.25
   hitFxColor: {r: 1, g: 1, b: 1, a: 1}
   hitFxRadius: 0.5
---- !u!65 &1289440906
-BoxCollider:
+--- !u!114 &1289440907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289440901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb0af20af1a252242be4a268d692e2a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dragonController: {fileID: 691524664}
+  _stationData: {fileID: 11400000, guid: e6cd9cac1a8bcd74db276bc7a47b6b99, type: 2}
+  _glowHighlight: {fileID: 1289440905}
+--- !u!136 &1289440908
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -12194,24 +12353,11 @@ BoxCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1.28, z: 1}
-  m_Center: {x: 0, y: 0.64, z: -0.5}
---- !u!114 &1289440907
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1289440901}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb0af20af1a252242be4a268d692e2a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DragonController: {fileID: 691524664}
-  StationData: {fileID: 11400000, guid: e6cd9cac1a8bcd74db276bc7a47b6b99, type: 2}
-  GlowHighlight: {fileID: 1289440905}
+  serializedVersion: 2
+  m_Radius: 0.92
+  m_Height: 1.28
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.2, z: 0}
 --- !u!1 &1291615296
 GameObject:
   m_ObjectHideFlags: 0
@@ -12230,7 +12376,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1291615297
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12552,13 +12698,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1375472877}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5555702, y: 0, z: 0, w: 0.8314697}
-  m_LocalPosition: {x: 0, y: 3, z: -1}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 785581515}
-  m_LocalEulerAnglesHint: {x: 67.5, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &1375472879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12593,7 +12739,7 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 0, g: 0, b: 1, a: 1}
+  m_Color: {r: 0.15294118, g: 0.5372549, b: 0.8000001, a: 1}
   m_Intensity: 100
   m_Range: 10
   m_SpotAngle: 30
@@ -14175,7 +14321,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1615252342
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14496,7 +14642,7 @@ Transform:
   m_GameObject: {fileID: 1634411798}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3, y: 0, z: 3}
+  m_LocalPosition: {x: 0, y: 0, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15057,7 +15203,7 @@ Transform:
   m_GameObject: {fileID: 1737467555}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3, y: 0, z: 3}
+  m_LocalPosition: {x: -3, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15293,7 +15439,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1754286215
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16555,8 +16701,8 @@ GameObject:
   - component: {fileID: 1920096719}
   - component: {fileID: 1920096718}
   - component: {fileID: 1920096720}
-  - component: {fileID: 1920096721}
   - component: {fileID: 1920096722}
+  - component: {fileID: 1920096723}
   m_Layer: 0
   m_Name: DragonStationPraise
   m_TagString: Untagged
@@ -16615,7 +16761,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7e08ce8b4fc7bc447a0cded23d4a7913, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -16638,7 +16784,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: -4830538019291660703, guid: 93fa5a8d1e435c84d8ba9a4646a3767e,
     type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -16685,13 +16831,13 @@ MonoBehaviour:
   normalsOption: 0
   ignore: 0
   _highlighted: 0
-  fadeInDuration: 0.5
-  fadeOutDuration: 0.5
+  fadeInDuration: 0
+  fadeOutDuration: 0
   flipY: 0
   constantWidth: 1
   subMeshMask: -1
-  overlay: 1
-  overlayMode: 0
+  overlay: 0
+  overlayMode: 10
   overlayColor: {r: 0, g: 1, b: 0, a: 1}
   overlayAnimationSpeed: 1
   overlayMinIntensity: 1
@@ -16700,7 +16846,7 @@ MonoBehaviour:
   overlayTextureUVSpace: 0
   overlayTextureScale: 1
   overlayTextureScrolling: {x: 0, y: 0}
-  overlayVisibility: 2
+  overlayVisibility: 0
   outline: 1
   outlineColor: {r: 0, g: 1, b: 0, a: 1}
   outlineColorStyle: 0
@@ -16829,8 +16975,23 @@ MonoBehaviour:
   hitFxFadeOutDuration: 0.25
   hitFxColor: {r: 1, g: 1, b: 1, a: 1}
   hitFxRadius: 0.5
---- !u!65 &1920096721
-BoxCollider:
+--- !u!114 &1920096722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1920096716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb0af20af1a252242be4a268d692e2a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dragonController: {fileID: 691524664}
+  _stationData: {fileID: 11400000, guid: 6e171df300bd13844a071c3b6e8336d8, type: 2}
+  _glowHighlight: {fileID: 1920096720}
+--- !u!136 &1920096723
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -16847,24 +17008,11 @@ BoxCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1.28, z: 1}
-  m_Center: {x: 0, y: 0.64, z: -0.5}
---- !u!114 &1920096722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1920096716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb0af20af1a252242be4a268d692e2a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DragonController: {fileID: 691524664}
-  StationData: {fileID: 11400000, guid: 6e171df300bd13844a071c3b6e8336d8, type: 2}
-  GlowHighlight: {fileID: 1920096720}
+  serializedVersion: 2
+  m_Radius: 0.92
+  m_Height: 1.28
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.2, z: 0}
 --- !u!1 &1942444204
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,6 +17,7 @@ MonoBehaviour:
   m_RendererType: 1
   m_RendererData: {fileID: 0}
   m_RendererDataList:
+  - {fileID: 11400000, guid: 47db18f3169384f6b87445e6447e189e, type: 2}
   - {fileID: 11400000, guid: e634585d5c4544dd297acaee93dc2beb, type: 2}
   m_DefaultRendererIndex: 0
   m_RequireDepthTexture: 0
@@ -87,8 +88,8 @@ MonoBehaviour:
   m_PrefilteringModeAdditionalLightShadows: 2
   m_PrefilterXRKeywords: 1
   m_PrefilteringModeForwardPlus: 0
-  m_PrefilteringModeDeferredRendering: 2
-  m_PrefilteringModeScreenSpaceOcclusion: 2
+  m_PrefilteringModeDeferredRendering: 1
+  m_PrefilteringModeScreenSpaceOcclusion: 1
   m_PrefilterDebugKeywords: 1
   m_PrefilterWriteRenderingLayers: 1
   m_PrefilterHDROutput: 1
