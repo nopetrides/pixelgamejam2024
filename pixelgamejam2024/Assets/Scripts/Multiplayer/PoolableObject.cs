@@ -5,7 +5,7 @@ using UnityEngine;
 public class PoolableObject : MonoBehaviour
 {
     [SerializeField]
-    private float _lifeSpan = 2f;
+    private float _lifeSpan = -1f;
 
     [SerializeField]
     protected string _name;
@@ -25,12 +25,17 @@ public class PoolableObject : MonoBehaviour
     private IEnumerator DisableCoroutine()
     {
         yield return _waitTime;
-        //PoolSystem.Instance.DeSpawn(_name, this);
-        gameObject.SetActive(false);
+        PoolSystem.Instance.DeSpawn(_name, this);
+        //gameObject.SetActive(false);
     }
 
     public string GetName()
     {
         return _name;
+    }
+    
+    public void SetName(string name)
+    {
+        _name = name;
     }
 }

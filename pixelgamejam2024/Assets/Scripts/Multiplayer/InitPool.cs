@@ -19,11 +19,11 @@ public class InitPool : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            PoolSystem.Instance.CreatePool(_poolableObjectName, _poolableObject);
+            //PoolSystem.Instance.CreatePool(_poolableObjectName, _poolableObject);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            PoolSystem.Instance.Spawn(_poolableObjectName, _poolableObject);
+            //PoolSystem.Instance.Spawn(_poolableObjectName, _poolableObject);
         }
     }
 }

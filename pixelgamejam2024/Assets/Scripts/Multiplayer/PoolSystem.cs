@@ -7,11 +7,16 @@ using Random = UnityEngine.Random;
 
 public class PoolSystem : MonoBehaviour
 {
+    [SerializeField]
+    private List<PoolableObject> _poolableObjects;
+
+    [SerializeField]
+    private List<string> _pooledObjectTypes;
+    
+    
     private ObjectPool<PoolableObject> _pool;
     
     private Dictionary<string, ObjectPool<PoolableObject>> _pools = new();
-    
-    private Dictionary<string,List<int>> _treasures = new();
 
     [SerializeField]
     private int _initialSize = 10;
@@ -37,8 +42,11 @@ public class PoolSystem : MonoBehaviour
         }
     }
 
-    public void CreatePool(string objectType, PoolableObject obj)
+    public void CreatePool(string objectType)
     {
+        var index = _pooledObjectTypes.IndexOf(objectType);
+        var obj = _poolableObjects[index];
+        
         var pool = new ObjectPool<PoolableObject>(() =>
         {
             return Instantiate(obj);
@@ -56,13 +64,13 @@ public class PoolSystem : MonoBehaviour
         _pools.Add(objectType, pool);
     }
 
-    public GameObject Spawn(string objectType , PoolableObject obj)
+    public GameObject Spawn(string objectType , Vector3 location)
     {
-        if(!_pools.ContainsKey(objectType)) CreatePool(objectType, obj);
+        if(!_pools.ContainsKey(objectType)) CreatePool(objectType);
         if (_pools.TryGetValue(objectType, out var pool))
         {
             var pooledObject = pool.Get();
-            pooledObject.transform.position = transform.position + Random.insideUnitSphere * 10; //Modify, or perhaps add this logic to the instantiator
+            pooledObject.transform.position = location;
             return pooledObject.gameObject;
         }
         return null;
@@ -76,12 +84,8 @@ public class PoolSystem : MonoBehaviour
         }
     }
 
-    public void AddTreasure(string objectType, List<int> values)
+    public void AddTreasure(string objectType, int weight)
     {
-        _treasures.Add(objectType, values);
-        foreach (var kvp in _treasures)
-        {
-            Debug.Log($"Key: {kvp.Key}, Values: {string.Join(", ", kvp.Value)}");
-        }
+        //_treasures.Add(objectType, weight);
     }
 }
