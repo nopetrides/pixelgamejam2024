@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66e491b55c0f2f28ab07a9e25d453e03, type: 3}
+  m_Name: MinimapTileset
+  m_EditorClassIdentifier: 
+  serializedObjectVersion:
+    version: 1.25.1
+  openTileset:
+    elements:
+    - id: 1c326930-5d18-48f3-9369-70ef04cd7779
+      name: Wall
+      isWeightEnabled: 0
+      totalWeight: 1
+      tiles:
+      - weight: 1
+        tile: {fileID: 11400000, guid: 6179033fbf88bb547a0213985feb1c90, type: 2}
+    - id: d0bed998-3af5-4ff0-821d-5315911732af
+      name: Floor
+      isWeightEnabled: 0
+      totalWeight: 1
+      tiles:
+      - weight: 1
+        tile: {fileID: 11400000, guid: 1d9971c195ef8da42b712f7803409bd5, type: 2}
+    - id: f1d6219f-2d67-4491-b07a-ac06dfa2cdd3
+      name: TreasureSpawner
+      isWeightEnabled: 0
+      totalWeight: 1
+      tiles:
+      - weight: 1
+        tile: {fileID: 11400000, guid: 1d9971c195ef8da42b712f7803409bd5, type: 2}
+    - id: dbf42f1a-e933-4fa7-89dc-6b6813bd910f
+      name: EnemySpawner
+      isWeightEnabled: 0
+      totalWeight: 1
+      tiles:
+      - weight: 1
+        tile: {fileID: 11400000, guid: 1d9971c195ef8da42b712f7803409bd5, type: 2}
+    - id: f9511b9c-b321-4d19-83d6-855ac2576105
+      name: Decor
+      isWeightEnabled: 0
+      totalWeight: 1
+      tiles:
+      - weight: 1
+        tile: {fileID: 11400000, guid: 1d9971c195ef8da42b712f7803409bd5, type: 2}
+    - id: e6e84c4b-2320-43b2-b4b4-dd45bc262558
+      name: Water
+      isWeightEnabled: 0
+      totalWeight: 1
+      tiles:
+      - weight: 1
+        tile: {fileID: 11400000, guid: 8429e7cc9e0387b4f9ebc373dc3750c3, type: 2}
+    orderedIds:
+    - 1c326930-5d18-48f3-9369-70ef04cd7779
+    - d0bed998-3af5-4ff0-821d-5315911732af
+    - f1d6219f-2d67-4491-b07a-ac06dfa2cdd3
+    - dbf42f1a-e933-4fa7-89dc-6b6813bd910f
+    - f9511b9c-b321-4d19-83d6-855ac2576105
+    - e6e84c4b-2320-43b2-b4b4-dd45bc262558
+  tileTypes: []

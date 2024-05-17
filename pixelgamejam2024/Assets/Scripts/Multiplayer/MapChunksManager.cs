@@ -7,6 +7,7 @@ using InsaneScatterbrain.ScriptGraph;
 using Multiplayer;
 using Playroom;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class MapChunksManager : MonoBehaviour
 {
@@ -15,23 +16,25 @@ public class MapChunksManager : MonoBehaviour
     [SerializeField] private int _chunkSize = 25;
     [SerializeField] private int _spawnRange = 25;
     [SerializeField] private Transform _mapObjectsContainer;
+    [SerializeField] private Tilemap _tilemap = null;
 
-    private Queue<Vector2Int> queuedChunks;
-    private HashSet<Vector2Int> existingChunkCoords;
-    private List<Vector2Int> chunkCoordsInRange;
+    private Queue<Vector2Int> _queuedChunks;
+    private HashSet<Vector2Int> _existingChunkCoords;
+    private List<Vector2Int> _chunkCoordsInRange;
 
     private bool _setupComplete;
-    private bool graphRunnerActive;
-    private Rect chunkSpawningArea;
+    private bool _graphRunnerActive;
+    private Rect _chunkSpawningArea;
 
     private void Awake()
     {
         Debug.Log("[MapChunksManager] Awake");
         Pools.Clear();    // Make sure the map is clear before we start using it.
+        _tilemap.ClearAllTiles();    // Make sure the tilemap is clear before we start using it.
         
-        queuedChunks = new Queue<Vector2Int>();
-        existingChunkCoords = new HashSet<Vector2Int>();
-        chunkCoordsInRange = new List<Vector2Int>();
+        _queuedChunks = new Queue<Vector2Int>();
+        _existingChunkCoords = new HashSet<Vector2Int>();
+        _chunkCoordsInRange = new List<Vector2Int>();
 
         if (!PlayroomKit.IsRunningInBrowser())
         {
@@ -129,7 +132,7 @@ public class MapChunksManager : MonoBehaviour
         _runner.OnProcessed += objects =>
         {
             // If the runner's done processing, it can run for another chunk.
-            graphRunnerActive = false;
+            _graphRunnerActive = false;
             RunNextChunk();
         };
         _setupComplete = true;
@@ -141,13 +144,13 @@ public class MapChunksManager : MonoBehaviour
     {
         if (!_setupComplete) return;
         Debug.Log($"[MapChunksManager] RunNextChunk - Checking if we generate a chunk");
-        if (queuedChunks.Count < 1) return; // No new chunks to generate.
+        if (_queuedChunks.Count < 1) return; // No new chunks to generate.
 
-        if (graphRunnerActive) return;      // The runner's busy with another chunk, so we wait for it to finish.
+        if (_graphRunnerActive) return;      // The runner's busy with another chunk, so we wait for it to finish.
         
-        graphRunnerActive = true;
+        _graphRunnerActive = true;
         
-        var chunkCoords = queuedChunks.Dequeue();
+        var chunkCoords = _queuedChunks.Dequeue();
 
         _runner.SetIn("ChunkSize", _chunkSize);
         _runner.SetIn("Coordinates", chunkCoords);
@@ -183,7 +186,7 @@ public class MapChunksManager : MonoBehaviour
         var xMax = camPos.x + _spawnRange;
         var zMin = camPos.z - _spawnRange;
         var zMax = camPos.z + _spawnRange;
-        chunkSpawningArea = new Rect(
+        _chunkSpawningArea = new Rect(
             xMin, zMin, xMax - xMin, zMax - zMin
         );
 
@@ -194,17 +197,17 @@ public class MapChunksManager : MonoBehaviour
             Mathf.FloorToInt(RoundToClosestMultiple(zMin - halfSize, _chunkSize));
 
         // Find all the chunk coords that are instead of the current area.
-        chunkCoordsInRange.Clear();
+        _chunkCoordsInRange.Clear();
         for (var x = minChunkCoordsX; x < xMax - halfSize; x += _chunkSize)
         for (var z = minChunkCoordsZ; z < zMax - halfSize; z += _chunkSize)
         {
             var chunkCoords = new Vector2Int(x, z);
-            chunkCoordsInRange.Add(chunkCoords);
+            _chunkCoordsInRange.Add(chunkCoords);
 
-            if (existingChunkCoords.Contains(chunkCoords)) continue;    // A chunk has already been generated for these coords.
+            if (_existingChunkCoords.Contains(chunkCoords)) continue;    // A chunk has already been generated for these coords.
 
-            existingChunkCoords.Add(chunkCoords);
-            queuedChunks.Enqueue(chunkCoords);
+            _existingChunkCoords.Add(chunkCoords);
+            _queuedChunks.Enqueue(chunkCoords);
             RunNextChunk();
         }
     }
@@ -214,15 +217,15 @@ public class MapChunksManager : MonoBehaviour
         Gizmos.color = Color.cyan;
         
         // Draw lines that display the area in which new chunks get generated.
-        Gizmos.DrawLine(new Vector3(chunkSpawningArea.xMin, 0f, chunkSpawningArea.yMin), new Vector3(chunkSpawningArea.xMin, 0f, chunkSpawningArea.yMax));
-        Gizmos.DrawLine(new Vector3(chunkSpawningArea.xMin, 0f, chunkSpawningArea.yMin), new Vector3(chunkSpawningArea.xMax, 0f, chunkSpawningArea.yMin));
-        Gizmos.DrawLine(new Vector3(chunkSpawningArea.xMin, 0f, chunkSpawningArea.yMax), new Vector3(chunkSpawningArea.xMax, 0f, chunkSpawningArea.yMax));
-        Gizmos.DrawLine(new Vector3(chunkSpawningArea.xMax, 0f, chunkSpawningArea.yMin), new Vector3(chunkSpawningArea.xMax, 0f, chunkSpawningArea.yMax));
+        Gizmos.DrawLine(new Vector3(_chunkSpawningArea.xMin, 0f, _chunkSpawningArea.yMin), new Vector3(_chunkSpawningArea.xMin, 0f, _chunkSpawningArea.yMax));
+        Gizmos.DrawLine(new Vector3(_chunkSpawningArea.xMin, 0f, _chunkSpawningArea.yMin), new Vector3(_chunkSpawningArea.xMax, 0f, _chunkSpawningArea.yMin));
+        Gizmos.DrawLine(new Vector3(_chunkSpawningArea.xMin, 0f, _chunkSpawningArea.yMax), new Vector3(_chunkSpawningArea.xMax, 0f, _chunkSpawningArea.yMax));
+        Gizmos.DrawLine(new Vector3(_chunkSpawningArea.xMax, 0f, _chunkSpawningArea.yMin), new Vector3(_chunkSpawningArea.xMax, 0f, _chunkSpawningArea.yMax));
         
-        if (chunkCoordsInRange == null) return;
+        if (_chunkCoordsInRange == null) return;
 
         // Draw the center point of chunks within visible range.
-        foreach (var coord in chunkCoordsInRange)
+        foreach (var coord in _chunkCoordsInRange)
         {
             var halfSize = _chunkSize * .5f;
             var chunkCenterX = coord.x + halfSize;

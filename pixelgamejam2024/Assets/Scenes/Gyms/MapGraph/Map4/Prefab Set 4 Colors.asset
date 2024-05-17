@@ -16,43 +16,44 @@ MonoBehaviour:
     version: 1.25.1
   namedColorDataSet:
     elements:
-    - id: ac6f5de4-1b5c-4ee0-95b8-3964df316c9b
+    - id: 3267ae81-034b-40a0-8813-b38b305499e5
       name: Wall
       color:
         serializedVersion: 2
         rgba: 4278190080
-    - id: 401f5cf5-9676-41cd-855b-ffdfce24bb77
+    - id: 4a995ffc-ba7d-4f73-a3cb-74a1364fa5ea
       name: Floor
       color:
         serializedVersion: 2
         rgba: 4294967295
-    - id: 4d21079d-5e2d-41ca-8cff-bb2d202e8342
+    - id: c468b515-ebfe-4d31-bd4a-c9a19614bbc7
       name: TreasureSpawner
       color:
         serializedVersion: 2
         rgba: 4278255615
-    - id: 0012020b-8b67-42c3-8652-c3cdb22ffda9
+    - id: 6445cc44-7813-44b0-9c75-73da7d9b5288
       name: EnemySpawner
       color:
         serializedVersion: 2
         rgba: 4278190335
-    - id: a0473d59-1a7b-4fa8-a7ce-1fcf38566a09
+    - id: 9a5e7903-abd0-4cdd-8bc7-51a8352c5789
       name: Decor
       color:
         serializedVersion: 2
         rgba: 4278255360
-    - id: 77f89bf6-f1d2-45d5-b521-07d6b650afae
+    - id: 79172e64-dcac-4ca5-a69d-9249439c9a60
       name: Water
       color:
         serializedVersion: 2
         rgba: 4294901760
     orderedIds:
-    - ac6f5de4-1b5c-4ee0-95b8-3964df316c9b
-    - 401f5cf5-9676-41cd-855b-ffdfce24bb77
-    - 4d21079d-5e2d-41ca-8cff-bb2d202e8342
-    - 0012020b-8b67-42c3-8652-c3cdb22ffda9
-    - a0473d59-1a7b-4fa8-a7ce-1fcf38566a09
-    - 77f89bf6-f1d2-45d5-b521-07d6b650afae
+    - 3267ae81-034b-40a0-8813-b38b305499e5
+    - 4a995ffc-ba7d-4f73-a3cb-74a1364fa5ea
+    - c468b515-ebfe-4d31-bd4a-c9a19614bbc7
+    - 6445cc44-7813-44b0-9c75-73da7d9b5288
+    - 9a5e7903-abd0-4cdd-8bc7-51a8352c5789
+    - 79172e64-dcac-4ca5-a69d-9249439c9a60
   serializedNames: []
   serializedColors: []
-  serializedLinkedSets: []
+  serializedLinkedSets:
+  - {fileID: 11400000, guid: 845c83b4e65e67549a7758828075b881, type: 2}

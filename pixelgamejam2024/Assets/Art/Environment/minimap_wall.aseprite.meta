@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d2087e9b0a2844c42ba168e5509b02e7
+guid: dd33386829cb05f4ca008a3a694c04ac
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -35,7 +35,7 @@ ScriptedImporter:
     spriteMeshType: 0
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
-    spritePixelsToUnits: 100
+    spritePixelsToUnits: 128
     spriteBorder: {x: 0, y: 0, z: 0, w: 0}
     spriteGenerateFallbackPhysicsShape: 0
     generateCubemap: 6
@@ -71,7 +71,7 @@ ScriptedImporter:
     textureFormatSet: 0
     applyGammaDecoding: 0
   previousAsepriteImporterSettings:
-    fileImportMode: 1
+    fileImportMode: 0
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
@@ -84,7 +84,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   asepriteImporterSettings:
-    fileImportMode: 1
+    fileImportMode: 0
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
@@ -97,7 +97,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638514846765954115
+  platformSettingsDirtyTick: 638514850401908591
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -121,9 +121,9 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: temp_water
+  - name: minimap_wall
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -132,7 +132,7 @@ ScriptedImporter:
       y: 0
       width: 128
       height: 128
-    spriteID: 77725bdf2417ed641a87e47030ee4560
+    spriteID: 3ade01f705f97f7488e5fe2584d5fb06
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -141,23 +141,43 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  spriteSheetImportData: []
+  spriteSheetImportData:
+  - name: minimap_wall_0
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 128
+      height: 128
+    spriteID: 87bd06ab9ca19c04c8a6b69bd6e87d74
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
   asepriteLayers:
   - layerIndex: 0
-    guid: 736935580
-    name: temp_water
+    guid: 1604116918
+    name: minimap_wall
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: temp_water
+    - name: minimap_wall
       frameIndex: 0
       cellRect:
         x: 0
         y: 0
         width: 128
         height: 128
-      spriteId: 77725bdf2417ed641a87e47030ee4560
+      spriteId: 3ade01f705f97f7488e5fe2584d5fb06
     linkedCells: []
     parentIndex: -1
   platformSettings:

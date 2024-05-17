@@ -17,7 +17,7 @@ MonoBehaviour:
     AOMethod: 1
     Downsample: 1
     AfterOpaque: 0
-    Source: 0
+    Source: 1
     NormalSamples: 0
     Intensity: 0.5
     DirectLightingStrength: 0.25
@@ -79,7 +79,7 @@ MonoBehaviour:
   m_AssetVersion: 2
   m_OpaqueLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 2103
   m_TransparentLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
