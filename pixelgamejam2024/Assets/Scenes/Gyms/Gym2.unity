@@ -157,6 +157,7 @@ Transform:
   m_Children:
   - {fileID: 13124146}
   - {fileID: 1091191045}
+  - {fileID: 550093749}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &13124144
@@ -3135,9 +3136,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb0af20af1a252242be4a268d692e2a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DragonController: {fileID: 691524664}
-  StationData: {fileID: 11400000, guid: acba39f098dd05a4790b5e148f907fe6, type: 2}
-  GlowHighlight: {fileID: 384132235}
+  _dragonController: {fileID: 691524664}
+  _stationData: {fileID: 11400000, guid: acba39f098dd05a4790b5e148f907fe6, type: 2}
+  _glowHighlight: {fileID: 384132235}
 --- !u!1 &398224915
 GameObject:
   m_ObjectHideFlags: 0
@@ -5022,6 +5023,56 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 538732637}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &550093748
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 550093749}
+  - component: {fileID: 550093750}
+  m_Layer: 0
+  m_Name: PoolSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &550093749
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550093748}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 10397089}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &550093750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550093748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75c176f761330de49afda321f6095a1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _poolableObjects:
+  - {fileID: 3745543756459494497, guid: 58df1cb9c89faf44d9cb39049378ed8c, type: 3}
+  _pooledObjectTypes:
+  - Treasure
+  _initialSize: 10
+  _maxSize: 20
 --- !u!1 &579027355
 GameObject:
   m_ObjectHideFlags: 0
@@ -7899,9 +7950,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb0af20af1a252242be4a268d692e2a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DragonController: {fileID: 691524664}
-  StationData: {fileID: 11400000, guid: 0c0640db4c9eaf5419dabec58d32a9b9, type: 2}
-  GlowHighlight: {fileID: 785581518}
+  _dragonController: {fileID: 691524664}
+  _stationData: {fileID: 11400000, guid: 0c0640db4c9eaf5419dabec58d32a9b9, type: 2}
+  _glowHighlight: {fileID: 785581518}
 --- !u!1 &792140035
 GameObject:
   m_ObjectHideFlags: 0
@@ -10901,6 +10952,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38b570ce8b67f794bb157e676a7e0066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _treasureTypes:
+  - {fileID: 11400000, guid: 818af13ef2eba1b46bec052d43e1435a, type: 2}
+  - {fileID: 11400000, guid: cf61c4eae166c7a4e92304bfb7428cee, type: 2}
+  - {fileID: 11400000, guid: acf9d0070a7c54040841dea1208ab98a, type: 2}
+  _treasureNames:
+  - TreasureLight
+  - TreasureMedium
+  - TreasureHeavy
 --- !u!1 &1098194624
 GameObject:
   m_ObjectHideFlags: 0
@@ -11537,6 +11596,79 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1205894518}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1212933168
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2106695697019074964, guid: db9387c70468fda48a5c2a93079482d3,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 19.887
+      objectReference: {fileID: 0}
+    - target: {fileID: 2106695697019074964, guid: db9387c70468fda48a5c2a93079482d3,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2106695697019074964, guid: db9387c70468fda48a5c2a93079482d3,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 14.049
+      objectReference: {fileID: 0}
+    - target: {fileID: 2106695697019074964, guid: db9387c70468fda48a5c2a93079482d3,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2106695697019074964, guid: db9387c70468fda48a5c2a93079482d3,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2106695697019074964, guid: db9387c70468fda48a5c2a93079482d3,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2106695697019074964, guid: db9387c70468fda48a5c2a93079482d3,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2106695697019074964, guid: db9387c70468fda48a5c2a93079482d3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2106695697019074964, guid: db9387c70468fda48a5c2a93079482d3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2106695697019074964, guid: db9387c70468fda48a5c2a93079482d3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9189829497527223375, guid: db9387c70468fda48a5c2a93079482d3,
+        type: 3}
+      propertyPath: m_Name
+      value: TreasureSpawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 9189829497527223375, guid: db9387c70468fda48a5c2a93079482d3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: db9387c70468fda48a5c2a93079482d3, type: 3}
 --- !u!1 &1228778273
 GameObject:
   m_ObjectHideFlags: 0
@@ -12209,9 +12341,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb0af20af1a252242be4a268d692e2a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DragonController: {fileID: 691524664}
-  StationData: {fileID: 11400000, guid: e6cd9cac1a8bcd74db276bc7a47b6b99, type: 2}
-  GlowHighlight: {fileID: 1289440905}
+  _dragonController: {fileID: 691524664}
+  _stationData: {fileID: 11400000, guid: e6cd9cac1a8bcd74db276bc7a47b6b99, type: 2}
+  _glowHighlight: {fileID: 1289440905}
 --- !u!1 &1291615296
 GameObject:
   m_ObjectHideFlags: 0
@@ -16862,9 +16994,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb0af20af1a252242be4a268d692e2a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DragonController: {fileID: 691524664}
-  StationData: {fileID: 11400000, guid: 6e171df300bd13844a071c3b6e8336d8, type: 2}
-  GlowHighlight: {fileID: 1920096720}
+  _dragonController: {fileID: 691524664}
+  _stationData: {fileID: 11400000, guid: 6e171df300bd13844a071c3b6e8336d8, type: 2}
+  _glowHighlight: {fileID: 1920096720}
 --- !u!1 &1942444204
 GameObject:
   m_ObjectHideFlags: 0
@@ -17579,3 +17711,4 @@ SceneRoots:
   - {fileID: 2107788620}
   - {fileID: 808592136}
   - {fileID: 670718388}
+  - {fileID: 1212933168}

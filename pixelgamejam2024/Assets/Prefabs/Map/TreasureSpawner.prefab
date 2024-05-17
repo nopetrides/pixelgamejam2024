@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 3164754487539404655}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.305, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -41,6 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2106695697019074964}
+  - component: {fileID: 4084269939917847274}
   m_Layer: 0
   m_Name: TreasureSpawner
   m_TagString: Untagged
@@ -64,6 +65,18 @@ Transform:
   - {fileID: 1145108461677171204}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4084269939917847274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9189829497527223375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d69b3b491aafc6640a053614e7335844, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4321612465935948145
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -90,7 +103,7 @@ PrefabInstance:
     - target: {fileID: 4965559583283624677, guid: e9f7b33eedd7fe54a86a00bfc97b01e9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.461
       objectReference: {fileID: 0}
     - target: {fileID: 4965559583283624677, guid: e9f7b33eedd7fe54a86a00bfc97b01e9,
         type: 3}

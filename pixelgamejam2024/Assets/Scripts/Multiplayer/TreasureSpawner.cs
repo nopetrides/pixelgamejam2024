@@ -9,12 +9,18 @@ public class TreasureSpawner : MonoBehaviour
     private string _coordinate = "";
 
 
-    private void OnEnable()
+    private async void OnEnable()
     {
+        StartCoroutine(AsyncLoad()); ;
+        // _coordinate = transform.position.ToString("F2");
+        // TreasureManager.Instance.AskServerIfTreasureSpawnerWasAlreadyFound(_coordinate);
+    }
+
+    private IEnumerator AsyncLoad()
+    {
+        yield return new WaitForSeconds(0.01f);
+        Debug.Log($"Spawner: {transform.position}");
         _coordinate = transform.position.ToString("F2");
         TreasureManager.Instance.AskServerIfTreasureSpawnerWasAlreadyFound(_coordinate);
-        // Debug.Log($"{_coordinate} : {_coordinate.GetType()}");
-        // Vector3 coords = Vector3Parser.TryParse(_coordinate, out Vector3 result) ? result : Vector3.zero;
-        // Debug.Log($"{coords} : {coords.GetType()}");
     }
 }
