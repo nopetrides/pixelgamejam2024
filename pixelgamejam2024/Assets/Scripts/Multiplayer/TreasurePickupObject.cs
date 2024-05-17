@@ -21,7 +21,6 @@ public class TreasurePickupObject : PoolableObject
     public override void DataSetup(string data)
     {
         _treasureData = TreasureManager.Instance.Deserializer(data);
-        Debug.Log($"Treasuer: {transform.position}");
         _weight = _treasureData.Weight;
         _name = _treasureData.Type;
         _spriteRenderer.sprite = _treasureData.Sprite;

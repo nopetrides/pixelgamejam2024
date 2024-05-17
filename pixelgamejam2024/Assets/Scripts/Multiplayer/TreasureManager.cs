@@ -83,7 +83,6 @@ public class TreasureManager : MonoBehaviour
     {
         // check dictionary
         Vector3 coords = Vector3Parser.TryParse(coordinates, out Vector3 result) ? result : Vector3.zero;
-        Debug.Log($"Vector before: {coords}");
         bool inDictionary = TreasureSpawner.ContainsKey(coords);
         if (inDictionary) return;
 

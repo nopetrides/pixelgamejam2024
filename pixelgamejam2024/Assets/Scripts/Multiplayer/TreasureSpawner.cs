@@ -19,7 +19,6 @@ public class TreasureSpawner : MonoBehaviour
     private IEnumerator AsyncLoad()
     {
         yield return new WaitForSeconds(0.01f);
-        Debug.Log($"Spawner: {transform.position}");
         _coordinate = transform.position.ToString("F2");
         TreasureManager.Instance.AskServerIfTreasureSpawnerWasAlreadyFound(_coordinate);
     }

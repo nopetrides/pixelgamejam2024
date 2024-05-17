@@ -65,7 +65,6 @@ public class PoolSystem : MonoBehaviour
         {
             var pooledObject = pool.Get();
             pooledObject.transform.position = location;
-            Debug.Log($"Pool: {location}");
             pooledObject.DataSetup(data);
             return pooledObject.gameObject;
         }
