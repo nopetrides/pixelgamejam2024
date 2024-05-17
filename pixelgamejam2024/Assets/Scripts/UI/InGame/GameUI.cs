@@ -14,7 +14,7 @@ public class GameUI : MonoBehaviour
     private Dictionary<string, Slider> _statusSliders = new ();
     private void Start()
     {
-        // temp
+        Debug.Log("GameUI Start");
         _dragonController.OnDragonDataRefresh += DragonStatusRefresh;
 
         if (_statVisuals.Length < 4)

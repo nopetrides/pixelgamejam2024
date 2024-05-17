@@ -61,8 +61,19 @@ public class MapChunksManager : MonoBehaviour
         {
             Debug.Log("[MapChunksManager] InitializeMapChunks - Client waiting on map seed");
             _runner.SetIn("NoiseRNGState", GetRandomSeed(DateTime.Now.ToString(CultureInfo.CurrentCulture))); // doesn't do anything but maybe stop a failure
-            PlayroomKit.WaitForState(GameConstants.GameStateData.MapSeed.ToString(), OnSeedReceived);
+            PlayroomKit.WaitForState(GameConstants.GameStateData.MapSeed.ToString(), WaitForSeedStateCallback);
         }
+    }
+
+    private void WaitForSeedStateCallback(string callbackReason)
+    {
+        if (callbackReason != GameConstants.GameStateData.MapSeed.ToString())
+        {
+            PlayroomKit.WaitForState(GameConstants.GameStateData.MapSeed.ToString(), WaitForSeedStateCallback);
+            return;
+        }
+
+        OnSeedReceived();
     }
 
     private void OnSeedReceived()

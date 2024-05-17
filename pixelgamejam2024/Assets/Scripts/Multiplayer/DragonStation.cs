@@ -1,38 +1,45 @@
+using System.Collections.Generic;
 using HighlightPlus;
-using Playroom;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 public class DragonStation : MonoBehaviour
 {
-    [FormerlySerializedAs("DragonController")]
-    [Header("Dragon Controller")] 
-    [SerializeField] private DragonNetworkController _dragonController;
-    [FormerlySerializedAs("StationData")]
-    [Header("Station")]
-    [SerializeField] private DragonStationSO _stationData;
-    [FormerlySerializedAs("GlowHighlight")] 
-    [SerializeField] private HighlightEffect _glowHighlight;
+    [FormerlySerializedAs("DragonController")] [Header("Dragon Controller")] [SerializeField]
+    private DragonNetworkController _dragonController;
 
+    [FormerlySerializedAs("StationData")] [Header("Station")] [SerializeField]
+    private DragonStationSO _stationData;
+
+    [FormerlySerializedAs("GlowHighlight")] [SerializeField]
+    private HighlightEffect _glowHighlight;
+
+    private List<Collider> _collidersWithinTrigger = new();
+
+    /*
     private void Awake()
     {
         if (PlayroomKit.IsRunningInBrowser())
         {
             PlayroomKit.RpcRegister($"DragonStation{_stationData.AffectsDragonStats}", 
                 OnActivateStationRPC, 
-                $"Station {_stationData} Activated!");
+                $"Station {_stationData.AffectsDragonStats} Activated!");
         }
     }
-
+    
     private void OnActivateStationRPC(string dataJson, string senderJson)
     {
-        _dragonController.OnDragonStationUsed(dataJson, _stationData.AffectValue);
+        _dragonController.OnDragonStationUsed(dataJson, _stationData.AffectValue * _collidersWithinTrigger.Count);
     }
+*/
 
     private void OnTriggerEnter(Collider other)
     {
         // Enable Interact
         Debug.Log($"Entered Station {_stationData.AffectsDragonStats.ToString()}");
+        if (!_collidersWithinTrigger.Contains(other))
+            _collidersWithinTrigger.Add(other);
+
         _glowHighlight.highlighted = true;
     }
 
@@ -40,15 +47,23 @@ public class DragonStation : MonoBehaviour
     {
         // Disable Interact
         Debug.Log($"Exited Station {_stationData.AffectsDragonStats.ToString()}");
+        if (_collidersWithinTrigger.Contains(other))
+            _collidersWithinTrigger.Remove(other);
+
         _glowHighlight.highlighted = false;
     }
 
     private void Update()
     {
+        _glowHighlight.highlighted = _collidersWithinTrigger.Count > 0;
+
         if (_glowHighlight.highlighted)
-            AffectDragon();
+            _dragonController.OnDragonStationUsed(_stationData.AffectsDragonStats.ToString(),
+                _stationData.AffectValue * _collidersWithinTrigger.Count);
+        //AffectDragon();
     }
 
+    /*
     private void AffectDragon()
     {
         if (!PlayroomKit.IsRunningInBrowser())
@@ -66,9 +81,9 @@ public class DragonStation : MonoBehaviour
                 AffectDragonRPCConfirm);
         }
     }
-
     private void AffectDragonRPCConfirm()
     {
         Debug.Log("Dragon Station RPC confirmed");
     }
+*/
 }

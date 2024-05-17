@@ -27,11 +27,12 @@ public class DragonNetworkController : MonoBehaviour
     public Action<ConcurrentDictionary<string, DragonStatus>> OnDragonDataRefresh;
 
     private ConcurrentDictionary<string, DragonStatus> _currentDragonStatus = new();
-    private Dictionary<string, int> _networkedDragonData;
+    private Dictionary<string, int> _networkedDragonData = new();
 
     private long _timestampGameStart;
 
-    private bool _initialized;
+    private bool _initialized; // host only, client wait for state
+    private const string DragonReady = "DragonReady";
 
     private GameConstants.DragonStats HeatStat => GameConstants.DragonStats.Heat;
     private GameConstants.DragonStats TemperStat => GameConstants.DragonStats.Temper;
@@ -45,11 +46,11 @@ public class DragonNetworkController : MonoBehaviour
         
         if (!PlayroomKit.IsRunningInBrowser() || PlayroomKit.IsHost())
         {
-            InitializeDragonData();
+            OnDragonDataInitialized();
             return;
         }
 
-        PlayroomKit.WaitForState(nameof(_networkedDragonData), InitComplete);
+        PlayroomKit.WaitForState(DragonReady, WaitForDragonReadyStateCallback);
     }
 
     private void InitializeDragonStatusDict()
@@ -63,6 +64,11 @@ public class DragonNetworkController : MonoBehaviour
         _currentDragonStatus.TryAdd(TemperStat.ToString(), temperStat);
         _currentDragonStatus.TryAdd(EnergyStat.ToString(), energyStat);
         _currentDragonStatus.TryAdd(ChewingStat.ToString(), chewingStat);
+        
+        _networkedDragonData.Add(HeatStat.ToString(), 0);
+        _networkedDragonData.Add(TemperStat.ToString(), 0);
+        _networkedDragonData.Add(EnergyStat.ToString(), 0);
+        _networkedDragonData.Add(ChewingStat.ToString(), 0);
     }
 
     // Update is called once per frame
@@ -88,6 +94,11 @@ public class DragonNetworkController : MonoBehaviour
             GetDragonState();
     }
     
+    private void InitComplete()
+    {
+        Debug.Log("Init Complete");
+        _initialized = true;
+    }
 
 #region Clients
 
@@ -108,7 +119,7 @@ public class DragonNetworkController : MonoBehaviour
     {
         if (_currentDragonStatus.Count != _networkedDragonData.Count)
         {
-            Debug.LogError("Mismatched data");
+            Debug.LogError("[ApplyDragonDataFromNetwork] Mismatched data");
             return;
         }
 
@@ -124,10 +135,22 @@ public class DragonNetworkController : MonoBehaviour
         }
     }
 
-    private void InitComplete()
+    private void WaitForDragonReadyStateCallback(string callbackOrigin)
     {
-        _initialized = true;
+        if (callbackOrigin != DragonReady)
+        {
+            PlayroomKit.WaitForState(DragonReady, WaitForDragonReadyStateCallback);
+            return;
+        }
+        OnDragonReady();
     }
+
+    private void OnDragonReady()
+    {
+        Debug.Log("OnDragonReady");
+        InitComplete();
+    }
+
 
     private void InformListeners()
     {
@@ -138,11 +161,16 @@ public class DragonNetworkController : MonoBehaviour
 
 #region Host
 
-    private void InitializeDragonData()
+    private void OnDragonDataInitialized()
     {
-        InitComplete();
-        if (PlayroomKit.IsRunningInBrowser() && PlayroomKit.IsHost())
+        Debug.Log("Host: OnDragonDataInitialized Enter");
+        bool host = PlayroomKit.IsRunningInBrowser() && PlayroomKit.IsHost();
+        if (host)
             SendDragonStatusToNetwork();
+        InitComplete();
+        if (host)
+            PlayroomKit.SetState(DragonReady, true, true);
+        Debug.Log("Host: OnDragonDataInitialized Exit");
     }
 
     private void SetDragonState()
@@ -154,23 +182,23 @@ public class DragonNetworkController : MonoBehaviour
 
     private void SendDragonStatusToNetwork()
     {
-        foreach (var kvp in _currentDragonStatus)
+        if (_currentDragonStatus.Count != _networkedDragonData.Count)
         {
-            if (!_networkedDragonData.ContainsKey(kvp.Key))
-            {
-                _networkedDragonData.Add(kvp.Key, 0);
-            }
-
-            _networkedDragonData[kvp.Key] = _currentDragonStatus[kvp.Key].Current;
+            Debug.LogError("[SendDragonStatusToNetwork] Mismatched data");
+            return;
+        }
+        
+        foreach (var (key, dragonStatus) in _currentDragonStatus)
+        {
+            _networkedDragonData[key] = dragonStatus.Current;
         }
 
-        PlayroomKit.SetState(nameof(_networkedDragonData), _networkedDragonData);
+        PlayroomKit.SetState(nameof(_networkedDragonData), _networkedDragonData, true);
     }
     
 
     private void CalculateNewDragonState()
     {
-        InitComplete();
         // Check this first on the host to see what modifiers to apply this frame
         UpdateDragonFiniteStateMachine();
 
@@ -264,7 +292,7 @@ public class DragonNetworkController : MonoBehaviour
         Overheated = 5,
     }
 
-    private FiniteDragonState _dragonAnimationState;
+    private FiniteDragonState _dragonAnimationState = FiniteDragonState.Idle;
 
     public string DragonStateDebug => _dragonAnimationState.ToString();
 

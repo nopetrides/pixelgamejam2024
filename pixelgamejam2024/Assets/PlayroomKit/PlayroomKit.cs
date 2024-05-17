@@ -731,20 +731,27 @@ namespace Playroom
         [DllImport("__Internal")]
         private static extern void WaitForStateInternal(string stateKey, Action onStateSetCallback = null);
 
+        private static Dictionary<string, Action<string>> WaitForStateCallbacks = new();
 
         private static Action OnStateChangeCallBack = null;
 
         [MonoPInvokeCallback(typeof(Action))]
         private static void InvokeCallback()
         {
-            OnStateChangeCallBack?.Invoke();
+            foreach (var kvp in WaitForStateCallbacks)
+            {
+                kvp.Value.Invoke(kvp.Key);
+            }
+            WaitForStateCallbacks.Clear();
+            //OnStateChangeCallBack?.Invoke();
         }
 
-        public static void WaitForState(string stateKey, Action onStateSetCallback = null)
+        public static void WaitForState(string stateKey, Action<string> onStateSetCallback = null)
         {
             if (IsRunningInBrowser())
             {
-                OnStateChangeCallBack = onStateSetCallback;
+                WaitForStateCallbacks.Add(stateKey, onStateSetCallback);
+                //OnStateChangeCallBack = onStateSetCallback;
                 WaitForStateInternal(stateKey, InvokeCallback);
             }
         }
