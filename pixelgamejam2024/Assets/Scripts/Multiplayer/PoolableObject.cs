@@ -33,9 +33,9 @@ public class PoolableObject : MonoBehaviour
     {
         return _name;
     }
-    
-    public void SetName(string name)
+
+    public virtual void DataSetup(string data)
     {
-        _name = name;
+        
     }
 }

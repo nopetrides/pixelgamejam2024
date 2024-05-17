@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f42bead84e291c4884d0cc4f8adb022, type: 3}
   m_Name: TreasureMedium
   m_EditorClassIdentifier: 
-  _weight: 0
-  _sprite: {fileID: 0}
-  _type: 
+  _weight: 5
+  _sprite: {fileID: 3530002444835549287, guid: e2a3fd7fda559f743a946111b723fd28, type: 3}
+  _type: TreasureMedium

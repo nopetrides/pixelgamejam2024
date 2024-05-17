@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -7,26 +8,22 @@ public class TreasurePickupObject : PoolableObject
 {
     
     //setup the pulled treasure with the data from the SO
-    [SerializeField]
     private TreasureTypesSO _treasureData;
 
+    [SerializeField]
     private SpriteRenderer _spriteRenderer;
     
     private int _weight;
-    private Sprite _sprite;
     //private string _type;
 
-    
+    public TreasureTypesSO TreasureData => _treasureData;
 
-    protected override void OnEnable()
+    public override void DataSetup(string data)
     {
-        base.OnEnable();
+        _treasureData = TreasureManager.Instance.Deserializer(data);
+        
         _weight = _treasureData.Weight;
-        _sprite = _treasureData.Sprite;
         _name = _treasureData.Type;
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-        _spriteRenderer.sprite = _sprite;
+        _spriteRenderer.sprite = _treasureData.Sprite;
     }
-
-    
 }

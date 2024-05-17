@@ -24,13 +24,7 @@ public class PoolSystem : MonoBehaviour
     private int _maxSize = 20;
     
     public static PoolSystem Instance;
-
-    //For debugging
-    private void Update()
-    {
-        //if (Input.GetKeyDown(KeyCode.Alpha1)) Spawn();
-    }
-
+    
     private void Awake()
     {
         if (Instance == null)
@@ -64,13 +58,14 @@ public class PoolSystem : MonoBehaviour
         _pools.Add(objectType, pool);
     }
 
-    public GameObject Spawn(string objectType , Vector3 location)
+    public GameObject Spawn(string objectType , Vector3 location, string data )
     {
         if(!_pools.ContainsKey(objectType)) CreatePool(objectType);
         if (_pools.TryGetValue(objectType, out var pool))
         {
             var pooledObject = pool.Get();
             pooledObject.transform.position = location;
+            pooledObject.DataSetup(data);
             return pooledObject.gameObject;
         }
         return null;
@@ -82,10 +77,5 @@ public class PoolSystem : MonoBehaviour
         {
             pool.Release(obj);
         }
-    }
-
-    public void AddTreasure(string objectType, int weight)
-    {
-        //_treasures.Add(objectType, weight);
     }
 }
