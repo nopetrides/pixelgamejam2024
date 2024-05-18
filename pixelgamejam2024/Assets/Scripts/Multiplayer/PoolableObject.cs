@@ -5,12 +5,15 @@ using UnityEngine;
 public class PoolableObject : MonoBehaviour
 {
     [SerializeField]
-    float _lifeSpan = 2f;
+    private float _lifeSpan = -1f;
+
+    [SerializeField]
+    protected string _name;
 
     private WaitForSeconds _waitTime;
     
     
-    protected void OnEnable()
+    protected virtual void OnEnable()
     {
         if (_lifeSpan >= 0f)
         {
@@ -22,6 +25,17 @@ public class PoolableObject : MonoBehaviour
     private IEnumerator DisableCoroutine()
     {
         yield return _waitTime;
-        PoolSystem.Instance.DeSpawn(this);
+        PoolSystem.Instance.DeSpawn(_name, this);
+        //gameObject.SetActive(false);
+    }
+
+    public string GetName()
+    {
+        return _name;
+    }
+
+    public virtual void DataSetup(Vector3 coordinates)
+    {
+        
     }
 }

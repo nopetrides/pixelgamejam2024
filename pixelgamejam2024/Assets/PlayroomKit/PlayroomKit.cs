@@ -820,7 +820,7 @@ namespace Playroom
             SetStateDictionary(key, jsonString, reliable);
         }
 
-        private static Dictionary<string, T> ParseJsonToDictionary<T>(string jsonString)
+        public static Dictionary<string, T> ParseJsonToDictionary<T>(string jsonString)
         {
             var dictionary = new Dictionary<string, T>();
             var jsonNode = JSON.Parse(jsonString);
@@ -840,6 +840,20 @@ namespace Playroom
                     Debug.LogError("Unsupported type: " + typeof(T).FullName);
 
                 dictionary.Add(kvp.Key, value);
+            }
+
+            return dictionary;
+        }
+        
+        public static Dictionary<string, string> ParseJsonToDictionaryFallbackStrings(string jsonString)
+        {
+            var dictionary = new Dictionary<string, string>();
+            var jsonNode = JSON.Parse(jsonString);
+
+            foreach (var kvp in jsonNode.AsObject)
+            {
+                Debug.Log($"Trying to parse dict {kvp.Key} {kvp.Value}");
+                dictionary.Add(kvp.Key, kvp.Value);
             }
 
             return dictionary;
@@ -1116,9 +1130,10 @@ namespace Playroom
 
         public static void RpcCall(string name, object data, RpcMode mode, Action callbackOnResponse)
         {
-
+            Debug.Log("I was given: " + data.ToString());
             string jsonData = ConvertToJson(data);
 
+            Debug.Log("I'm a POS: " + data);
             if (OnResponseCallbacks.ContainsKey(name))
             {
                 OnResponseCallbacks[name].Add(callbackOnResponse);
@@ -1187,7 +1202,7 @@ namespace Playroom
         }
 
 
-        private static string ConvertToJson(object data)
+        public static string ConvertToJson(object data)
         {
             if (data == null)
             {
