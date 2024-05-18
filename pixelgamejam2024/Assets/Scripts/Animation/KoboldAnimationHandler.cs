@@ -25,18 +25,15 @@ public class KoboldAnimationHandler : MonoBehaviour
                 Debug.LogWarning("Camera not yet ready");
             }
 
-        if (!PlayroomKit.IsRunningInBrowser())
-            Mock();
-        else
-            CheckNetwork();
-        
+        AnimationStateUpdate();
     }
 
-    private void Mock()
+    private void AnimationStateUpdate()
     {
         var posThisFrame = _playerNetworkController.transform.position;
         var playerMovement = posThisFrame - _posLastFrame;
 
+        // Movement is relative to main player camera
         var camTransform = _cam.transform;
         var camForward = camTransform.forward;
         var camRight = camTransform.right;
@@ -44,37 +41,19 @@ public class KoboldAnimationHandler : MonoBehaviour
         var xMove = Vector3.Dot(playerMovement, camRight);
         var zMove = Vector3.Dot(playerMovement, camForward);
         
-        // Movement is relative to main player camera
-        _animator.SetFloat("Horizontal", xMove); // left or right of us
         _spriteRenderer.flipX = xMove < 0f;
+        _animator.SetFloat("Horizontal", xMove); // left or right of us
         _animator.SetFloat("Vertical", zMove); // towards or away from us
         _animator.SetFloat("Speed", playerMovement.magnitude); // did they move
-        // todo get carry state locally
-        _animator.SetBool("Carrying", false); // carry state flag
         
-        _posLastFrame = posThisFrame;
-    }
-    
-    private void CheckNetwork()
-    {
-        var posThisFrame = _playerNetworkController.RepresentsPlayer.GetState<Vector3>(GameConstants.PlayerStateData.Position.ToString());
-        var playerMovement = posThisFrame - _posLastFrame;
-
-        var camTransform = _cam.transform;
-        var camForward = camTransform.forward;
-        var camRight = camTransform.right;
-
-        var xMove = Vector3.Dot(playerMovement, camRight);
-        var zMove = Vector3.Dot(playerMovement, camForward);
+        bool isCarrying = false; // todo local player
         
-        // Movement is relative to main player camera
-        _animator.SetFloat("Horizontal", xMove); // left or right of us
-        _spriteRenderer.flipX = xMove < 0f;
-        _animator.SetFloat("Vertical", zMove); // towards or away from us
-        _animator.SetFloat("Speed", playerMovement.magnitude); // did they move
-        var isCarrying = _playerNetworkController.RepresentsPlayer.GetState<bool>(GameConstants.PlayerStateData.IsCarrying.ToString());
+        if (PlayroomKit.IsRunningInBrowser())
+            isCarrying = _playerNetworkController.RepresentsPlayer.GetState<bool>(
+                GameConstants.PlayerStateData.IsCarrying.ToString());
+        
         _animator.SetBool("Carrying", isCarrying); // carry state flag
-
+        
         _posLastFrame = posThisFrame;
     }
 }
