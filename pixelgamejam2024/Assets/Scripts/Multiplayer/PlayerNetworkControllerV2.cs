@@ -20,6 +20,7 @@ public class PlayerNetworkControllerV2 : MonoBehaviour
     // todo, player controller that handles the other game mechanics
     
     private PlayroomKit.Player _playroomPlayer;
+    public PlayroomKit.Player RepresentsPlayer => _playroomPlayer;
     private GameStateManager _manager;
     private float _warmTimer;
     private bool _warmedUp;

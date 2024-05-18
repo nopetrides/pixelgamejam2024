@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d28445ec4cec1f446a80afd9bead6639
+guid: a48e1f49d9d34244081e9f1431631a68
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -73,7 +73,7 @@ ScriptedImporter:
   previousAsepriteImporterSettings:
     fileImportMode: 0
     importHiddenLayers: 0
-    layerImportMode: 1
+    layerImportMode: 0
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
@@ -86,7 +86,7 @@ ScriptedImporter:
   asepriteImporterSettings:
     fileImportMode: 0
     importHiddenLayers: 0
-    layerImportMode: 1
+    layerImportMode: 0
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
@@ -97,7 +97,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638512419115276541
+  platformSettingsDirtyTick: 638515968277232385
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -121,18 +121,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: KoboldRoughs
+  - name: Wall_QuadSlime
     originalName: 
-    pivot: {x: 0.76171875, y: -0.39007095}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 256
-      height: 141
-    spriteID: 2cf8ad9466dd18f41a7670a620a89d50
+      width: 100
+      height: 100
+    spriteID: 5d291c02d2887b445b09effa192d3188
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,18 +142,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
   spriteSheetImportData:
-  - name: KoboldRoughs_0
+  - name: Wall_QuadSlime_0
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
-      y: 69
-      width: 59
-      height: 76
-    spriteID: cf8866bd1c8cf0249a7a95d51228ce1a
+      y: 112
+      width: 100
+      height: 100
+    spriteID: 3bde5efa6db92364a924f0b412fc7593
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -162,18 +162,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: KoboldRoughs_1
+  - name: Wall_QuadSlime_1
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 67
-      y: 69
-      width: 40
-      height: 76
-    spriteID: 6d7356edb99f2ad4eb303b623881e785
+      x: 112
+      y: 112
+      width: 100
+      height: 100
+    spriteID: a2173b7d7a046f94098210829be2aad8
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -182,58 +182,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: KoboldRoughs_2
+  - name: Wall_QuadSlime_2
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 113
-      y: 69
-      width: 83
-      height: 53
-    spriteID: 54ee45b66a862f24cb4172169e6003a8
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: KoboldRoughs_3
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 206
-      y: 69
-      width: 50
-      height: 51
-    spriteID: 3cee1646985912a48ba6c6f6a8f09c82
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: KoboldRoughs_4
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 107
-      height: 50
-    spriteID: 05b6d970e596caa478a90bbc5d3c6686
+      width: 100
+      height: 100
+    spriteID: 980119ce85cb01e489f8c80b9137f02d
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -242,38 +202,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: KoboldRoughs_5
+  - name: Wall_QuadSlime_3
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 135
-      y: 5
-      width: 31
-      height: 49
-    spriteID: f465c1a893d3ae3439a745fb8ea9655a
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: KoboldRoughs_6
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 177
-      y: 5
-      width: 83
-      height: 53
-    spriteID: 28da8ef86b75fbd43a762f79bfa4b179
+      x: 112
+      y: 4
+      width: 100
+      height: 100
+    spriteID: 70cb4fabee64d474e9ef107df0f133d2
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -284,20 +224,71 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   asepriteLayers:
   - layerIndex: 0
-    guid: 2131564253
-    name: KoboldRoughs
-    layerFlags: 0
+    guid: 1317222744
+    name: Layer 1
+    layerFlags: 3
     layerType: 0
     blendMode: 0
     cells:
-    - name: KoboldRoughs
+    - name: Layer 1
       frameIndex: 0
       cellRect:
-        x: 5
-        y: 55
-        width: 256
-        height: 141
-      spriteId: 2cf8ad9466dd18f41a7670a620a89d50
+        x: 100
+        y: 0
+        width: 100
+        height: 100
+      spriteId: 463ea5404a5e121489a596c42e6b988f
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 1
+    guid: 1317221552
+    name: Layer 2
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Layer 2
+      frameIndex: 0
+      cellRect:
+        x: 0
+        y: 100
+        width: 100
+        height: 100
+      spriteId: f6947783e92404e4291e7f288e1a12f2
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 2
+    guid: 1317221948
+    name: Layer 3
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Layer 3
+      frameIndex: 0
+      cellRect:
+        x: 0
+        y: 0
+        width: 100
+        height: 100
+      spriteId: 45d28a7b2abdfcb4caf1427de5a2b04a
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 3
+    guid: 1317223932
+    name: Layer 4
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Layer 4
+      frameIndex: 0
+      cellRect:
+        x: 100
+        y: 100
+        width: 100
+        height: 100
+      spriteId: 9afbd035f720daf4b919e9337142b598
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -340,4 +331,4 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 400, y: 200}
+  canvasSize: {x: 300, y: 300}

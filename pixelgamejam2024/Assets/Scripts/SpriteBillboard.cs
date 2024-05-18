@@ -5,7 +5,6 @@ public class SpriteBillboard : MonoBehaviour
     [SerializeField] 
     bool freezeXZAxis = true;
 
-    [SerializeField]
     private Camera _cam;
     
     void FixedUpdate()

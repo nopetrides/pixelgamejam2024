@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d28445ec4cec1f446a80afd9bead6639
+guid: c2e58190a191e86408fd9b58d3ae9666
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -32,7 +32,7 @@ ScriptedImporter:
     sRGBTexture: 1
     spriteMode: 2
     spriteExtrude: 1
-    spriteMeshType: 1
+    spriteMeshType: 0
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
     spritePixelsToUnits: 100
@@ -41,7 +41,7 @@ ScriptedImporter:
     generateCubemap: 6
     cubemapConvolution: 0
     seamlessCubemap: 0
-    alphaIsTransparency: 1
+    alphaIsTransparency: 0
     spriteTessellationDetail: -1
     textureType: 8
     textureShape: 1
@@ -71,33 +71,33 @@ ScriptedImporter:
     textureFormatSet: 0
     applyGammaDecoding: 0
   previousAsepriteImporterSettings:
-    fileImportMode: 0
+    fileImportMode: 1
     importHiddenLayers: 0
-    layerImportMode: 1
-    defaultPivotSpace: 0
-    defaultPivotAlignment: 7
+    layerImportMode: 0
+    defaultPivotSpace: 1
+    defaultPivotAlignment: 0
     customPivotPosition: {x: 0.5, y: 0.5}
-    mosaicPadding: 4
+    mosaicPadding: 0
     spritePadding: 0
-    generateModelPrefab: 1
-    generateAnimationClips: 1
+    generateModelPrefab: 0
+    generateAnimationClips: 0
     addSortingGroup: 1
     addShadowCasters: 0
   asepriteImporterSettings:
-    fileImportMode: 0
+    fileImportMode: 1
     importHiddenLayers: 0
-    layerImportMode: 1
-    defaultPivotSpace: 0
-    defaultPivotAlignment: 7
+    layerImportMode: 0
+    defaultPivotSpace: 1
+    defaultPivotAlignment: 0
     customPivotPosition: {x: 0.5, y: 0.5}
-    mosaicPadding: 4
+    mosaicPadding: 0
     spritePadding: 0
-    generateModelPrefab: 1
-    generateAnimationClips: 1
+    generateModelPrefab: 0
+    generateAnimationClips: 0
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638512419115276541
+  platformSettingsDirtyTick: 638515948194902625
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -121,18 +121,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: KoboldRoughs
+  - name: BG
     originalName: 
-    pivot: {x: 0.76171875, y: -0.39007095}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 4
-      width: 256
-      height: 141
-    spriteID: 2cf8ad9466dd18f41a7670a620a89d50
+      x: 0
+      y: 0
+      width: 100
+      height: 100
+    spriteID: 89f7296247f781c4f8774021d7ec7064
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -140,20 +140,40 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 4}
+    uvTransform: {x: 0, y: 0}
+  - name: Surface
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 100
+      width: 100
+      height: 100
+    spriteID: 2ff53447f9f9c984c8c9ede0328d8358
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 100}
   spriteSheetImportData:
-  - name: KoboldRoughs_0
+  - name: Water_0
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 69
-      width: 59
-      height: 76
-    spriteID: cf8866bd1c8cf0249a7a95d51228ce1a
+      x: 0
+      y: 0
+      width: 100
+      height: 100
+    spriteID: 2ccb6854ebb162742871d662b7bc15be
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -162,118 +182,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: KoboldRoughs_1
+  - name: Water_1
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 67
-      y: 69
-      width: 40
-      height: 76
-    spriteID: 6d7356edb99f2ad4eb303b623881e785
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: KoboldRoughs_2
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 113
-      y: 69
-      width: 83
-      height: 53
-    spriteID: 54ee45b66a862f24cb4172169e6003a8
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: KoboldRoughs_3
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 206
-      y: 69
-      width: 50
-      height: 51
-    spriteID: 3cee1646985912a48ba6c6f6a8f09c82
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: KoboldRoughs_4
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 4
-      width: 107
-      height: 50
-    spriteID: 05b6d970e596caa478a90bbc5d3c6686
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: KoboldRoughs_5
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 135
-      y: 5
-      width: 31
-      height: 49
-    spriteID: f465c1a893d3ae3439a745fb8ea9655a
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: KoboldRoughs_6
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 177
-      y: 5
-      width: 83
-      height: 53
-    spriteID: 28da8ef86b75fbd43a762f79bfa4b179
+      x: 0
+      y: 100
+      width: 100
+      height: 100
+    spriteID: dffb930acab5a594a948a8224d65a80b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -284,20 +204,37 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   asepriteLayers:
   - layerIndex: 0
-    guid: 2131564253
-    name: KoboldRoughs
-    layerFlags: 0
+    guid: -1793757091
+    name: BG
+    layerFlags: 3
     layerType: 0
     blendMode: 0
     cells:
-    - name: KoboldRoughs
+    - name: BG
       frameIndex: 0
       cellRect:
-        x: 5
-        y: 55
-        width: 256
-        height: 141
-      spriteId: 2cf8ad9466dd18f41a7670a620a89d50
+        x: 0
+        y: 0
+        width: 100
+        height: 100
+      spriteId: 89f7296247f781c4f8774021d7ec7064
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 1
+    guid: -261804204
+    name: Surface
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Surface
+      frameIndex: 0
+      cellRect:
+        x: 0
+        y: 0
+        width: 100
+        height: 100
+      spriteId: 2ff53447f9f9c984c8c9ede0328d8358
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -340,4 +277,4 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 400, y: 200}
+  canvasSize: {x: 100, y: 100}

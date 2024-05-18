@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d28445ec4cec1f446a80afd9bead6639
+guid: ba0b53289ca6a6e43ae2b15a0b4574b3
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,7 +97,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638512419115276541
+  platformSettingsDirtyTick: 638515877442584620
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -121,18 +121,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: KoboldRoughs
+  - name: KoboldSmackSpritesheet
     originalName: 
-    pivot: {x: 0.76171875, y: -0.39007095}
+    pivot: {x: 0.49787235, y: -0.016806724}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 256
-      height: 141
-    spriteID: 2cf8ad9466dd18f41a7670a620a89d50
+      width: 470
+      height: 119
+    spriteID: 4e302ef5d75f1b745b7ae3824d10a5ea
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,18 +142,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
   spriteSheetImportData:
-  - name: KoboldRoughs_0
+  - name: KoboldSmackSpritesheet_4
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 69
-      width: 59
-      height: 76
-    spriteID: cf8866bd1c8cf0249a7a95d51228ce1a
+      x: 194
+      y: 85
+      width: 40
+      height: 38
+    spriteID: d101c14bece0e7b4e9391ca35ec4c30d
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -162,18 +162,98 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: KoboldRoughs_1
+  - name: KoboldSmackSpritesheet_5
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 67
-      y: 69
+      x: 243
+      y: 85
+      width: 40
+      height: 38
+    spriteID: 90a5931c614150d4cb483a36e7f1a80a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: KoboldSmackSpritesheet_6
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 290
+      y: 92
+      width: 40
+      height: 31
+    spriteID: f20c76b818ea85c49bec02d1060f65bd
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: KoboldSmackSpritesheet_7
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 338
+      y: 92
+      width: 40
+      height: 29
+    spriteID: c403fad4cd058b64cbfd5de9f61670d1
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: KoboldSmackSpritesheet_21
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 298
+      y: 5
+      width: 59
+      height: 77
+    spriteID: f0cc1e12198ea3446a34285253d2e0ef
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: KoboldSmackSpritesheet_22
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 370
+      y: 5
       width: 40
       height: 76
-    spriteID: 6d7356edb99f2ad4eb303b623881e785
+    spriteID: 7c854bdaf220b0e4e9f54becc2411357
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -182,98 +262,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: KoboldRoughs_2
+  - name: KoboldSmackSpritesheet_23
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 113
-      y: 69
-      width: 83
-      height: 53
-    spriteID: 54ee45b66a862f24cb4172169e6003a8
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: KoboldRoughs_3
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 206
-      y: 69
-      width: 50
-      height: 51
-    spriteID: 3cee1646985912a48ba6c6f6a8f09c82
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: KoboldRoughs_4
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 4
-      width: 107
-      height: 50
-    spriteID: 05b6d970e596caa478a90bbc5d3c6686
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: KoboldRoughs_5
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 135
+      x: 434
       y: 5
-      width: 31
-      height: 49
-    spriteID: f465c1a893d3ae3439a745fb8ea9655a
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: KoboldRoughs_6
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 7
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 177
-      y: 5
-      width: 83
-      height: 53
-    spriteID: 28da8ef86b75fbd43a762f79bfa4b179
+      width: 40
+      height: 76
+    spriteID: 3ed2259de7f984f44904b7d3e1f9b036
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -284,20 +284,20 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   asepriteLayers:
   - layerIndex: 0
-    guid: 2131564253
-    name: KoboldRoughs
+    guid: -1193002432
+    name: KoboldSmackSpritesheet
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: KoboldRoughs
+    - name: KoboldSmackSpritesheet
       frameIndex: 0
       cellRect:
-        x: 5
-        y: 55
-        width: 256
-        height: 141
-      spriteId: 2cf8ad9466dd18f41a7670a620a89d50
+        x: 6
+        y: 2
+        width: 470
+        height: 119
+      spriteId: 4e302ef5d75f1b745b7ae3824d10a5ea
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -340,4 +340,4 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 400, y: 200}
+  canvasSize: {x: 480, y: 128}
