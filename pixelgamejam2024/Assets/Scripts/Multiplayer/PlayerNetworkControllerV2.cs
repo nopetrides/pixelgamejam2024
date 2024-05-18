@@ -13,7 +13,7 @@ public class PlayerNetworkControllerV2 : MonoBehaviour
     // playroom kit bug?
     [SerializeField] private float _sceneLoadDelay = 1f;
     //[SerializeField] private PlayerHealth _playerHealth;
-    [SerializeField] private HighlightEffect _highlight;
+    //[SerializeField] private HighlightEffect _highlight;
     [SerializeField] private SpriteRenderer _playerSpriteRenderer;
     [SerializeField] private SmoothPosition _positionSmoother;
 
@@ -56,16 +56,18 @@ public class PlayerNetworkControllerV2 : MonoBehaviour
     private void SetAsCharacter(bool isLocalPlayer, PlayerCharacterSO characterData)
     {
         _controller.movementSpeed = characterData.MoveSpeed;
+        /*
         if (!isLocalPlayer)
         {
-            _highlight.highlighted = false;
-            _playerSpriteRenderer.color = characterData.CharacterColor;
+            //_highlight.highlighted = false;
+            //_playerSpriteRenderer.color = characterData.CharacterColor;
         }
         else
         {
-            _highlight.highlighted = true;
-            _highlight.overlayColor = characterData.CharacterColor;
+            //_highlight.highlighted = true;
+            //_highlight.overlayColor = characterData.CharacterColor;
         }
+        */
         //_playerHealth.MaxHealth = characterData.Health;
         // todo, other data driven fields - modify a different controller that handles player stats like hp and carrying.
     }
