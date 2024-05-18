@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -16,7 +17,7 @@ public class PoolSystem : MonoBehaviour
     
     private ObjectPool<PoolableObject> _pool;
     
-    private Dictionary<string, ObjectPool<PoolableObject>> _pools = new();
+    private ConcurrentDictionary<string, ObjectPool<PoolableObject>> _pools = new();
 
     [SerializeField]
     private int _initialSize = 10;
@@ -38,6 +39,7 @@ public class PoolSystem : MonoBehaviour
 
     public void CreatePool(string objectType)
     {
+        Debug.Log($"Creating start");
         var index = _pooledObjectTypes.IndexOf(objectType);
         var obj = _poolableObjects[index];
         
@@ -55,11 +57,13 @@ public class PoolSystem : MonoBehaviour
             Destroy(pooledObject.gameObject);
         }, true, _initialSize, _maxSize);
         
-        _pools.Add(objectType, pool);
+        _pools.TryAdd(objectType, pool);
+        Debug.Log($"Creating end");
     }
 
     public GameObject Spawn(string objectType , Vector3 location, string data )
     {
+        Debug.Log($"Spawning");
         if(!_pools.ContainsKey(objectType)) CreatePool(objectType);
         if (_pools.TryGetValue(objectType, out var pool))
         {

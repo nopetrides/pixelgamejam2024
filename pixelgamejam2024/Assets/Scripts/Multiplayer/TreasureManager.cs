@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using Playroom;
 using UnityEngine;
@@ -35,7 +36,7 @@ public class TreasureManager : MonoBehaviour
     /// that unique id is based on their world coordinates which will be the same between players
     /// regardless of the order they uncover the map
     /// </summary>
-    private Dictionary<Vector3, string> TreasureSpawner = new();
+    private ConcurrentDictionary<Vector3, string> TreasureSpawner = new();
 
     /// <summary>
     /// Treasure Object Pool
@@ -81,6 +82,7 @@ public class TreasureManager : MonoBehaviour
 
     public void DoesTreasureSpawnerExistInDictionary(string coordinates, string _)
     {
+        Debug.Log($"Checking dictionary");
         // check dictionary
         Vector3 coords = Vector3Parser.TryParse(coordinates, out Vector3 result) ? result : Vector3.zero;
         bool inDictionary = TreasureSpawner.ContainsKey(coords);
@@ -89,7 +91,7 @@ public class TreasureManager : MonoBehaviour
         // if does not yet exist:
         // tell all player to spawn this thing, and add it to their local dictionary
         var spawnerID = "Spawner_ID_" + coordinates;
-        TreasureSpawner.Add(coords, spawnerID);
+        TreasureSpawner.TryAdd(coords, spawnerID);
         
         //logic to randomize treasure before spawning
         
@@ -115,7 +117,7 @@ public class TreasureManager : MonoBehaviour
         // add to to the object pool
         // get next pooled object and show it
         // todo, coordinates where the new treasure item spawns
-        
+        Debug.Log($"Adding to dictionary");
         var unparse = JsonUtility.FromJson<TreasureDataSerializer>(data);
         PoolSystem.Instance.Spawn("Treasure", unparse.Coordinates, data);
 
