@@ -24,8 +24,6 @@ public class LobbyUI : MonoBehaviour
     
     private Dictionary<string, PlayerLobbyItem> _playerLobbyItems = new();
 
-    private Dictionary<string,PlayroomKit.Player> PlayersList => PlayroomKit.GetPlayers();
-
     void Awake()
     {
         _multiplayerManager.OnPlayerJoined += AddPlayerToLobby;
@@ -162,6 +160,7 @@ public class LobbyUI : MonoBehaviour
         Debug.Log("Refresh Confirmed");
     }
 
+    /*
     private void RequestLobbyPlayerStates()
     {
         PlayroomKit.RpcCall("JoinedLobby", "New Player Joined", PlayroomKit.RpcMode.OTHERS, LobbyRefreshConfirmedCallback);
@@ -179,4 +178,5 @@ public class LobbyUI : MonoBehaviour
     {
         Debug.Log("Data Request Confirmed");
     }
+    */
 }

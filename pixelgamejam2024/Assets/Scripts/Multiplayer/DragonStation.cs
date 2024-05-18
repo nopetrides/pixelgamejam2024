@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using HighlightPlus;
 using Playroom;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -24,21 +23,48 @@ public class DragonStation : MonoBehaviour
     private string StationName => $"DragonStation{_stationData.AffectsDragonStats}";
 
     private bool _testFlag;
+
+    private bool _initialized;
     
     private void Awake()
     {
         if (PlayroomKit.IsRunningInBrowser())
         {
-            PlayroomKit.RpcRegister(StationName, 
+            /*PlayroomKit.RpcRegister(StationName, 
                 OnActivateStationRPC, 
-                $"{StationName} Activated!");
-            if (PlayroomKit.IsHost()) PlayroomKit.SetState(StationType, false, true);
+                $"{StationName} Activated!");*/
+            PlayroomKit.Me().SetState(StationName, false);
+            if (PlayroomKit.IsHost())
+            {
+                PlayroomKit.SetState(StationType, false, true);
+                _initialized = true;
+            }
+            else
+            {
+                PlayroomKit.WaitForState(StationType, WaitForStationReadyStateCallback);
+            }
+        }
+        else
+        {
+            _initialized = true;
         }
     }
     
-    private void OnActivateStationRPC(string dataJson, string senderJson)
+    private void WaitForStationReadyStateCallback(string callbackOrigin)
     {
-        Debug.Log($"[DragonStation] Activating {dataJson}");
+        if (callbackOrigin != StationType)
+        {
+            // Hey, Playroom, this isn't the droid we are looking for. Let's wait AGAIN
+            PlayroomKit.WaitForState(StationType, WaitForStationReadyStateCallback);
+            return;
+        }
+
+        _initialized = true;
+    }
+    
+    private void ApplyStationToDragon(string dataJson, string senderJson)
+    {
+        //Debug.Log($"[DragonStation] Activating {dataJson}");
         if (PlayroomKit.IsRunningInBrowser())
         {
             if (!PlayroomKit.IsHost())
@@ -53,21 +79,33 @@ public class DragonStation : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // Enable Interact
-        Debug.Log($"Entered {StationName}");
+        // Debug.Log($"Entered {StationName}");
         if (!_collidersWithinTrigger.Contains(other))
+        {
             _collidersWithinTrigger.Add(other);
+            if (PlayroomKit.IsRunningInBrowser())
+                PlayroomKit.Me().SetState(StationName, true);
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         // Disable Interact
-        Debug.Log($"Exited {StationName}");
+        // Debug.Log($"Exited {StationName}");
         if (_collidersWithinTrigger.Contains(other))
+        {
             _collidersWithinTrigger.Remove(other);
+            if (PlayroomKit.IsRunningInBrowser())
+                PlayroomKit.Me().SetState(StationName, false);
+            else 
+                _testFlag = false;
+        }
     }
 
     private void Update()
     {
+        if (!_initialized) return;
+        
         AffectDragon();
 
         bool active;
@@ -88,18 +126,35 @@ public class DragonStation : MonoBehaviour
     {
         if (!PlayroomKit.IsRunningInBrowser())
         {
-            OnActivateStationRPC(PlayroomKit.ConvertToJson(_stationData.AffectValue * _collidersWithinTrigger.Count), "");
-            return;
+            ApplyStationToDragon(PlayroomKit.ConvertToJson(_stationData.AffectValue * _collidersWithinTrigger.Count), "");
         }
-        if (PlayroomKit.IsHost())
+        else if (PlayroomKit.IsHost())
         {
-            OnActivateStationRPC(PlayroomKit.ConvertToJson(_stationData.AffectValue * _collidersWithinTrigger.Count), PlayroomKit.Me().id);
+            ApplyStationToDragon(PlayroomKit.ConvertToJson(_stationData.AffectValue * PlayersInStationRange()), PlayroomKit.Me().id);
         }
-        else
+    }
+
+    /// <summary>
+    /// Host Only
+    /// </summary>
+    /// <returns></returns>
+    private int PlayersInStationRange()
+    {
+        if (!PlayroomKit.IsHost())
         {
-            PlayroomKit.RpcCall(StationName,_stationData.AffectValue * _collidersWithinTrigger.Count, PlayroomKit.RpcMode.HOST,
-                AffectDragonRPCConfirm);
+            Debug.LogError("[DragonStation.PlayersInStationRange] Only the host needs to calculate this.");
+            return 0;
         }
+        var players = PlayroomKit.GetPlayersOrNull();
+        int playersInContact = 0;
+        foreach (var p in players.Values)
+        {
+            if (p.GetState<bool>(StationName))
+                playersInContact++;
+            // TODO get the character type and check if that character has a modifer for this station
+        }
+
+        return playersInContact;
     }
     private void AffectDragonRPCConfirm()
     {

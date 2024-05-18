@@ -6,7 +6,6 @@ using Multiplayer;
 using Playroom;
 using UnityEngine;
 
-
 /// <summary>
 ///     Only the host updates the state of the dragon and sets that state for all player.
 ///     All players read the state and update their dragon appropriately
@@ -29,8 +28,6 @@ public class DragonNetworkController : MonoBehaviour
     private ConcurrentDictionary<string, DragonStatus> _currentDragonStatus = new();
     private Dictionary<string, int> _networkedDragonData = new();
 
-    private long _timestampGameStart;
-
     private bool _initialized; // host only, client wait for state
     private const string DragonReady = "DragonReady";
 
@@ -41,7 +38,6 @@ public class DragonNetworkController : MonoBehaviour
 
     private void Awake()
     {
-        _timestampGameStart = DateTime.Now.Ticks;
         InitializeDragonStatusDict();
         
         if (!PlayroomKit.IsRunningInBrowser() || PlayroomKit.IsHost())
@@ -255,7 +251,8 @@ public class DragonNetworkController : MonoBehaviour
     
     
     /// <summary>
-    ///     Player modifies the dragon by interacting with a dragon station
+    ///     Players modifies the dragon's stats by interacting with a dragon station
+    ///     Host calculates the final outcome here
     /// </summary>
     /// <param name="stat"></param>
     /// <param name="stationDataAffectValue"></param>
@@ -268,22 +265,21 @@ public class DragonNetworkController : MonoBehaviour
 
         bool hasEffect = stationDataAffectValue > 0 && _currentDragonStatus[stat].Current > 0;
 
-        // Need to always set the state if that station will have an effect on the dragon
-        if (PlayroomKit.IsRunningInBrowser()) 
+        // Need to always set the state if that station will effect the dragon
+        if (PlayroomKit.IsRunningInBrowser())
             PlayroomKit.SetState(stat, hasEffect, true);
-            
-        
-        if (!hasEffect) return false;
 
         _currentDragonStatus[stat].ChangeThisFrame -= stationDataAffectValue;
 
+        if (!hasEffect) return false;
+        
         if (stat != TemperStat.ToString())
         {
             // if not Temper, Cranky ++
             _currentDragonStatus[TemperStat.ToString()].ChangeThisFrame++;
         }
 
-        return true;
+        return hasEffect;
     }
 
 

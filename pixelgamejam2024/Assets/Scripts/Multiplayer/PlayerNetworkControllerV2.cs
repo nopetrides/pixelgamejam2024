@@ -1,3 +1,5 @@
+using System;
+using AOT;
 using CMF;
 using HighlightPlus;
 using Multiplayer;
@@ -47,10 +49,14 @@ public class PlayerNetworkControllerV2 : MonoBehaviour
     {
         _positionSmoother.enabled = !isLocalPlayer;
         _cameraRoot.SetActive(isLocalPlayer);
-        if (!isLocalPlayer)
-        {
-            //DestroyImmediate(_inputHandler);
-        }
+        if (!PlayroomKit.IsRunningInBrowser()) return;
+        _playroomPlayer.OnQuit(RemovePlayer);
+    }
+
+    [MonoPInvokeCallback(typeof(Action<string>))]
+    private void RemovePlayer(string playerID)
+    {
+        Destroy(gameObject);
     }
 
     private void SetAsCharacter(bool isLocalPlayer, PlayerCharacterSO characterData)

@@ -7,7 +7,7 @@ public class MultiplayerManager : MonoBehaviour
 {
     public Action OnPlayroomInit;
     public Action<PlayroomKit.Player> OnPlayerJoined;
-    
+
     public void SetLobbyCodeAndStart(string lobbyCode)
     {
         StartLobby(lobbyCode);
