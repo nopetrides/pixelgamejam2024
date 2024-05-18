@@ -4066,71 +4066,6 @@ MonoBehaviour:
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         connectedInPorts:
         - rid: 980261084749365481
-    - rid: 980261204517191804
-      type: {class: Note, ns: InsaneScatterbrain.ScriptGraph, asm: InsaneScatterbrain.ScriptGraph}
-      data:
-        position:
-          serializedVersion: 2
-          x: -427
-          y: -299
-          width: 1594
-          height: 1013
-        title: Generate the map via Perlin Noise
-        contents: Note
-        theme: 1
-        fontSize: 0
-    - rid: 980261204517191805
-      type: {class: Note, ns: InsaneScatterbrain.ScriptGraph, asm: InsaneScatterbrain.ScriptGraph}
-      data:
-        position:
-          serializedVersion: 2
-          x: 4055
-          y: 506
-          width: 634
-          height: 787
-        title: Treasure Spawners
-        contents: Note
-        theme: 1
-        fontSize: 0
-    - rid: 980261204517191806
-      type: {class: Note, ns: InsaneScatterbrain.ScriptGraph, asm: InsaneScatterbrain.ScriptGraph}
-      data:
-        position:
-          serializedVersion: 2
-          x: 4832
-          y: 512
-          width: 600
-          height: 777
-        title: Enemy Spawners
-        contents: Note
-        theme: 1
-        fontSize: 0
-    - rid: 980261204517191807
-      type: {class: Note, ns: InsaneScatterbrain.ScriptGraph, asm: InsaneScatterbrain.ScriptGraph}
-      data:
-        position:
-          serializedVersion: 2
-          x: 5535
-          y: 506
-          width: 527
-          height: 786
-        title: Decor
-        contents: Note
-        theme: 1
-        fontSize: 0
-    - rid: 980261204517191808
-      type: {class: Note, ns: InsaneScatterbrain.ScriptGraph, asm: InsaneScatterbrain.ScriptGraph}
-      data:
-        position:
-          serializedVersion: 2
-          x: -2373
-          y: -256
-          width: 1809
-          height: 1441
-        title: Safe Zone
-        contents: Note
-        theme: 1
-        fontSize: 0
     - rid: 980261173765079068
       type: {class: ConvertTextureToTilemapNode, ns: InsaneScatterbrain.MapGraph,
         asm: InsaneScatterbrain.MapGraph}
@@ -4353,3 +4288,68 @@ MonoBehaviour:
         typeName: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
         connectedInPorts:
         - rid: 980261173765079075
+    - rid: 980261204517191804
+      type: {class: Note, ns: InsaneScatterbrain.ScriptGraph, asm: InsaneScatterbrain.ScriptGraph}
+      data:
+        position:
+          serializedVersion: 2
+          x: -427
+          y: -299
+          width: 1594
+          height: 1013
+        title: Generate the map via Perlin Noise
+        contents: Note
+        theme: 1
+        fontSize: 0
+    - rid: 980261204517191805
+      type: {class: Note, ns: InsaneScatterbrain.ScriptGraph, asm: InsaneScatterbrain.ScriptGraph}
+      data:
+        position:
+          serializedVersion: 2
+          x: 4055
+          y: 506
+          width: 634
+          height: 787
+        title: Treasure Spawners
+        contents: Note
+        theme: 1
+        fontSize: 0
+    - rid: 980261204517191806
+      type: {class: Note, ns: InsaneScatterbrain.ScriptGraph, asm: InsaneScatterbrain.ScriptGraph}
+      data:
+        position:
+          serializedVersion: 2
+          x: 4832
+          y: 512
+          width: 600
+          height: 777
+        title: Enemy Spawners
+        contents: Note
+        theme: 1
+        fontSize: 0
+    - rid: 980261204517191807
+      type: {class: Note, ns: InsaneScatterbrain.ScriptGraph, asm: InsaneScatterbrain.ScriptGraph}
+      data:
+        position:
+          serializedVersion: 2
+          x: 5535
+          y: 506
+          width: 527
+          height: 786
+        title: Decor
+        contents: Note
+        theme: 1
+        fontSize: 0
+    - rid: 980261204517191808
+      type: {class: Note, ns: InsaneScatterbrain.ScriptGraph, asm: InsaneScatterbrain.ScriptGraph}
+      data:
+        position:
+          serializedVersion: 2
+          x: -2373
+          y: -256
+          width: 1809
+          height: 1441
+        title: Safe Zone
+        contents: Note
+        theme: 1
+        fontSize: 0
