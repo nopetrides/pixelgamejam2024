@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Globalization;
 using Playroom;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -29,7 +30,9 @@ public class TreasureManager : MonoBehaviour
     [SerializeField]
     private List<string> _treasureNames;
 
-    
+    private ConcurrentDictionary<string, TreasureTypesSO> _treasureNamesTypes = new ();
+
+    private ConcurrentBag<TreasureTypesSO> _immutableTreasure;
 
     /// <summary>
     /// Each treasure spawner has a unique id so we can track
@@ -38,23 +41,30 @@ public class TreasureManager : MonoBehaviour
     /// </summary>
     private ConcurrentDictionary<Vector3, string> TreasureSpawner = new();
 
-    /// <summary>
-    /// Treasure Object Pool
-    /// todo
-    /// </summary>
-    /// <returns></returns>
-    Dictionary<string, TreasureDataSerializer> TreasureTracker = new();
-    
     public void SetLocalPlayerRigidbody(Rigidbody playerRb)
     {
         _localPlayerRigidbody = playerRb;
     }
-    
+
     private void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
+
+        if (!PlayroomKit.IsRunningInBrowser())
+        {
+            Debug.Log("[TreasureManager] Awake - Skipping playroom initialization.");
+            Initialize();
+        }
+    }
+    public void Initialize()
+    {
         Debug.Log(_treasureTypes.Count);
+        for (int i = 0; i < _treasureNames.Count && i < _treasureTypes.Count; i++)
+        {
+            _treasureNamesTypes.TryAdd(_treasureNames[i], _treasureTypes[i]);
+        }
+        _immutableTreasure = new(_treasureTypes);
         
         // all player will call this rpc to ask the server if this treasure spawner was already found
         if (!PlayroomKit.IsRunningInBrowser()) return;
@@ -66,75 +76,66 @@ public class TreasureManager : MonoBehaviour
     /// <summary>
     ///     Comes from the map node, all players will call this
     /// </summary>
-    /// <param name="TreasureSpawnerCoordinates"></param>
-    public void AskServerIfTreasureSpawnerWasAlreadyFound(string TreasureSpawnerCoordinates)
+    /// <param name="treasureSpawnerCoordinates"></param>
+    public void AskServerIfTreasureSpawnerWasAlreadyFound(Vector3 treasureSpawnerCoordinates)
     {
         if (!PlayroomKit.IsRunningInBrowser())
         {
-            DoesTreasureSpawnerExistInDictionary(TreasureSpawnerCoordinates, "ID");
+            DoesTreasureSpawnerExistInDictionary(JsonUtility.ToJson(treasureSpawnerCoordinates), "");
         }
         else
         {
-            PlayroomKit.RpcCall("FoundTreasureSpawner", TreasureSpawnerCoordinates, PlayroomKit.RpcMode.HOST, () => Debug.Log("Treasure spawner check confirmed"));
+            PlayroomKit.RpcCall("FoundTreasureSpawner", treasureSpawnerCoordinates, PlayroomKit.RpcMode.HOST, () => Debug.Log("Treasure spawner check confirmed"));
         }
-        
     }
-
+    
     public void DoesTreasureSpawnerExistInDictionary(string coordinates, string _)
     {
-        Debug.Log($"Checking dictionary");
+        Debug.Log($"Checking dictionary " + coordinates);
         // check dictionary
-        Vector3 coords = Vector3Parser.TryParse(coordinates, out Vector3 result) ? result : Vector3.zero;
+        Vector3 coords = JsonUtility.FromJson<Vector3>(coordinates); //Vector3Parser.TryParse(coordinates, out Vector3 result) ? result : Vector3.zero;
         bool inDictionary = TreasureSpawner.ContainsKey(coords);
         if (inDictionary) return;
 
         // if does not yet exist:
         // tell all player to spawn this thing, and add it to their local dictionary
-        var spawnerID = "Spawner_ID_" + coordinates;
+        var spawnerID = "Spawner_ID_" + coords;
         TreasureSpawner.TryAdd(coords, spawnerID);
         
         //logic to randomize treasure before spawning
-        
-        var treasureData = _treasureTypes[Random.Range(0, _treasureTypes.Count)];
+
+        //var treasureData = _immutableTreasure.ToArray()[Random.Range(0, _immutableTreasure.Count)];
         //Debug.Log($"{treasureData.Type}");
-        var messageData = new TreasureDataSerializer(){Coordinates = coords, Type = treasureData.Type};
-        string serializedTreasureData = JsonUtility.ToJson(messageData);
+        //Dictionary<string,string> messageData = new (){{"Coordinates",coordinates},{"Type",treasureData.Type}};
+        //var messageData = new TreasureDataSerializer(){Coordinates = coords, Type = treasureData.Type};
+        //string serializedTreasureData = JsonUtility.ToJson(messageData);
         
         
         if (!PlayroomKit.IsRunningInBrowser())
         {
-            AddNewTreasureToDictionary(serializedTreasureData, "");
+            AddNewTreasureToDictionary(JsonUtility.ToJson(coords), "");
         }
         else
         {
-            if (PlayroomKit.IsHost()) PlayroomKit.RpcCall("SpawnTreasureEveryone", serializedTreasureData, PlayroomKit.RpcMode.ALL, () => Debug.Log("Treasure spawn confirmed"));
+            if (PlayroomKit.IsHost()) PlayroomKit.RpcCall("SpawnTreasureEveryone", coords, PlayroomKit.RpcMode.ALL, () => Debug.Log("Treasure spawn confirmed"));
         }
     }
     
-    private void AddNewTreasureToDictionary(string data, string _)
+    private void AddNewTreasureToDictionary(string coordinates, string _)
     {
         // Server has told us to make a new treasure in the world.
         // add to to the object pool
         // get next pooled object and show it
         // todo, coordinates where the new treasure item spawns
         Debug.Log($"Adding to dictionary");
-        var unparse = JsonUtility.FromJson<TreasureDataSerializer>(data);
-        PoolSystem.Instance.Spawn("Treasure", unparse.Coordinates, data);
-
+        Vector3 coords = JsonUtility.FromJson<Vector3>(coordinates); // Vector3Parser.TryParse(coordinates, out Vector3 result) ? result : Vector3.zero;
+        PoolSystem.Instance.Spawn("Treasure", coords);
     }
 
-    public TreasureTypesSO Deserializer(string data)
+    public TreasureTypesSO GetTreasureDataFromCoordinates(Vector3 coordinates)
     {
-        var treasureData = JsonUtility.FromJson<TreasureDataSerializer>(data);
-        var index = _treasureNames.IndexOf(treasureData.Type);
-        return _treasureTypes[index];
-    }
-
-    
-    [Serializable]
-    private class TreasureDataSerializer
-    {
-        public Vector3 Coordinates;
-        public string Type;
+        uint seed = Convert.ToUInt32(Mathf.RoundToInt(Mathf.Abs(coordinates.x)) + Mathf.RoundToInt(Mathf.Abs(coordinates.z)));
+        var rando = new Unity.Mathematics.Random(seed != 0 ? seed : 1);
+        return _immutableTreasure.ToArray()[rando.NextInt(0, _immutableTreasure.Count)];
     }
 }

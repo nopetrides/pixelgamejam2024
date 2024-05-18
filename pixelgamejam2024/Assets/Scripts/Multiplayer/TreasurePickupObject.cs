@@ -18,9 +18,10 @@ public class TreasurePickupObject : PoolableObject
 
     public TreasureTypesSO TreasureData => _treasureData;
 
-    public override void DataSetup(string data)
+    public override void DataSetup(Vector3 coordinates)
     {
-        _treasureData = TreasureManager.Instance.Deserializer(data);
+        Debug.Log("TreasurePickupObject setup");
+        _treasureData = TreasureManager.Instance.GetTreasureDataFromCoordinates(coordinates);
         _weight = _treasureData.Weight;
         _name = _treasureData.Type;
         _spriteRenderer.sprite = _treasureData.Sprite;

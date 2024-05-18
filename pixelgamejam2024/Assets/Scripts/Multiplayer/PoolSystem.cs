@@ -1,10 +1,7 @@
-using System;
-using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
-using Random = UnityEngine.Random;
 
 public class PoolSystem : MonoBehaviour
 {
@@ -18,6 +15,8 @@ public class PoolSystem : MonoBehaviour
     private ObjectPool<PoolableObject> _pool;
     
     private ConcurrentDictionary<string, ObjectPool<PoolableObject>> _pools = new();
+
+    private ConcurrentBag<SpawnData> _objectsToAddToPool = new();
 
     [SerializeField]
     private int _initialSize = 10;
@@ -34,6 +33,28 @@ public class PoolSystem : MonoBehaviour
         }
         else {
             Destroy(gameObject);
+        }
+        // Ensure pools are ready
+        foreach (var objType in _pooledObjectTypes)
+        {
+            if(!_pools.ContainsKey(objType)) CreatePool(objType);
+        }
+    }
+
+    private void Update()
+    {
+        // only modify the pool on the main thread
+        while (!_objectsToAddToPool.IsEmpty)
+        {
+            if (_objectsToAddToPool.TryTake(out var spawnData))
+            {
+                if (_pools.TryGetValue(spawnData.ObjectType, out var pool))
+                {
+                    var pooledObject = pool.Get();
+                    pooledObject.transform.position = spawnData.Location;
+                    pooledObject.DataSetup(spawnData.Location);
+                }
+            }
         }
     }
 
@@ -61,18 +82,10 @@ public class PoolSystem : MonoBehaviour
         Debug.Log($"Creating end");
     }
 
-    public GameObject Spawn(string objectType , Vector3 location, string data )
+    public void Spawn(string objectType, Vector3 location)
     {
-        Debug.Log($"Spawning");
-        if(!_pools.ContainsKey(objectType)) CreatePool(objectType);
-        if (_pools.TryGetValue(objectType, out var pool))
-        {
-            var pooledObject = pool.Get();
-            pooledObject.transform.position = location;
-            pooledObject.DataSetup(data);
-            return pooledObject.gameObject;
-        }
-        return null;
+        Debug.Log($"Add to spawn queue");
+        _objectsToAddToPool.Add(new SpawnData{ObjectType = objectType, Location = location});
     }
     
     public void DeSpawn(string objectType, PoolableObject obj)
@@ -81,5 +94,11 @@ public class PoolSystem : MonoBehaviour
         {
             pool.Release(obj);
         }
+    }
+
+    private class SpawnData
+    {
+        public string ObjectType;
+        public Vector3 Location;
     }
 }

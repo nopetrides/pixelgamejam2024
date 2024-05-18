@@ -34,7 +34,7 @@ public class PoolableObject : MonoBehaviour
         return _name;
     }
 
-    public virtual void DataSetup(string data)
+    public virtual void DataSetup(Vector3 coordinates)
     {
         
     }
