@@ -50,6 +50,7 @@ public class DragonNetworkController : MonoBehaviour
             return;
         }
 
+        // Wait for the callback that the host has set up the initial data
         PlayroomKit.WaitForState(DragonReady, WaitForDragonReadyStateCallback);
     }
 
@@ -139,6 +140,7 @@ public class DragonNetworkController : MonoBehaviour
     {
         if (callbackOrigin != DragonReady)
         {
+            // Hey, Playroom, this isn't the droid we are looking for. Let's wait AGAIN
             PlayroomKit.WaitForState(DragonReady, WaitForDragonReadyStateCallback);
             return;
         }
@@ -194,6 +196,7 @@ public class DragonNetworkController : MonoBehaviour
         }
 
         PlayroomKit.SetState(nameof(_networkedDragonData), _networkedDragonData, true);
+        
     }
     
 
@@ -256,12 +259,22 @@ public class DragonNetworkController : MonoBehaviour
     /// </summary>
     /// <param name="stat"></param>
     /// <param name="stationDataAffectValue"></param>
-    public void OnDragonStationUsed(string stat, int stationDataAffectValue)
+    public bool OnDragonStationUsed(string stat, int stationDataAffectValue)
     {
         if (!_initialized)
         {
-            return;
+            return false;
         }
+
+        bool hasEffect = stationDataAffectValue > 0 && _currentDragonStatus[stat].Current > 0;
+
+        // Need to always set the state if that station will have an effect on the dragon
+        if (PlayroomKit.IsRunningInBrowser()) 
+            PlayroomKit.SetState(stat, hasEffect, true);
+            
+        
+        if (!hasEffect) return false;
+
         _currentDragonStatus[stat].ChangeThisFrame -= stationDataAffectValue;
 
         if (stat != TemperStat.ToString())
@@ -269,6 +282,8 @@ public class DragonNetworkController : MonoBehaviour
             // if not Temper, Cranky ++
             _currentDragonStatus[TemperStat.ToString()].ChangeThisFrame++;
         }
+
+        return true;
     }
 
 

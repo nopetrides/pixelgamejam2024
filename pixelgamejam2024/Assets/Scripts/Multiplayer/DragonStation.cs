@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using HighlightPlus;
+using Playroom;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -13,71 +15,89 @@ public class DragonStation : MonoBehaviour
 
     [FormerlySerializedAs("GlowHighlight")] [SerializeField]
     private HighlightEffect _glowHighlight;
+    
+    [SerializeField] private ParticleSystem _activeParticles;
 
     private List<Collider> _collidersWithinTrigger = new();
 
-    /*
+    private string StationType => _stationData.AffectsDragonStats.ToString();
+    private string StationName => $"DragonStation{_stationData.AffectsDragonStats}";
+
+    private bool _testFlag;
+    
     private void Awake()
     {
         if (PlayroomKit.IsRunningInBrowser())
         {
-            PlayroomKit.RpcRegister($"DragonStation{_stationData.AffectsDragonStats}", 
+            PlayroomKit.RpcRegister(StationName, 
                 OnActivateStationRPC, 
-                $"Station {_stationData.AffectsDragonStats} Activated!");
+                $"{StationName} Activated!");
+            if (PlayroomKit.IsHost()) PlayroomKit.SetState(StationType, false, true);
         }
     }
     
     private void OnActivateStationRPC(string dataJson, string senderJson)
     {
-        _dragonController.OnDragonStationUsed(dataJson, _stationData.AffectValue * _collidersWithinTrigger.Count);
+        Debug.Log($"[DragonStation] Activating {dataJson}");
+        if (PlayroomKit.IsRunningInBrowser())
+        {
+            if (!PlayroomKit.IsHost())
+            {
+                Debug.LogError("[DragonStation.OnActivateStationRPC] Only the host can call this!");
+                return;
+            }
+        }
+        _testFlag = _dragonController.OnDragonStationUsed(StationType, int.Parse(dataJson));
     }
-*/
 
     private void OnTriggerEnter(Collider other)
     {
         // Enable Interact
-        Debug.Log($"Entered Station {_stationData.AffectsDragonStats.ToString()}");
+        Debug.Log($"Entered {StationName}");
         if (!_collidersWithinTrigger.Contains(other))
             _collidersWithinTrigger.Add(other);
-
-        _glowHighlight.highlighted = true;
     }
 
     private void OnTriggerExit(Collider other)
     {
         // Disable Interact
-        Debug.Log($"Exited Station {_stationData.AffectsDragonStats.ToString()}");
+        Debug.Log($"Exited {StationName}");
         if (_collidersWithinTrigger.Contains(other))
             _collidersWithinTrigger.Remove(other);
-
-        _glowHighlight.highlighted = false;
     }
 
     private void Update()
     {
-        _glowHighlight.highlighted = _collidersWithinTrigger.Count > 0;
+        AffectDragon();
 
-        if (_glowHighlight.highlighted)
-            _dragonController.OnDragonStationUsed(_stationData.AffectsDragonStats.ToString(),
-                _stationData.AffectValue * _collidersWithinTrigger.Count);
-        //AffectDragon();
+        bool active;
+        // Let the host tell us if it is really active
+        // it could be on because of other players or off because
+        if (PlayroomKit.IsRunningInBrowser())
+            active = PlayroomKit.GetStateBool(StationType);
+        else
+            active = _testFlag;
+
+        _glowHighlight.highlighted = active;
+        var emission = _activeParticles.emission;
+        emission.enabled = active;
     }
 
-    /*
+    
     private void AffectDragon()
     {
         if (!PlayroomKit.IsRunningInBrowser())
         {
-            OnActivateStationRPC(_stationData.AffectsDragonStats.ToString(), "");
+            OnActivateStationRPC(PlayroomKit.ConvertToJson(_stationData.AffectValue * _collidersWithinTrigger.Count), "");
             return;
         }
         if (PlayroomKit.IsHost())
         {
-            OnActivateStationRPC(_stationData.AffectsDragonStats.ToString(), PlayroomKit.Me().id);
+            OnActivateStationRPC(PlayroomKit.ConvertToJson(_stationData.AffectValue * _collidersWithinTrigger.Count), PlayroomKit.Me().id);
         }
         else
         {
-            PlayroomKit.RpcCall($"DragonStation{_stationData.AffectsDragonStats}", _stationData.AffectsDragonStats.ToString(), PlayroomKit.RpcMode.HOST,
+            PlayroomKit.RpcCall(StationName,_stationData.AffectValue * _collidersWithinTrigger.Count, PlayroomKit.RpcMode.HOST,
                 AffectDragonRPCConfirm);
         }
     }
@@ -85,5 +105,5 @@ public class DragonStation : MonoBehaviour
     {
         Debug.Log("Dragon Station RPC confirmed");
     }
-*/
+
 }

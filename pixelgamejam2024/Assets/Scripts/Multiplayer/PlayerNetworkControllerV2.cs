@@ -49,7 +49,7 @@ public class PlayerNetworkControllerV2 : MonoBehaviour
         _cameraRoot.SetActive(isLocalPlayer);
         if (!isLocalPlayer)
         {
-            DestroyImmediate(_inputHandler);
+            //DestroyImmediate(_inputHandler);
         }
     }
 
