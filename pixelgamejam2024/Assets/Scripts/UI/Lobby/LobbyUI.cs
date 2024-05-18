@@ -109,13 +109,13 @@ public class LobbyUI : MonoBehaviour
         Debug.Log("Start Game Pressed!");
         if (!PlayroomKit.IsRunningInBrowser())
         {
-            StartGameRPC("GameScene", PlayroomKit.Me().id);
+            StartGameRPC("Gym2", PlayroomKit.Me().id);
             return;
         }
         if (PlayroomKit.IsHost())
         {
             Debug.Log("Calling RPC to start game!");
-            PlayroomKit.RpcCall("Start", "GameScene", PlayroomKit.RpcMode.ALL, StartGameConfirmCallback);
+            PlayroomKit.RpcCall("Start", "Gym2", PlayroomKit.RpcMode.ALL, StartGameConfirmCallback);
         }
         else 
             Debug.LogError("[ButtonStartGame] Hey, how did you get to this?");

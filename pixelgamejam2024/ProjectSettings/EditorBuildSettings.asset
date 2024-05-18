@@ -8,7 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenuScene.unity
     guid: edbed4982d2b05e45b919ad7bd811934
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/GameScene.unity
     guid: 78b9501a60cb1f649a53e7efbf9f1084
+  - enabled: 1
+    path: Assets/Scenes/Gyms/Gym2.unity
+    guid: 75a6dbd387b675c4097c72f9972bcaee
   m_configObjects: {}

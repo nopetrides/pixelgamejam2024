@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: NewHighlightPlusRenderPassFeature
   m_EditorClassIdentifier: 
   m_Active: 1
-  renderPassEvent: 500
+  renderPassEvent: 300
   clearStencil: 0
   previewInEditMode: 1
   showInPreviewCamera: 1
