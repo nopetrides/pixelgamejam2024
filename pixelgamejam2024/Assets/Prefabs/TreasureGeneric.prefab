@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3745543756459494497}
   - component: {fileID: -2618004119674136047}
   - component: {fileID: 8860303030899700903}
+  - component: {fileID: -7942941970853432531}
   m_Layer: 0
   m_Name: TreasureGeneric
   m_TagString: Untagged
@@ -48,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lifeSpan: -1
   _name: 
+  _treasureData: {fileID: 0}
   _spriteRenderer: {fileID: -2618004119674136047}
 --- !u!212 &-2618004119674136047
 SpriteRenderer:
@@ -114,3 +116,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   freezeXZAxis: 1
+--- !u!65 &-7942941970853432531
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2732325915058865715}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.5, z: 0}

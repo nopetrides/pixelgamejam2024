@@ -11,6 +11,7 @@ public class PlayerNetworkControllerV2 : MonoBehaviour
     [SerializeField] private AdvancedWalkerController _controller;
     [SerializeField] private CharacterInput _inputHandler;
     [SerializeField] private GameObject _cameraRoot;
+    [SerializeField] private PlayerTreasurePickup _treasurePickup;
     // Give the game a momment to catch up after loading
     // playroom kit bug?
     [SerializeField] private float _sceneLoadDelay = 1f;
@@ -61,7 +62,11 @@ public class PlayerNetworkControllerV2 : MonoBehaviour
 
     private void SetAsCharacter(bool isLocalPlayer, PlayerCharacterSO characterData)
     {
+        Debug.Log($"{characterData.MoveSpeed}");
         _controller.movementSpeed = characterData.MoveSpeed;
+        Debug.Log($"{characterData.MoveSpeed}");
+        _controller.baseSpeed = characterData.MoveSpeed;
+        _treasurePickup.SetThreshold(characterData.CarryCapacity);
         /*
         if (!isLocalPlayer)
         {

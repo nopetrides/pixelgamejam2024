@@ -5,13 +5,13 @@ using UnityEngine;
 public class PlayerCharacterSO : EntitySO
 {
     [SerializeField]
-    private float _carryCapacity;
+    private int _carryCapacity;
 
     [SerializeField] private GameConstants.CharacterTypes _characterType;
 
     [SerializeField] private Color _characterColor;
 
-    public float CarryCapacity
+    public int CarryCapacity
     {
         get => _carryCapacity;
         private set => _carryCapacity = value;
