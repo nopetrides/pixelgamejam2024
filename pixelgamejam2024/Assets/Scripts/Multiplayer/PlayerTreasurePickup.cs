@@ -1,15 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using Multiplayer;
+using Playroom;
 using UnityEngine;
 
 public class PlayerTreasurePickup : MonoBehaviour
 {
-    private Rigidbody _rb;
     private int _weight;
+    private int _threshold;
     private void Awake()
     {
-        _rb = GetComponent<Rigidbody>();
-        //TreasureManager.Instance.SetLocalPlayerRigidbody(_rb);
+        TreasureManager.Instance.SetLocalPlayerPickup(this);
+    }
+    
+    public void AddToWeight(int weight)
+    {
+        _weight += weight; //Switch to the 
+        Debug.Log($"{_weight}");
+        if(PlayroomKit.IsRunningInBrowser() && _weight > _threshold) PlayroomKit.Me().SetState(GameConstants.PlayerStateData.IsCarrying.ToString(), true);
     }
 
     private void OnTriggerEnter(Collider other)

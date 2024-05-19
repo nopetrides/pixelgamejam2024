@@ -22,7 +22,7 @@ public class TreasureManager : MonoBehaviour
     
     public static TreasureManager Instance;
 
-    private Rigidbody _localPlayerRigidbody;
+    private PlayerTreasurePickup _localPlayer;
 
     [SerializeField]
     private List<TreasureTypesSO> _treasureTypes;
@@ -41,10 +41,8 @@ public class TreasureManager : MonoBehaviour
     /// </summary>
     private ConcurrentDictionary<Vector3, string> TreasureSpawner = new();
 
-    public void SetLocalPlayerRigidbody(Rigidbody playerRb)
-    {
-        _localPlayerRigidbody = playerRb;
-    }
+    public void SetLocalPlayerPickup(PlayerTreasurePickup player) => _localPlayer = player;
+    public void AddTreasureToPlayer(int weight) => _localPlayer.AddToWeight(weight);
 
     private void Awake()
     {
