@@ -23,6 +23,8 @@ namespace CMF
 
 		//Movement speed;
 		public float movementSpeed = 7f;
+		public float baseSpeed;
+		private float minSpeed = 1f;
 
 		//How fast the controller can change direction while in the air;
 		//Higher values result in more air control;
@@ -626,6 +628,12 @@ namespace CMF
 				momentum = tr.worldToLocalMatrix * _newMomentum;
 			else
 				momentum = _newMomentum;
+		}
+
+		public void SetMoveSpeed(float _speedChange)
+		{
+			movementSpeed = baseSpeed * _speedChange;
+			if(movementSpeed <= minSpeed) movementSpeed = minSpeed;
 		}
 	}
 }
