@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 //using UnityEditor.Build.Reporting;
@@ -11,4 +12,10 @@ public class DragonFeeding : MonoBehaviour
     /// is it chewing? then do nothing with the treasure
     /// otherwise, eat the treasure, and build up the chewing
     /// </summary>
+    private void OnTriggerEnter(Collider other)
+    {
+        //if is chewing return
+        TreasureManager.Instance._localPlayer.DropTreasure();
+        //build up chewing
+    }
 }

@@ -32,7 +32,6 @@ public class TreasurePickupObject : PoolableObject
         // let the player handle adding weight to their inventory (if they can pick it up)
         // TODO handle dropping in the pool
         
-        TreasureManager.Instance.AddTreasureToPlayer(_weight);
-        PoolSystem.Instance.DeSpawn("Treasure", this);
+        if (TreasureManager.Instance.AddTreasureToPlayer(_weight, transform.position)) PoolSystem.Instance.DeSpawn("Treasure", this);
     }
 }
