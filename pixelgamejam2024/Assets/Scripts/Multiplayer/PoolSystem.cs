@@ -11,7 +11,6 @@ public class PoolSystem : MonoBehaviour
     [SerializeField]
     private List<string> _pooledObjectTypes;
     
-    
     private ObjectPool<PoolableObject> _pool;
     
     private ConcurrentDictionary<string, ObjectPool<PoolableObject>> _pools = new();
@@ -66,7 +65,7 @@ public class PoolSystem : MonoBehaviour
         
         var pool = new ObjectPool<PoolableObject>(() =>
         {
-            return Instantiate(obj);
+            return Instantiate(obj, transform);
         }, pooledObject =>
         {
             pooledObject.gameObject.SetActive(true);

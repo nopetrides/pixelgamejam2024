@@ -20,7 +20,7 @@ public class TreasurePickupObject : PoolableObject
 
     public override void DataSetup(Vector3 coordinates)
     {
-        Debug.Log("TreasurePickupObject setup");
+        //Debug.Log("TreasurePickupObject setup");
         _treasureData = TreasureManager.Instance.GetTreasureDataFromCoordinates(coordinates);
         _weight = _treasureData.Weight;
         _name = _treasureData.Type;

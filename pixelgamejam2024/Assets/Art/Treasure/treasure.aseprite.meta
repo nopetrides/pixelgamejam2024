@@ -144,8 +144,8 @@ ScriptedImporter:
   spriteSheetImportData:
   - name: treasure_0
     originalName: 
-    pivot: {x: 0, y: 0}
-    alignment: 0
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -164,8 +164,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: treasure_1
     originalName: 
-    pivot: {x: 0, y: 0}
-    alignment: 0
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -184,8 +184,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: treasure_2
     originalName: 
-    pivot: {x: 0, y: 0}
-    alignment: 0
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -204,8 +204,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: treasure_3
     originalName: 
-    pivot: {x: 0, y: 0}
-    alignment: 0
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -224,8 +224,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: treasure_4
     originalName: 
-    pivot: {x: 0, y: 0}
-    alignment: 0
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -244,8 +244,8 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: treasure_5
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
+    pivot: {x: 0.5, y: 0}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
