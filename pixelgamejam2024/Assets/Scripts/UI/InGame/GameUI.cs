@@ -1,6 +1,8 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
 using Multiplayer;
+using Playroom;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,10 +10,70 @@ using UnityEngine.UI;
 public class GameUI : MonoBehaviour
 {
     [SerializeField] private Slider[] _statVisuals;
-    [SerializeField] private DragonNetworkController _dragonController; // temp;
+    [SerializeField] private DragonNetworkController _dragonController;
     [SerializeField] private TMP_Text _dragonStateText;
+    [SerializeField] private Image[] _portaits;
 
-    private Dictionary<string, Slider> _statusSliders = new ();
+    [SerializeField] private RectTransform _minimap;
+    [SerializeField] private RectTransform _minimapFacingVisual;
+    [SerializeField] private RectTransform _minimapDragonIndicator;
+
+    private PlayerNetworkControllerV2 _localPlayer;
+
+    private readonly Dictionary<string, Slider> _statusSliders = new();
+
+    // todo make a custom monoBehaviour instead of image
+    private readonly Dictionary<string, Image> _playerPortraits = new();
+    
+    private Camera _cam;
+
+    public void SetPlayer(PlayerNetworkControllerV2 localPlayerController)
+    {
+        _localPlayer = localPlayerController;
+        var players = PlayroomKit.GetPlayersOrNull();
+        if (players == null)
+        {
+            SetupPortrait(_localPlayer);
+            return;
+        }
+        
+        SetupPlayerPortraits(players.Values.ToArray());
+    }
+
+    private void SetupPortrait(PlayerNetworkControllerV2 mockLocalPlayer)
+    {
+        for (var i = 0; i < _portaits.Length; i++)
+        {
+            var image = _portaits[i];
+            if (i == 0)
+            {
+                image.gameObject.SetActive(true);
+                _playerPortraits.Add("Mock", image);
+            }
+            else
+            {
+                image.gameObject.SetActive(false);
+            }
+        }
+    }
+
+    private void SetupPlayerPortraits(PlayroomKit.Player[] players)
+    {
+        for (var i = 0; i < _portaits.Length; i++)
+        {
+            var image = _portaits[i];
+            if (i < players.Length)
+            {
+                image.gameObject.SetActive(true);
+                _playerPortraits.Add(players[i].id, image);
+            }
+            else
+            {
+                image.gameObject.SetActive(false);
+            }
+        }
+    }
+
     private void Start()
     {
         Debug.Log("GameUI Start");
@@ -36,4 +98,54 @@ public class GameUI : MonoBehaviour
         
         _dragonStateText.text = _dragonController.DragonStateDebug;
     }
+
+    private void Update()
+    {
+        MinimapIndicators();
+    }
+
+    private void MinimapIndicators()
+    {
+        if (_localPlayer == null) return;
+        
+        // dragon direction indicator
+        Vector3 playerPosition = _localPlayer.transform.position;
+        var dPos = _dragonController.transform.position;
+        
+        Vector2 dirToDragon = new Vector2(playerPosition.x - dPos.x ,playerPosition.z - dPos.z);
+        Vector2 dragonDirNormal = dirToDragon.normalized;
+
+        var rect = _minimap.rect;
+        Vector2 minimapCenter = rect.center;
+        var minimapSize = rect.size;
+        float mapWidth = minimapSize.x / 2;
+        float mapHeight = minimapSize.y / 2;
+
+        
+        float scale = Mathf.Min(mapWidth / Mathf.Abs(dragonDirNormal.x), mapHeight / Mathf.Abs(dragonDirNormal.y));
+        Vector2 edgePosition = minimapCenter + dragonDirNormal * scale;
+        
+        edgePosition.x = Mathf.Clamp(edgePosition.x, -minimapSize.x, minimapSize.x / 2);
+        edgePosition.y = Mathf.Clamp(edgePosition.y, -minimapSize.y / 2, minimapSize.y);
+
+        _minimapDragonIndicator.transform.localPosition = edgePosition;
+        _minimapDragonIndicator.transform.up = dirToDragon;
+        
+        // facing indicator
+        if (_cam == null)
+            try
+            {
+                _cam = Camera.main;
+            }
+            catch
+            {
+                Debug.LogWarning("Camera not yet ready");
+            }
+        var camForward = _cam.transform.forward;
+        Vector2 cameraForward2D = new Vector2(camForward.x, camForward.z).normalized;
+        Vector2 northDirection = Vector2.down;
+        float angle = Vector2.SignedAngle(northDirection, cameraForward2D);
+        _minimapFacingVisual.localRotation = Quaternion.Euler(0, 0, angle);
+    }
+
 }

@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1186418702867920, guid: 02db1269cd824a742a44596330eb0f28, type: 3}
       propertyPath: m_Name
-      value: ThirdPersonWalker_C_DragonVariant Variant
+      value: Kobold
       objectReference: {fileID: 0}
     - target: {fileID: 4948304561748322, guid: 02db1269cd824a742a44596330eb0f28, type: 3}
       propertyPath: m_LocalPosition.x
@@ -62,6 +62,16 @@ PrefabInstance:
       propertyPath: updateType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1331704658805346207, guid: 02db1269cd824a742a44596330eb0f28,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.589
+      objectReference: {fileID: 0}
+    - target: {fileID: 1331704658805346207, guid: 02db1269cd824a742a44596330eb0f28,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.598
+      objectReference: {fileID: 0}
     - target: {fileID: 1661406962757023327, guid: 02db1269cd824a742a44596330eb0f28,
         type: 3}
       propertyPath: _highlight
@@ -75,7 +85,32 @@ PrefabInstance:
     - target: {fileID: 4421758520085350183, guid: 02db1269cd824a742a44596330eb0f28,
         type: 3}
       propertyPath: m_ScaleFactor
-      value: 3
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7181212816668842934, guid: 02db1269cd824a742a44596330eb0f28,
+        type: 3}
+      propertyPath: m_Range
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7181212816668842934, guid: 02db1269cd824a742a44596330eb0f28,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.8396226
+      objectReference: {fileID: 0}
+    - target: {fileID: 7181212816668842934, guid: 02db1269cd824a742a44596330eb0f28,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.8072723
+      objectReference: {fileID: 0}
+    - target: {fileID: 7181212816668842934, guid: 02db1269cd824a742a44596330eb0f28,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.6376379
+      objectReference: {fileID: 0}
+    - target: {fileID: 7181212816668842934, guid: 02db1269cd824a742a44596330eb0f28,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7968271390307247071, guid: 02db1269cd824a742a44596330eb0f28, type: 3}

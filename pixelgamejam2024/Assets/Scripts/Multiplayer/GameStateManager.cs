@@ -9,6 +9,7 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] private Transform[] SpawnLocator;
     [SerializeField] private PlayerNetworkControllerV2 PlayerPrefab;
     [SerializeField] private MapChunksManager MapManager;
+    [SerializeField] private GameUI _gameUI;
     
     private Dictionary<string, PlayerNetworkControllerV2> Players = new();
     
@@ -22,6 +23,7 @@ public class GameStateManager : MonoBehaviour
             var startPos = SpawnLocator[0].position;
             Vector3 direction = (DragonTurtleLocation.position - startPos).normalized;
             var newPlayerObject = Instantiate(PlayerPrefab, startPos, Quaternion.LookRotation(direction));
+            _gameUI.SetPlayer(newPlayerObject);
             return;
         }
         
@@ -43,5 +45,7 @@ public class GameStateManager : MonoBehaviour
         
         MapManager.enabled = true;
         MapManager.InitializeMapChunks();
+        
+        
     }
 }
