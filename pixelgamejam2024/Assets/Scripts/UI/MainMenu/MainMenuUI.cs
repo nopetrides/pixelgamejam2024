@@ -20,12 +20,6 @@ public class MainMenuUI : MonoBehaviour
         _hostButton.interactable = true;
     }
 
-    private void HostGame()
-    {
-        _multiplayer.HostNewLobby();
-        HideMenu();
-    }
-
     public void ShowMenu()
     {
         gameObject.SetActive(true);
@@ -44,12 +38,14 @@ public class MainMenuUI : MonoBehaviour
 
     public void ButtonJoin()
     {
+        LoadingManager.Instance.Wait(true);
         _multiplayer.SetLobbyCodeAndStart(_inputField.text);
         HideMenu();
     }
 
     public void ButtonHost()
     {
+        LoadingManager.Instance.Wait(true);
         _multiplayer.HostNewLobby();
         HideMenu();
     }

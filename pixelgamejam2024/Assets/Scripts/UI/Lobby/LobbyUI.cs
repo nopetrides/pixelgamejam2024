@@ -32,7 +32,6 @@ public class LobbyUI : MonoBehaviour
         StartGameButton.gameObject.SetActive(false);
     }
 
-
     private void OnDestroy()
     {
         if (_multiplayerManager != null)
@@ -53,6 +52,7 @@ public class LobbyUI : MonoBehaviour
         }
         StartGameButton.gameObject.SetActive(PlayroomKit.IsHost());
         LobbyCode.text = PlayroomKit.IsRunningInBrowser() ? PlayroomKit.GetRoomCode() : "Mock Mode";
+        LoadingManager.Instance.Wait(false);
     }
 
     private void AddPlayerToLobby(PlayroomKit.Player playerJoined)
@@ -122,7 +122,7 @@ public class LobbyUI : MonoBehaviour
     private void StartGameRPC(string data, string senderId)
     {
         Debug.Log($"Received data: {data}");
-        SceneManager.LoadScene(data.Trim('\"','\''));
+        LoadingManager.Instance.LoadScene(data.Trim('\"','\''));
     }
 
     private void StartGameConfirmCallback()
