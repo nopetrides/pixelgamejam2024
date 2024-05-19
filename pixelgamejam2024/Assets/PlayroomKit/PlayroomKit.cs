@@ -731,10 +731,19 @@ namespace Playroom
         [DllImport("__Internal")]
         private static extern void WaitForStateInternal(string stateKey, Action onStateSetCallback = null);
 
+        /// <summary>
+        /// Modified
+        ///     Custom dictionary to allow for multiple wait callbacks at once
+        /// </summary>
         private static Dictionary<string, Action<string>> WaitForStateCallbacks = new();
 
-        private static Action OnStateChangeCallBack = null;
+        // THIS IS NOT GOOD
+        //private static Action OnStateChangeCallBack = null;
 
+        /// <summary>
+        /// Modified
+        ///     We have to fire off ALL callbacks
+        /// </summary>
         [MonoPInvokeCallback(typeof(Action))]
         private static void InvokeCallback()
         {
@@ -743,13 +752,13 @@ namespace Playroom
                 kvp.Value.Invoke(kvp.Key);
             }
             WaitForStateCallbacks.Clear();
-            //OnStateChangeCallBack?.Invoke();
         }
 
         public static void WaitForState(string stateKey, Action<string> onStateSetCallback = null)
         {
             if (IsRunningInBrowser())
             {
+                // do ours instead
                 WaitForStateCallbacks.Add(stateKey, onStateSetCallback);
                 //OnStateChangeCallBack = onStateSetCallback;
                 WaitForStateInternal(stateKey, InvokeCallback);
@@ -1093,7 +1102,8 @@ namespace Playroom
                 }
                 else
                 {
-                    Debug.LogWarning($"Players dictionary already has a player with ID: {senderJson}!");
+                    // useless log
+                    //Debug.LogWarning($"Players dictionary already has a player with ID: {senderJson}!");
                 }
             }
             catch (Exception ex)
@@ -1130,10 +1140,8 @@ namespace Playroom
 
         public static void RpcCall(string name, object data, RpcMode mode, Action callbackOnResponse)
         {
-            Debug.Log("I was given: " + data.ToString());
             string jsonData = ConvertToJson(data);
 
-            Debug.Log("I'm a POS: " + data);
             if (OnResponseCallbacks.ContainsKey(name))
             {
                 OnResponseCallbacks[name].Add(callbackOnResponse);
@@ -1147,6 +1155,7 @@ namespace Playroom
                 }
             }
 
+            Debug.Log($"[RpcCall] Activating {name} with {jsonData}. OnResponseCallbacks: {OnResponseCallbacks.Count} and {OnResponseCallbacks[name].Count} of {name}");
 
             JSONArray jsonArray = new JSONArray();
             foreach (string item in rpcCalledEvents)

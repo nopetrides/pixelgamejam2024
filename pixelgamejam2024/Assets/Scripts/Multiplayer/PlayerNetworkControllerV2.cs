@@ -1,3 +1,5 @@
+using System;
+using AOT;
 using CMF;
 using HighlightPlus;
 using Multiplayer;
@@ -13,13 +15,14 @@ public class PlayerNetworkControllerV2 : MonoBehaviour
     // playroom kit bug?
     [SerializeField] private float _sceneLoadDelay = 1f;
     //[SerializeField] private PlayerHealth _playerHealth;
-    [SerializeField] private HighlightEffect _highlight;
+    //[SerializeField] private HighlightEffect _highlight;
     [SerializeField] private SpriteRenderer _playerSpriteRenderer;
     [SerializeField] private SmoothPosition _positionSmoother;
 
     // todo, player controller that handles the other game mechanics
     
     private PlayroomKit.Player _playroomPlayer;
+    public PlayroomKit.Player RepresentsPlayer => _playroomPlayer;
     private GameStateManager _manager;
     private float _warmTimer;
     private bool _warmedUp;
@@ -46,25 +49,31 @@ public class PlayerNetworkControllerV2 : MonoBehaviour
     {
         _positionSmoother.enabled = !isLocalPlayer;
         _cameraRoot.SetActive(isLocalPlayer);
-        if (!isLocalPlayer)
-        {
-            DestroyImmediate(_inputHandler);
-        }
+        if (!PlayroomKit.IsRunningInBrowser()) return;
+        _playroomPlayer.OnQuit(RemovePlayer);
+    }
+
+    [MonoPInvokeCallback(typeof(Action<string>))]
+    private void RemovePlayer(string playerID)
+    {
+        Destroy(gameObject);
     }
 
     private void SetAsCharacter(bool isLocalPlayer, PlayerCharacterSO characterData)
     {
         _controller.movementSpeed = characterData.MoveSpeed;
+        /*
         if (!isLocalPlayer)
         {
-            _highlight.highlighted = false;
-            _playerSpriteRenderer.color = characterData.CharacterColor;
+            //_highlight.highlighted = false;
+            //_playerSpriteRenderer.color = characterData.CharacterColor;
         }
         else
         {
-            _highlight.highlighted = true;
-            _highlight.overlayColor = characterData.CharacterColor;
+            //_highlight.highlighted = true;
+            //_highlight.overlayColor = characterData.CharacterColor;
         }
+        */
         //_playerHealth.MaxHealth = characterData.Health;
         // todo, other data driven fields - modify a different controller that handles player stats like hp and carrying.
     }

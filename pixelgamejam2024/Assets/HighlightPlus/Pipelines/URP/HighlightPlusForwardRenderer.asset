@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: NewHighlightPlusRenderPassFeature
   m_EditorClassIdentifier: 
   m_Active: 1
-  renderPassEvent: 300
-  clearStencil: 0
+  renderPassEvent: 450
+  clearStencil: 1
   previewInEditMode: 1
   showInPreviewCamera: 1
 --- !u!114 &11400000
@@ -36,7 +36,7 @@ MonoBehaviour:
   m_RendererFeatures:
   - {fileID: -7137549924450841197}
   m_RendererFeatureMap: 
-  m_UseNativeRenderPass: 0
+  m_UseNativeRenderPass: 1
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
   shaders:
@@ -65,17 +65,17 @@ MonoBehaviour:
     m_Bits: 55
   m_TransparentLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
   m_DefaultStencilState:
     overrideStencilState: 0
-    stencilReference: 0
-    stencilCompareFunction: 8
+    stencilReference: 2
+    stencilCompareFunction: 3
     passOperation: 0
     failOperation: 0
     zFailOperation: 0
   m_ShadowTransparentReceive: 1
-  m_RenderingMode: 0
+  m_RenderingMode: 1
   m_DepthPrimingMode: 0
-  m_CopyDepthMode: 0
+  m_CopyDepthMode: 1
   m_AccurateGbufferNormals: 0
   m_IntermediateTextureMode: 1

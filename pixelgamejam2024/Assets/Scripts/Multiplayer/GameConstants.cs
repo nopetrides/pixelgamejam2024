@@ -19,6 +19,7 @@ namespace Multiplayer
             CarryingCapacity = 4,
             CharacterType = 5,
             Position = 6,
+            IsCarrying = 7,
         }
 
         public enum CharacterTypes
