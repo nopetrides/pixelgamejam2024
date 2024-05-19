@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6535894675149010201}
   - component: {fileID: 3813288920737694556}
   - component: {fileID: 632792226578473703}
+  - component: {fileID: 2841702178352337784}
   m_Layer: 0
   m_Name: TreasureHeavy
   m_TagString: Untagged
@@ -47,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lifeSpan: -1
   _name: 
-  _treasureData: {fileID: 11400000, guid: acf9d0070a7c54040841dea1208ab98a, type: 2}
+  _spriteRenderer: {fileID: 632792226578473703}
 --- !u!212 &632792226578473703
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -100,3 +101,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2841702178352337784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024149074620540550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e67911c76fd5984bb71b9968335554f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  freezeXZAxis: 1

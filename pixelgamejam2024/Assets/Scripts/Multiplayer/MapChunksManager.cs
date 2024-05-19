@@ -21,6 +21,7 @@ public class MapChunksManager : MonoBehaviour
     private Queue<Vector2Int> _queuedChunks;
     private HashSet<Vector2Int> _existingChunkCoords;
     private List<Vector2Int> _chunkCoordsInRange;
+    private readonly Dictionary<Vector2Int, Transform> _existingChunkParents = new();
 
     private bool _setupComplete;
     private bool _graphRunnerActive;
@@ -94,37 +95,6 @@ public class MapChunksManager : MonoBehaviour
 
     private void SetupFromServer(RngState noiseRngState)
     {
-        /*
-        if (_runner.GraphProcessor.IsSeedRandom)
-        {   
-            // If the graph's being run with a random seed, a single random seed is generated to pass to
-            // the Perlin Noise Fill Texture node.
-            // If we don't do this a new random seed is used for each chunk and they won't match-up with each other.
-            noiseRngState = RngState.New();
-        }
-        else
-        {
-        */
-        /*
-        // If a static seed is used, we generate a state from that and pass that instead.
-        switch (_runner.GraphProcessor.SeedType)
-        {
-            case SeedType.Guid:
-                if (!Guid.TryParse(_runner.GraphProcessor.SeedGuid, out var guid))
-                {
-                    throw new ArgumentException("Seed is not a valid GUID.");
-                }
-
-                noiseRngState = RngState.FromBytes(guid.ToByteArray());
-                break;
-            case SeedType.Int:
-                noiseRngState = RngState.FromInt(_runner.GraphProcessor.Seed);
-                break;
-            default:
-                throw new ArgumentException("Invalid seed type.");
-        }
-        }*/
-
         Debug.Log($"[MapChunksManager] SetupFromServer - Setting up");
         // Set the state for the Perlin Noise Fill Texture nodes.
         _runner.SetIn("NoiseRNGState", noiseRngState);
@@ -160,7 +130,8 @@ public class MapChunksManager : MonoBehaviour
             new Vector3(startPosition.x + chunkCoords.x, startPosition.y, startPosition.z + chunkCoords.y);
         _runner.SetIn("Container", chunkParent.gameObject);
         _runner.SetIn("SafeZoneFlagSize", chunkCoords == Vector2Int.zero ? new Vector2Int(_chunkSize, _chunkSize) : Vector2Int.zero);
-        Debug.Log($"[MapChunksManager] RunNextChunk - Chunk Generation beginning");
+        _existingChunkParents.Add(chunkCoords, chunkParent);
+        //Debug.Log($"[MapChunksManager] RunNextChunk - Chunk Generation beginning");
         _runner.Run();
     }
 
@@ -199,16 +170,34 @@ public class MapChunksManager : MonoBehaviour
         // Find all the chunk coords that are instead of the current area.
         _chunkCoordsInRange.Clear();
         for (var x = minChunkCoordsX; x < xMax - halfSize; x += _chunkSize)
-        for (var z = minChunkCoordsZ; z < zMax - halfSize; z += _chunkSize)
+            for (var z = minChunkCoordsZ; z < zMax - halfSize; z += _chunkSize)
+            {
+                var chunkCoords = new Vector2Int(x, z);
+                _chunkCoordsInRange.Add(chunkCoords);
+
+                if (_existingChunkCoords.Contains(chunkCoords)) continue;    // A chunk has already been generated for these coords.
+
+                _existingChunkCoords.Add(chunkCoords);
+                _queuedChunks.Enqueue(chunkCoords);
+                RunNextChunk();
+            }
+        HideChunksOutOfRange();
+    }
+
+    private void HideChunksOutOfRange()
+    {
+        foreach (var kvp in _existingChunkParents)
         {
-            var chunkCoords = new Vector2Int(x, z);
-            _chunkCoordsInRange.Add(chunkCoords);
-
-            if (_existingChunkCoords.Contains(chunkCoords)) continue;    // A chunk has already been generated for these coords.
-
-            _existingChunkCoords.Add(chunkCoords);
-            _queuedChunks.Enqueue(chunkCoords);
-            RunNextChunk();
+            if (_chunkCoordsInRange.Contains(kvp.Key))
+            {
+                if (!kvp.Value.gameObject.activeSelf)
+                    kvp.Value.gameObject.SetActive(true);
+            }
+            else
+            {
+                if (kvp.Value.gameObject.activeSelf)
+                    kvp.Value.gameObject.SetActive(false);
+            }
         }
     }
 

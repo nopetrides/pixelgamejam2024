@@ -43,21 +43,22 @@ MonoBehaviour:
       - weight: 1
         prefab: {fileID: 3552293010743194950, guid: b30cbe5f4fac51a47b31ac7ceeb8ebda,
           type: 3}
-    - id: 2e8a5ba5-ecdf-436c-8c4e-734c98be2899
-      name: EnemySpawner
-      isWeightEnabled: 0
-      totalWeight: 1
-      prefabs:
-      - weight: 1
-        prefab: {fileID: 3552293010743194950, guid: c73069011415d9b44961be886804808b,
-          type: 3}
     - id: e349c002-6590-482f-9cea-52549ac67d83
       name: Decor
       isWeightEnabled: 0
-      totalWeight: 1
+      totalWeight: 4
       prefabs:
       - weight: 1
         prefab: {fileID: 3552293010743194950, guid: af6e6c5d222410b4d969597dba11ae75,
+          type: 3}
+      - weight: 1
+        prefab: {fileID: 3552293010743194950, guid: f9e9cce017d8ead4dbe43a58b0c83dc1,
+          type: 3}
+      - weight: 1
+        prefab: {fileID: 3552293010743194950, guid: af279f3e81e79b743a935d4d492bc50f,
+          type: 3}
+      - weight: 1
+        prefab: {fileID: 3552293010743194950, guid: fb67cb9d0bb2b5049b5247371db733c0,
           type: 3}
     - id: ef192ef7-d519-4f10-8ffb-0b8e4be33e92
       name: Water
@@ -71,6 +72,5 @@ MonoBehaviour:
     - 0efabba0-37aa-4518-853e-eae45e08c925
     - 297b3e8a-b35e-4651-9832-e2be4be58558
     - 66aa8495-cc9b-4311-824a-0fed90395f4a
-    - 2e8a5ba5-ecdf-436c-8c4e-734c98be2899
     - e349c002-6590-482f-9cea-52549ac67d83
     - ef192ef7-d519-4f10-8ffb-0b8e4be33e92

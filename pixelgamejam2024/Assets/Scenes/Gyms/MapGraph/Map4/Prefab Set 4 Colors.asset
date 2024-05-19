@@ -31,11 +31,6 @@ MonoBehaviour:
       color:
         serializedVersion: 2
         rgba: 4278255615
-    - id: 6445cc44-7813-44b0-9c75-73da7d9b5288
-      name: EnemySpawner
-      color:
-        serializedVersion: 2
-        rgba: 4278190335
     - id: 9a5e7903-abd0-4cdd-8bc7-51a8352c5789
       name: Decor
       color:
@@ -50,7 +45,6 @@ MonoBehaviour:
     - 3267ae81-034b-40a0-8813-b38b305499e5
     - 4a995ffc-ba7d-4f73-a3cb-74a1364fa5ea
     - c468b515-ebfe-4d31-bd4a-c9a19614bbc7
-    - 6445cc44-7813-44b0-9c75-73da7d9b5288
     - 9a5e7903-abd0-4cdd-8bc7-51a8352c5789
     - 79172e64-dcac-4ca5-a69d-9249439c9a60
   serializedNames: []
