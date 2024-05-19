@@ -26,4 +26,13 @@ public class TreasurePickupObject : PoolableObject
         _name = _treasureData.Type;
         _spriteRenderer.sprite = _treasureData.Sprite;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        // This was caused by the players trigger (at least when it is first picked up)
+        // todo inform the treasure manager, who then informs the player.
+        // let the treasure manager handle returning the treasure to the pool - will also tell network players this treasure was picked up.
+        // let the player handle adding weight to their inventory (if they can pick it up)
+        // TODO handle dropping in the pool
+    }
 }

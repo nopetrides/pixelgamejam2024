@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 21cef271c10712e48b213f387365d803
+guid: 85a768923c60a0b46ad6a9dbf17bdf46
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -121,18 +121,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Basic-9-slice-inver
+  - name: Decorations
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.49489796, y: -0.010169491}
     alignment: 9
-    border: {x: 3, y: 3, z: 3, w: 3}
+    border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 16
-      height: 16
-    spriteID: 206b1916c4fafc44cb71cc42c59adbd0
+      width: 196
+      height: 295
+    spriteID: 8eb937f3299c7ea4f8445c8ad457b767
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -144,24 +144,24 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 611355152
-    name: Basic-9-slice-inver
+    guid: -1996027807
+    name: Decorations
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Basic-9-slice-inver
+    - name: Decorations
       frameIndex: 0
       cellRect:
-        x: 0
-        y: 0
-        width: 16
-        height: 16
-      spriteId: 206b1916c4fafc44cb71cc42c59adbd0
+        x: 3
+        y: 3
+        width: 196
+        height: 295
+      spriteId: 8eb937f3299c7ea4f8445c8ad457b767
     linkedCells: []
     parentIndex: -1
   platformSettings: []
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 16, y: 16}
+  canvasSize: {x: 200, y: 300}

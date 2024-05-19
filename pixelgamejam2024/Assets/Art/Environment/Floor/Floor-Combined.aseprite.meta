@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 21cef271c10712e48b213f387365d803
+guid: 57a1ccdf501c3aa43a707dc259bf8af8
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -121,18 +121,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Basic-9-slice-inver
+  - name: Floor-Combined
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
-    border: {x: 3, y: 3, z: 3, w: 3}
+    border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 16
-      height: 16
-    spriteID: 206b1916c4fafc44cb71cc42c59adbd0
+      width: 300
+      height: 300
+    spriteID: 223037b821e40ea4f834d944f2e442ba
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -144,24 +144,24 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 611355152
-    name: Basic-9-slice-inver
+    guid: -1702270632
+    name: Floor-Combined
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Basic-9-slice-inver
+    - name: Floor-Combined
       frameIndex: 0
       cellRect:
         x: 0
         y: 0
-        width: 16
-        height: 16
-      spriteId: 206b1916c4fafc44cb71cc42c59adbd0
+        width: 300
+        height: 300
+      spriteId: 223037b821e40ea4f834d944f2e442ba
     linkedCells: []
     parentIndex: -1
   platformSettings: []
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 16, y: 16}
+  canvasSize: {x: 300, y: 300}

@@ -134,8 +134,11 @@ public class TreasureManager : MonoBehaviour
 
     public TreasureTypesSO GetTreasureDataFromCoordinates(Vector3 coordinates)
     {
-        uint seed = Convert.ToUInt32(Mathf.RoundToInt(Mathf.Abs(coordinates.x)) + Mathf.RoundToInt(Mathf.Abs(coordinates.z)));
-        var rando = new Unity.Mathematics.Random(seed != 0 ? seed : 1);
-        return _immutableTreasure.ToArray()[rando.NextInt(0, _immutableTreasure.Count)];
+        uint seed = Convert.ToUInt32(Mathf.RoundToInt(Mathf.Abs(coordinates.x)) * Mathf.RoundToInt(Mathf.Abs(coordinates.z)));
+        var rando = new Unity.Mathematics.Random(seed != 0 ? seed+1010 : 1010 );
+        var _ = rando.NextInt(0, _immutableTreasure.Count); // throwout the first one
+        var ranInt = rando.NextInt(0, _immutableTreasure.Count);
+        var so = _immutableTreasure.ToArray()[ranInt];
+        return so;
     }
 }

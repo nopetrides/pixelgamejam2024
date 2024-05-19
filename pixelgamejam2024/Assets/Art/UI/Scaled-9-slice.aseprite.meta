@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 21cef271c10712e48b213f387365d803
+guid: 539cb008666dc6d4d8826f18ea9f9e23
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -121,18 +121,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Basic-9-slice-inver
+  - name: Scaled-9-slice
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
-    border: {x: 3, y: 3, z: 3, w: 3}
+    border: {x: 8, y: 8, z: 8, w: 7}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 16
-      height: 16
-    spriteID: 206b1916c4fafc44cb71cc42c59adbd0
+      width: 32
+      height: 32
+    spriteID: e9575a45fd66e0b48b5abc3101fc759b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -144,24 +144,24 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 611355152
-    name: Basic-9-slice-inver
+    guid: 572793953
+    name: Scaled-9-slice
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Basic-9-slice-inver
+    - name: Scaled-9-slice
       frameIndex: 0
       cellRect:
         x: 0
         y: 0
-        width: 16
-        height: 16
-      spriteId: 206b1916c4fafc44cb71cc42c59adbd0
+        width: 32
+        height: 32
+      spriteId: e9575a45fd66e0b48b5abc3101fc759b
     linkedCells: []
     parentIndex: -1
   platformSettings: []
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 16, y: 16}
+  canvasSize: {x: 32, y: 32}
