@@ -16,4 +16,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cc82e069cb0f570478f6b98db0cb5190, type: 2}
   - {fileID: 11400000, guid: 24490cad07393024dacd12af5b816957, type: 2}
   - {fileID: 11400000, guid: f659930409b06ab4d8992206294a6a91, type: 2}
-  _maxHealth: 10000
+  _maxHealth: 5000

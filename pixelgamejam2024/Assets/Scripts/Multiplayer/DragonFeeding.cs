@@ -1,13 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Playroom;
-//using UnityEditor.Build.Reporting;
 using UnityEngine;
 
 public class DragonFeeding : MonoBehaviour
 {
     [SerializeField] private DragonNetworkController _dragonNetworkController;
+    [SerializeField] private int _valueMultiplier = 1;
     
     private void Start()
     {
@@ -44,7 +41,7 @@ public class DragonFeeding : MonoBehaviour
     private void ApplyFeedToDragon(string feedValue, string _)
     {
         int eat = int.Parse(feedValue);
-        _dragonNetworkController.DragonEat(eat);
+        _dragonNetworkController.DragonEat(eat*_valueMultiplier);
     }
     
 }

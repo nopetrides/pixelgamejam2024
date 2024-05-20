@@ -62,6 +62,7 @@ public class DragonNetworkController : MonoBehaviour
     /// </summary>
     private void FixedUpdate()
     {
+        if (!_initialized) return;
         if (!PlayroomKit.IsRunningInBrowser())
             MockDragon();
         else
@@ -219,13 +220,13 @@ public class DragonNetworkController : MonoBehaviour
                 // hp --
                 _currentDragonChange[EnergyStat.ToString()]++;
                 _currentDragonChange[TemperStat.ToString()]++;
-                
-                _dragonStats.Health = Mathf.Clamp(_dragonStats.Health--, 0, _dragonStats.MaxHealth);
+                TakeHealthDamage();
                 break;
             case FiniteDragonState.Cranky:
                 // Tired ++
+                // hp --
                 _currentDragonChange[EnergyStat.ToString()]++;
-                _dragonStats.Health = Mathf.Clamp(_dragonStats.Health--, 0, _dragonStats.MaxHealth);
+                TakeHealthDamage();
                 break;
             case FiniteDragonState.Sleeping:
                 // Cranky ++
@@ -251,7 +252,19 @@ public class DragonNetworkController : MonoBehaviour
                 throw new ArgumentOutOfRangeException();
         }
     }
-    
+
+    private void TakeHealthDamage()
+    {
+        int hp = _dragonStats.Health;
+        hp--;
+        _dragonStats.Health = Mathf.Clamp(hp, 0, _dragonStats.MaxHealth);
+
+        if (_dragonStats.Health <= 0)
+        {
+            LoadingManager.Instance.LoadScene("GameOverScene");
+            _initialized = false;
+        }
+    }
     
     /// <summary>
     ///     Players modifies the dragon's stats by interacting with a dragon station

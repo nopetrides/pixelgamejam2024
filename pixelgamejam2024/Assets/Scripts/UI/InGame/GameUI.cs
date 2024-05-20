@@ -108,7 +108,7 @@ public class GameUI : MonoBehaviour
         
         _dragonStateText.text = state != DragonNetworkController.FiniteDragonState.Idle ? _dragonController.DragonState.ToString() : "Normal";
 
-        _hpFill.fillAmount = (float)dragonData.MaxHealth / dragonData.Health;
+        _hpFill.fillAmount = dragonData.Health / (float)dragonData.MaxHealth;
         
         _growthText.text = $"{dragonData.Growth} / {dragonData.CurrentAgeData.GrowthRequirement}";
     }

@@ -880,7 +880,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: This is a game submission for the Pixel Game Jam - 2024 hosted by SanForge
-    Studio.
+    Studio. Multiplayer made with Playroom Kit.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6a4919060fd3d8444ba434c66de6fc99, type: 2}
   m_sharedMaterial: {fileID: 8878256443245465277, guid: 6a4919060fd3d8444ba434c66de6fc99,
