@@ -25,7 +25,7 @@ public class PlayerTreasurePickup : MonoBehaviour
     
     private void Awake()
     {
-        TreasureManager.Instance.SetLocalPlayerPickup(this);
+        //TreasureManager.Instance.SetLocalPlayerPickup(this);
         _carriedWeight = _baseWeight;
         _controller = GetComponent<AdvancedWalkerController>();
     }
@@ -37,9 +37,10 @@ public class PlayerTreasurePickup : MonoBehaviour
         if (_carriedWeight < 0) _carriedWeight = 0;
         _pickedUpTreasureCoordinates.Add(location);
         Debug.Log($"Carrying: {_carriedWeight.ToString()}");
-        Debug.Log($"Speed mod: {(1 - (float)_carriedWeight/(float)_carryLimit) * 2}");
-        if (_carriedWeight >= _carryThreshold) _controller.SetMoveSpeed(1 - (float)_carriedWeight/(float)_carryLimit);
-        if (PlayroomKit.IsRunningInBrowser() && _carriedWeight > _carryThreshold) PlayroomKit.Me().SetState(GameConstants.PlayerStateData.IsCarrying.ToString(), true);
+        //Debug.Log($"Speed mod: {(1 - (float)_carriedWeight/(float)_carryLimit) * 2}");
+        if (_carriedWeight < _carryThreshold) return;
+        _controller.SetMoveSpeed((1 - (float)_carriedWeight/(float)_carryLimit) * 2);
+        if (PlayroomKit.IsRunningInBrowser()) PlayroomKit.Me().SetState(GameConstants.PlayerStateData.IsCarrying.ToString(), true);
     }
     
     public int GetWeight() => _carriedWeight;
@@ -56,9 +57,11 @@ public class PlayerTreasurePickup : MonoBehaviour
         {
             PoolSystem.Instance.Spawn("Treasure", VARIABLE);
         }
+        
         _pickedUpTreasureCoordinates.Clear();
         _carriedWeight = _baseWeight;
         _controller.SetMoveSpeed(1);
+        if (PlayroomKit.IsRunningInBrowser()) PlayroomKit.Me().SetState(GameConstants.PlayerStateData.IsCarrying.ToString(), false);
     }
 
     public bool IsCarrying() => _carriedWeight >= _carryThreshold;
@@ -66,6 +69,6 @@ public class PlayerTreasurePickup : MonoBehaviour
     private void Update()
     {
         //if(Input.GetKeyDown(KeyCode.Alpha1)) Debug.Log($"Speed mod: {1 - (float)_carryThreshold/(float)_carryLimit}");
-        // _weightText.text = _carriedWeight.ToString();
+        _weightText.text = _carriedWeight.ToString() + " / " + _carryLimit.ToString();
     }
 }

@@ -55,8 +55,8 @@ public class KoboldAnimationHandler : MonoBehaviour
             isCarrying = _playerNetworkController.RepresentsPlayer.GetState<bool>(
                 GameConstants.PlayerStateData.IsCarrying.ToString());
 
-        if (!PlayroomKit.IsRunningInBrowser())
-            isCarrying = _playerTreasurePickup.IsCarrying();
+        // if (!PlayroomKit.IsRunningInBrowser())
+        //     isCarrying = _playerTreasurePickup.IsCarrying();
         
         _animator.SetBool("Carrying", isCarrying); // carry state flag
         
