@@ -117,19 +117,14 @@ public class DragonNetworkController : MonoBehaviour
 
     private void ApplyDragonDataFromNetwork()
     {
-        foreach (var kvp in _networkedDragonData)
-        {
-            var stat = _dragonStats.CurrentAgeData.CurrentStats[kvp.Key];
-            var lastValue = stat.Current;
-            var updated = _networkedDragonData[kvp.Key];
-            stat.Current = updated;
-            stat.ChangeThisFrame = updated - lastValue;
-            _dragonStats.CurrentAgeData.CurrentStats[kvp.Key] = stat;
-        }
-
         _dragonStats.Age = _networkedDragonOther[GameConstants.OtherDragonData.Age.ToString()];
         _dragonStats.Growth = _networkedDragonOther[GameConstants.OtherDragonData.Growth.ToString()];
         _dragonStats.Health = _networkedDragonOther[GameConstants.OtherDragonData.Health.ToString()];
+        
+        foreach (var kvp in _networkedDragonData)
+        {
+            _dragonStats.CurrentAgeData.CurrentStats[kvp.Key].Current = _networkedDragonData[kvp.Key];
+        }
     }
 
     private void WaitForDragonReadyStateCallback(string callbackOrigin)
@@ -186,9 +181,9 @@ public class DragonNetworkController : MonoBehaviour
             return;
         }
         
-        foreach (var (key, dragonStatus) in _currentDragonChange)
+        foreach (var (key, dragonStatus) in _dragonStats.CurrentAgeData.CurrentStats)
         {
-            _networkedDragonData[key] = dragonStatus;
+            _networkedDragonData[key] = dragonStatus.Current;
         }
 
         PlayroomKit.SetState(nameof(_networkedDragonData), _networkedDragonData);

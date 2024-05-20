@@ -390,7 +390,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &279112505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -966,7 +966,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &365104175
 RectTransform:
   m_ObjectHideFlags: 0
@@ -982,7 +982,6 @@ RectTransform:
   - {fileID: 1957127189}
   - {fileID: 2074954043}
   - {fileID: 1234287112}
-  - {fileID: 1315795930}
   m_Father: {fileID: 1479320814}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -20279,13 +20278,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1315795929}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 425663326}
-  m_Father: {fileID: 365104175}
+  m_Father: {fileID: 1446689107}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -20756,6 +20755,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1479320814}
+  - {fileID: 1315795930}
   m_Father: {fileID: 279112506}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -20820,7 +20820,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 3
+  m_ScaleFactor: 1
   m_ReferenceResolution: {x: 640, y: 360}
   m_ScreenMatchMode: 2
   m_MatchWidthOrHeight: 0.498
@@ -20972,14 +20972,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.49019608}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 15d4f0e536e12494b93b493552164dfe, type: 3}
+  m_Sprite: {fileID: 2862867446057880965, guid: 8ccadb83688f3ca4daca7e46f59ebcb8,
+    type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -21019,9 +21020,10 @@ MonoBehaviour:
   customBorderScales:
     items: []
   fallbackSpriteSettings:
-    Sprite: {fileID: 21300000, guid: 15d4f0e536e12494b93b493552164dfe, type: 3}
+    Sprite: {fileID: 2862867446057880965, guid: 8ccadb83688f3ca4daca7e46f59ebcb8,
+      type: 3}
     ColorMode: 0
-    PrimaryColor: {r: 0, g: 0, b: 0, a: 0.49019608}
+    PrimaryColor: {r: 1, g: 1, b: 1, a: 1}
     SecondaryColor: {r: 1, g: 1, b: 1, a: 1}
     screenConfigName: 
   customSpriteSettings:
