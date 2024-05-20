@@ -48,18 +48,19 @@ public class PlayerTreasurePickup : MonoBehaviour
         _carryThreshold = _carryLimit / 2;
     }
 
-    public void DropTreasure()
+    public int DropTreasure()
     {
         /*foreach (var VARIABLE in _pickedUpTreasureCoordinates)
         {
             PoolSystem.Instance.Spawn("Treasure", VARIABLE);
         }*/
-        
+        int carried = _carriedWeight;
         _pickedUpTreasureCoordinates.Clear();
         _carriedWeight = _baseWeight;
         _controller.SetMoveSpeed(1);
         if (PlayroomKit.IsRunningInBrowser()) PlayroomKit.Me().SetState(GameConstants.PlayerStateData.IsCarrying.ToString(), false);
         Debug.Log($"Treasure Dropped");
+        return carried;
     }
 
     public bool IsCarrying() => _carriedWeight >= _carryThreshold;

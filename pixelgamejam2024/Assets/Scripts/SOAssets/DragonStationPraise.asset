@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: DragonStationPraise
   m_EditorClassIdentifier: 
   _affectsDragonStats: 2
-  _affectValue: 2
+  _affectValue: 10

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: DragonStat_Adult_Energy
   m_EditorClassIdentifier: 
   _stat: 4
-  _max: 2000
+  _max: 1000

@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Globalization;
 using Playroom;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class TreasureManager : MonoBehaviour
 {

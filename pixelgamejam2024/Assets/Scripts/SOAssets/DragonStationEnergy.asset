@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: DragonStationEnergy
   m_EditorClassIdentifier: 
   _affectsDragonStats: 4
-  _affectValue: 2
+  _affectValue: 10

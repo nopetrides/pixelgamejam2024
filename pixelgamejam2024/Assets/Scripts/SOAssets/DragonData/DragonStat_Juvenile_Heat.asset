@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: DragonStat_Juvenile_Heat
   m_EditorClassIdentifier: 
   _stat: 1
-  _max: 2000
+  _max: 3000

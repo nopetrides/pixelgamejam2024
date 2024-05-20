@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: DragonStationCooldown
   m_EditorClassIdentifier: 
   _affectsDragonStats: 1
-  _affectValue: 2
+  _affectValue: 10

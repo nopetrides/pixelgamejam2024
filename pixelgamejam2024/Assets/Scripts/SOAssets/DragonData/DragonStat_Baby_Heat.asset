@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: DragonStat_Baby_Heat
   m_EditorClassIdentifier: 
   _stat: 1
-  _max: 1000
+  _max: 5000

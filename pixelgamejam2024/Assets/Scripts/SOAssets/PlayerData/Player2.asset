@@ -16,6 +16,6 @@ MonoBehaviour:
   _attack: 0
   _moveSpeed: 3
   Icon: {fileID: 0}
-  _carryCapacity: 25
+  _carryCapacity: 100
   _characterType: 1
   _characterColor: {r: 0.56078434, g: 0.81568635, b: 0.20000002, a: 1}

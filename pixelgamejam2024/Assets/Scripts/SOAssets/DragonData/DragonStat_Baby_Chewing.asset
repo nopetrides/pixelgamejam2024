@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: DragonStat_Baby_Chewing
   m_EditorClassIdentifier: 
   _stat: 8
-  _max: 1000
+  _max: 5000

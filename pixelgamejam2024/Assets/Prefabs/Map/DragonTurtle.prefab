@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 2307974216683835481}
   - component: {fileID: -5369381860012037779}
   - component: {fileID: 2660749939216371280}
+  - component: {fileID: 5887364640308162164}
+  - component: {fileID: 3173351277774027710}
   m_Layer: 0
   m_Name: DragonTurtle
   m_TagString: Untagged
@@ -30,9 +32,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2749620352103071896}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8773907699545938024}
@@ -79,7 +81,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 242bceaf894445f4f9241cb25673dfec, type: 3}
+  m_Sprite: {fileID: -9142830020477327247, guid: 2169ac8b1ead37a47b9c2fd71d05995c,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -115,15 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dc2b84f8694fb24bb49d70401df56b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DragonStats:
-  - Stat: 1
-    Max: 600
-  - Stat: 2
-    Max: 600
-  - Stat: 4
-    Max: 600
-  - Stat: 8
-    Max: 600
+  _dragonStats: {fileID: 11400000, guid: e8197d50d802a8f48a3f70cbe2e0ea6b, type: 2}
 --- !u!114 &2307974216683835481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -340,6 +335,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daa154a8f86f4ba448e9c30911a1eea1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dragonNetworkController: {fileID: 2106077829082425981}
+--- !u!95 &5887364640308162164
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2749620352103071896}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c088a2339bf4d264f84db121f0215b21, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3173351277774027710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2749620352103071896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdd0e978101afb94aa4c8edb4b34c145, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dragonNetworkController: {fileID: 2106077829082425981}
+  _dragonAnimator: {fileID: 5887364640308162164}
+  _uiImage: {fileID: 0}
 --- !u!1 &2851755709547853176
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,12 +418,12 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 30
-  m_Range: 5.92
+  m_Range: 12
   m_SpotAngle: 85.84056
   m_InnerSpotAngle: 0
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -449,7 +481,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Version: 3
   m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 2
+  m_AdditionalLightsShadowResolutionTier: 0
   m_LightLayerMask: 1
   m_RenderingLayers: 1
   m_CustomShadowLayers: 0

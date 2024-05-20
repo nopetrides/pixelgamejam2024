@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: DragonStationChewing
   m_EditorClassIdentifier: 
   _affectsDragonStats: 8
-  _affectValue: 2
+  _affectValue: 10

@@ -2600,7 +2600,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 783450145}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 783450146}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7dc2b84f8694fb24bb49d70401df56b1, type: 3}
@@ -7529,37 +7529,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 936805942}
     m_Modifications:
-    - target: {fileID: 1015086362454852593, guid: f81af5c228f5d82429943f25754740e4,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -9142830020477327247, guid: 2169ac8b1ead37a47b9c2fd71d05995c,
-        type: 3}
-    - target: {fileID: 2106077829082425981, guid: f81af5c228f5d82429943f25754740e4,
-        type: 3}
-      propertyPath: _dragonStats
-      value: 
-      objectReference: {fileID: 11400000, guid: e8197d50d802a8f48a3f70cbe2e0ea6b,
-        type: 2}
     - target: {fileID: 2749620352103071896, guid: f81af5c228f5d82429943f25754740e4,
         type: 3}
       propertyPath: m_Name
       value: DragonTurtle
-      objectReference: {fileID: 0}
-    - target: {fileID: 3381383666125323940, guid: f81af5c228f5d82429943f25754740e4,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3381383666125323940, guid: f81af5c228f5d82429943f25754740e4,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3381383666125323940, guid: f81af5c228f5d82429943f25754740e4,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3381383666125323940, guid: f81af5c228f5d82429943f25754740e4,
         type: 3}
@@ -7611,76 +7584,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4029208175985790349, guid: f81af5c228f5d82429943f25754740e4,
-        type: 3}
-      propertyPath: m_Range
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 4029208175985790349, guid: f81af5c228f5d82429943f25754740e4,
-        type: 3}
-      propertyPath: m_Shadows.m_Type
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7488532138906917760, guid: f81af5c228f5d82429943f25754740e4,
-        type: 3}
-      propertyPath: m_AdditionalLightsShadowResolutionTier
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2749620352103071896, guid: f81af5c228f5d82429943f25754740e4,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 783450147}
-    - targetCorrespondingSourceObject: {fileID: 2749620352103071896, guid: f81af5c228f5d82429943f25754740e4,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 783450148}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f81af5c228f5d82429943f25754740e4, type: 3}
---- !u!1 &783450146 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2749620352103071896, guid: f81af5c228f5d82429943f25754740e4,
-    type: 3}
-  m_PrefabInstance: {fileID: 783450145}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &783450147
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 783450146}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c088a2339bf4d264f84db121f0215b21, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!114 &783450148
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 783450146}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdd0e978101afb94aa4c8edb4b34c145, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _dragonNetworkController: {fileID: 691524664}
-  _dragonAnimator: {fileID: 783450147}
-  _uiImage: {fileID: 0}
 --- !u!1 &785581514
 GameObject:
   m_ObjectHideFlags: 0

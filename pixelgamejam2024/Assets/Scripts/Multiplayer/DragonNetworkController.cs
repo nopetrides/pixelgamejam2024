@@ -44,7 +44,8 @@ public class DragonNetworkController : MonoBehaviour
     {
         foreach(var age in _dragonStats.DragonAges)
             age.SetupStats();
-        
+        _dragonStats.Health = _dragonStats.MaxHealth;
+            
         _currentDragonChange.TryAdd(HeatStat.ToString(), 0);
         _currentDragonChange.TryAdd(TemperStat.ToString(), 0);
         _currentDragonChange.TryAdd(EnergyStat.ToString(), 0);
@@ -204,12 +205,16 @@ public class DragonNetworkController : MonoBehaviour
             case FiniteDragonState.Overheated:
                 // Tired ++
                 // Cranky ++
+                // hp --
                 _currentDragonChange[EnergyStat.ToString()]++;
                 _currentDragonChange[TemperStat.ToString()]++;
+                
+                _dragonStats.Health = Mathf.Clamp(_dragonStats.Health--, 0, _dragonStats.MaxHealth);
                 break;
             case FiniteDragonState.Cranky:
                 // Tired ++
                 _currentDragonChange[EnergyStat.ToString()]++;
+                _dragonStats.Health = Mathf.Clamp(_dragonStats.Health--, 0, _dragonStats.MaxHealth);
                 break;
             case FiniteDragonState.Sleeping:
                 // Cranky ++
@@ -218,14 +223,14 @@ public class DragonNetworkController : MonoBehaviour
             case FiniteDragonState.Chewing:
                 // Heat ++++
                 // Tired ++
-                _currentDragonChange[HeatStat.ToString()] += 2;
+                _currentDragonChange[HeatStat.ToString()] += 20;
                 _currentDragonChange[EnergyStat.ToString()]++;
                 break;
             case FiniteDragonState.Eating:
-                // Chewing ++++
+                // Chewing --
                 // Heat ++
-                _currentDragonChange[ChewingStat.ToString()] += 2;
-                _currentDragonChange[HeatStat.ToString()]++;
+                _currentDragonChange[ChewingStat.ToString()]--;
+                _currentDragonChange[HeatStat.ToString()] += 5;
                 break;
             case FiniteDragonState.Idle:
                 // Cranky ++
@@ -361,11 +366,6 @@ public class DragonNetworkController : MonoBehaviour
         return _dragonStats.CurrentAgeData.CurrentStats[stat.ToString()].Current >= _dragonStats.CurrentAgeData.CurrentStats[stat.ToString()].Max;
     }
 
-    private void OnDragonEat()
-    {
-        
-    }
-
     private void OnDragonIdle()
     {
         
@@ -397,4 +397,11 @@ public class DragonNetworkController : MonoBehaviour
 
 #endregion
 
+    public void DragonEat(int eat)
+    {
+        if (_currentDragonChange.TryGetValue(ChewingStat.ToString(), out var current))
+        {
+            _currentDragonChange.TryUpdate(ChewingStat.ToString(), eat, current);
+        }
+    }
 }

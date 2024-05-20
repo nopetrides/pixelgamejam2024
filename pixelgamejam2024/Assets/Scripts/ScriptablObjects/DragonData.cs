@@ -11,6 +11,8 @@ public class DragonData : ScriptableObject
 	private int _maxHealth;
 	
 	public DragonAgeSO[] DragonAges => _dragonAges;
+
+	public int MaxHealth => _maxHealth;
 	
 	[NonSerialized] 
 	public int Age = 0;
