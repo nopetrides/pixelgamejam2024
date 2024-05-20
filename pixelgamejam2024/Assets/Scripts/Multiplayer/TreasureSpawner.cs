@@ -7,7 +7,7 @@ public class TreasureSpawner : MonoBehaviour
     private string _coordinate = "";
 
 
-    private async void OnEnable()
+    private async void Start()
     {
         StartCoroutine(AsyncLoad());
         // _coordinate = transform.position.ToString("F2");

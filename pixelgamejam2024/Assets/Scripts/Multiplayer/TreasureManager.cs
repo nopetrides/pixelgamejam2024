@@ -76,6 +76,8 @@ public class TreasureManager : MonoBehaviour
         PlayroomKit.RpcRegister("FoundTreasureSpawner", DoesTreasureSpawnerExistInDictionary, "Found Spawner message success");
         // Only the host will call this rpc to tell all players to spawn a new treasure object at a location.
         PlayroomKit.RpcRegister("SpawnTreasureEveryone", AddNewTreasureToDictionary, "Treasure created confirmed");
+        // Tell others players we picked something up
+        PlayroomKit.RpcRegister("TreasurePickup", RemovePickedUpTreasure, "Treasure pickup informed");
     }
 
     /// <summary>
@@ -90,7 +92,10 @@ public class TreasureManager : MonoBehaviour
         }
         else
         {
-            PlayroomKit.RpcCall("FoundTreasureSpawner", treasureSpawnerCoordinates, PlayroomKit.RpcMode.HOST, () => Debug.Log("Treasure spawner check confirmed"));
+            if (PlayroomKit.IsHost())
+                DoesTreasureSpawnerExistInDictionary(JsonUtility.ToJson(treasureSpawnerCoordinates), "");
+            else 
+                PlayroomKit.RpcCall("FoundTreasureSpawner", treasureSpawnerCoordinates, PlayroomKit.RpcMode.HOST, () => Debug.Log("Treasure spawner check confirmed"));
         }
     }
     
@@ -120,9 +125,10 @@ public class TreasureManager : MonoBehaviour
         {
             AddNewTreasureToDictionary(JsonUtility.ToJson(coords), "");
         }
-        else
+        else if (PlayroomKit.IsHost())
         {
-            if (PlayroomKit.IsHost()) PlayroomKit.RpcCall("SpawnTreasureEveryone", coords, PlayroomKit.RpcMode.ALL, () => Debug.Log("Treasure spawn confirmed"));
+            AddNewTreasureToDictionary(JsonUtility.ToJson(coords), "");
+            PlayroomKit.RpcCall("SpawnTreasureEveryone", coords, PlayroomKit.RpcMode.OTHERS, () => Debug.Log("Treasure spawn confirmed"));
         }
     }
     
@@ -145,5 +151,26 @@ public class TreasureManager : MonoBehaviour
         var ranInt = rando.NextInt(0, _immutableTreasure.Count);
         var so = _immutableTreasure.ToArray()[ranInt];
         return so;
+    }
+
+    public void RemovePickedUpTreasure(string coordinates, string _)
+    {
+        // some other player picked up this treasure
+        Debug.Log($"[RemovePickedUpTreasure] " + coordinates);
+        Vector3 coords = JsonUtility.FromJson<Vector3>(coordinates); //Vector3Parser.TryParse(coordinates, out Vector3 result) ? result : Vector3.zero;
+        PoolSystem.Instance.NetworkedDeSpawn("Treasure", coords);
+    }
+    
+    public void OnTreasurePickedUp(Vector3 origin)
+    {
+        // remove it for ourselves
+        //RemovePickedUpTreasure(JsonUtility.ToJson(origin), "");
+
+        // tell other players to remove it from their worlds
+        if (PlayroomKit.IsRunningInBrowser())
+        { 
+            PlayroomKit.RpcCall("TreasurePickup", origin, PlayroomKit.RpcMode.OTHERS, () => Debug.Log("Treasure de-spawn confirmed"));
+        }
+        
     }
 }

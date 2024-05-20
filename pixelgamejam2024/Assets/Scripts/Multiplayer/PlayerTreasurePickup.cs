@@ -50,10 +50,10 @@ public class PlayerTreasurePickup : MonoBehaviour
 
     public void DropTreasure()
     {
-        foreach (var VARIABLE in _pickedUpTreasureCoordinates)
+        /*foreach (var VARIABLE in _pickedUpTreasureCoordinates)
         {
             PoolSystem.Instance.Spawn("Treasure", VARIABLE);
-        }
+        }*/
         
         _pickedUpTreasureCoordinates.Clear();
         _carriedWeight = _baseWeight;

@@ -17,6 +17,8 @@ public class PoolSystem : MonoBehaviour
 
     private ConcurrentBag<SpawnData> _objectsToAddToPool = new();
 
+    private ConcurrentDictionary<Vector3, PoolableObject> _objectsInWorld = new();
+
     [SerializeField]
     private int _initialSize = 10;
     [SerializeField]
@@ -52,6 +54,7 @@ public class PoolSystem : MonoBehaviour
                     var pooledObject = pool.Get();
                     pooledObject.transform.position = spawnData.Location;
                     pooledObject.DataSetup(spawnData.Location);
+                    _objectsInWorld.TryAdd(spawnData.Location, pooledObject);
                 }
             }
         }
@@ -85,6 +88,17 @@ public class PoolSystem : MonoBehaviour
     {
         Debug.Log($"Add to spawn queue");
         _objectsToAddToPool.Add(new SpawnData{ObjectType = objectType, Location = location});
+    }
+
+    public void NetworkedDeSpawn(string objectType, Vector3 originLocation)
+    {
+        if (_objectsInWorld.TryGetValue(originLocation, out var obj))
+        {
+            if (_pools.TryGetValue(objectType, out var pool))
+            {
+                pool.Release(obj);
+            }
+        }
     }
     
     public void DeSpawn(string objectType, PoolableObject obj)
