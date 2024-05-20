@@ -29,7 +29,6 @@ public class GameUI : MonoBehaviour
     public void SetPlayer(PlayerNetworkControllerV2 localPlayerController)
     {
         _localPlayer = localPlayerController;
-        Debug.Log("**************" + _localPlayer.RepresentsPlayer.id);
         var players = PlayroomKit.GetPlayersOrNull();
         if (players == null)
         {
