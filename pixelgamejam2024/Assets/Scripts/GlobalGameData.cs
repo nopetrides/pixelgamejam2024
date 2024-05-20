@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GlobalGameData : MonoBehaviour
+public class GlobalGameData : Singleton<GlobalGameData>
 {
     [SerializeField] private PlayerCharactersData _playerDataOrigin;
 

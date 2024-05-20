@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +11,14 @@ public class DragonAnimationHandler : MonoBehaviour
     private int _previousDragonAge;
     private DragonNetworkController.FiniteDragonState _previousDragonState;
 
-    
+    private void Start()
+    {
+        if (_uiImage != null)
+        {
+            _uiImage.SetNativeSize();
+        }
+    }
+
     // Update is called once per frame
     private void LateUpdate()
     {

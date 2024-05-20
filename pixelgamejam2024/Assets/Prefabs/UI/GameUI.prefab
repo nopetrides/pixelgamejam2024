@@ -427,7 +427,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dragonNetworkController: {fileID: 0}
   _dragonAnimator: {fileID: 8503340687998473023}
-  _uiImage: {fileID: 4397762382942530890}
+  _uiImage: {fileID: 7313103225476223492}
 --- !u!114 &4397762382942530890
 MonoBehaviour:
   m_ObjectHideFlags: 0

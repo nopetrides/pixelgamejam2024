@@ -7,8 +7,11 @@ using UnityEngine;
 
 public class PlayerNetworkControllerV2 : MonoBehaviour
 {
+    [Header("MP items")] 
+    [SerializeField] private Collider _playerCollider;
     [SerializeField] private AdvancedWalkerController _controller;
     [SerializeField] private CharacterInput _inputHandler;
+    [SerializeField] private Mover _mover;
     [SerializeField] private GameObject _cameraRoot;
     [SerializeField] private PlayerTreasurePickup _treasurePickup;
     public PlayerTreasurePickup LocalPickupLogic => _treasurePickup;
@@ -36,14 +39,23 @@ public class PlayerNetworkControllerV2 : MonoBehaviour
         Debug.Log("[PlayerNetworkControllerV2] Setting up networked player controller");
         _playroomPlayer = player;
         _manager = manager;
-        var characterTypeState = player.GetState<int>(GameConstants.PlayerStateData.CharacterType.ToString());
-        var characterData = PlayerCharactersData.Characters[(GameConstants.CharacterTypes)characterTypeState];
-        if (characterData == null)
+        PlayerCharacterSO characterData;
+        if (!PlayroomKit.IsRunningInBrowser())
         {
-            Debug.LogError($"Failed to determine character for type {characterTypeState}");
-            return;
+            characterData = PlayerCharactersData.Characters[GameConstants.CharacterTypes.Alpha];
         }
-
+        else
+        {
+            var characterTypeState = player.GetState<int>(GameConstants.PlayerStateData.CharacterType.ToString());
+            characterData = PlayerCharactersData.Characters[(GameConstants.CharacterTypes)characterTypeState];
+            if (characterData == null)
+            {
+                Debug.LogError($"Failed to determine character for type {characterTypeState}");
+                return;
+            }
+        }
+        
+        
         bool isLocalPlayer = !PlayroomKit.IsRunningInBrowser() || _playroomPlayer == PlayroomKit.Me();
         SetAsPlayer(isLocalPlayer);
         SetAsCharacter(isLocalPlayer, characterData);
@@ -53,6 +65,10 @@ public class PlayerNetworkControllerV2 : MonoBehaviour
     {
         _positionSmoother.enabled = !isLocalPlayer;
         _cameraRoot.SetActive(isLocalPlayer);
+        _playerCollider.enabled = isLocalPlayer;
+        _inputHandler.enabled = isLocalPlayer;
+        _mover.enabled = isLocalPlayer;
+        
         SetMinimapRotation();
         if (!PlayroomKit.IsRunningInBrowser()) return;
         _playroomPlayer.OnQuit(RemovePlayer);
@@ -78,20 +94,6 @@ public class PlayerNetworkControllerV2 : MonoBehaviour
         Debug.Log($"{characterData.MoveSpeed}");
         _controller.baseSpeed = characterData.MoveSpeed;
         _treasurePickup.SetLimitAndThreshold(characterData.CarryCapacity);
-        /*
-        if (!isLocalPlayer)
-        {
-            //_highlight.highlighted = false;
-            //_playerSpriteRenderer.color = characterData.CharacterColor;
-        }
-        else
-        {
-            //_highlight.highlighted = true;
-            //_highlight.overlayColor = characterData.CharacterColor;
-        }
-        */
-        //_playerHealth.MaxHealth = characterData.Health;
-        // todo, other data driven fields - modify a different controller that handles player stats like hp and carrying.
     }
 
     public void Update()

@@ -2435,6 +2435,11 @@ PrefabInstance:
       objectReference: {fileID: 691524664}
     - target: {fileID: 4216733725197885004, guid: 17a246dc4d579c94aadeff60a0227d3e,
         type: 3}
+      propertyPath: _uiImage
+      value: 
+      objectReference: {fileID: 1295626804}
+    - target: {fileID: 4216733725197885004, guid: 17a246dc4d579c94aadeff60a0227d3e,
+        type: 3}
       propertyPath: _dragonNetworkController
       value: 
       objectReference: {fileID: 691524664}
@@ -2442,6 +2447,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerHud
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580696626439661977, guid: 17a246dc4d579c94aadeff60a0227d3e,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580696626439661977, guid: 17a246dc4d579c94aadeff60a0227d3e,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580696626439661977, guid: 17a246dc4d579c94aadeff60a0227d3e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5026380693648510325, guid: 17a246dc4d579c94aadeff60a0227d3e,
         type: 3}
@@ -2509,6 +2529,51 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6990392842717586195, guid: 17a246dc4d579c94aadeff60a0227d3e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7913885906363080078, guid: 17a246dc4d579c94aadeff60a0227d3e,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7913885906363080078, guid: 17a246dc4d579c94aadeff60a0227d3e,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7913885906363080078, guid: 17a246dc4d579c94aadeff60a0227d3e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187362791088288277, guid: 17a246dc4d579c94aadeff60a0227d3e,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187362791088288277, guid: 17a246dc4d579c94aadeff60a0227d3e,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187362791088288277, guid: 17a246dc4d579c94aadeff60a0227d3e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8423791065647669483, guid: 17a246dc4d579c94aadeff60a0227d3e,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8423791065647669483, guid: 17a246dc4d579c94aadeff60a0227d3e,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8423791065647669483, guid: 17a246dc4d579c94aadeff60a0227d3e,
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
@@ -20005,6 +20070,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 1
   m_TargetDisplay: 0
+--- !u!114 &1295626804 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7230543517115097057, guid: 17a246dc4d579c94aadeff60a0227d3e,
+    type: 3}
+  m_PrefabInstance: {fileID: 670718388}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1307355522
 GameObject:
   m_ObjectHideFlags: 0
@@ -26554,7 +26631,7 @@ PrefabInstance:
     - target: {fileID: 7562469404969545689, guid: 85fedfb6c46e2894a9cfbdad8144c921,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

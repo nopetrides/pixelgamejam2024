@@ -23,6 +23,7 @@ public class GameStateManager : MonoBehaviour
             var startPos = SpawnLocator[0].position;
             Vector3 direction = (DragonTurtleLocation.position - startPos).normalized;
             var newPlayerObject = Instantiate(PlayerPrefab, startPos, Quaternion.LookRotation(direction));
+            newPlayerObject.Setup(null, this);
             _gameUI.SetPlayer(newPlayerObject);
             TreasureManager.Instance.SetLocalPlayerPickup(newPlayerObject.LocalPickupLogic);
             return;

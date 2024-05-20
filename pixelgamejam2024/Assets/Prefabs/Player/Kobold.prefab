@@ -78,6 +78,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1661406962757023327, guid: 02db1269cd824a742a44596330eb0f28,
         type: 3}
+      propertyPath: _mover
+      value: 
+      objectReference: {fileID: 7905200838242309107}
+    - target: {fileID: 1661406962757023327, guid: 02db1269cd824a742a44596330eb0f28,
+        type: 3}
       propertyPath: _highlight
       value: 
       objectReference: {fileID: 0}
@@ -91,6 +96,11 @@ PrefabInstance:
       propertyPath: _primaryCamera
       value: 
       objectReference: {fileID: 7810903872525615759}
+    - target: {fileID: 1661406962757023327, guid: 02db1269cd824a742a44596330eb0f28,
+        type: 3}
+      propertyPath: _playerCollider
+      value: 
+      objectReference: {fileID: 7910185316057776629}
     - target: {fileID: 1661406962757023327, guid: 02db1269cd824a742a44596330eb0f28,
         type: 3}
       propertyPath: _treasurePickup
@@ -194,6 +204,24 @@ Camera:
 --- !u!20 &7810903872525615759 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 20228805629089024, guid: 02db1269cd824a742a44596330eb0f28,
+    type: 3}
+  m_PrefabInstance: {fileID: 7791854411941959567}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7905200838242309107 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114507584543769724, guid: 02db1269cd824a742a44596330eb0f28,
+    type: 3}
+  m_PrefabInstance: {fileID: 7791854411941959567}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d98ace8715c2a184ca85247b18eb0853, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!136 &7910185316057776629 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 136416336564639354, guid: 02db1269cd824a742a44596330eb0f28,
     type: 3}
   m_PrefabInstance: {fileID: 7791854411941959567}
   m_PrefabAsset: {fileID: 0}
