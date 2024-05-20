@@ -22,7 +22,7 @@ public class TreasureManager : MonoBehaviour
     
     public static TreasureManager Instance;
 
-    public PlayerTreasurePickup _localPlayer; //{ get; private set; }
+    public PlayerTreasurePickup _localPlayer { get; private set; }
 
     [SerializeField]
     private List<TreasureTypesSO> _treasureTypes;
@@ -45,7 +45,7 @@ public class TreasureManager : MonoBehaviour
 
     public bool AddTreasureToPlayer(int weight, Vector3 location)
     {
-        if (_localPlayer.GetWeight() + weight > _localPlayer.GetThreshold()) return false;
+        if (_localPlayer.GetWeight() + weight > _localPlayer.GetCarryLimit()) return false;
         _localPlayer.AddToWeight(weight, location);
         return true;
     } 

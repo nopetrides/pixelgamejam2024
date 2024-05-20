@@ -16,6 +16,7 @@ public class DragonFeeding : MonoBehaviour
     {
         //if is chewing return
         TreasureManager.Instance._localPlayer.DropTreasure();
+        Debug.Log($"Drop the Treasure");
         //build up chewing
     }
 }
