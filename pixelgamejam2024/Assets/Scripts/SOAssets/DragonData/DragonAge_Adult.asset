@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0bec00adbb139144a0334c531b6d7b0, type: 3}
+  m_Name: DragonAge_Adult
+  m_EditorClassIdentifier: 
+  _stats:
+  - {fileID: 11400000, guid: 7585d447b6042c84d8568031145fd07d, type: 2}
+  - {fileID: 11400000, guid: 5d4c74e0e23b4d5459717d9d39e26a8c, type: 2}
+  - {fileID: 11400000, guid: c7b31d03868ffce43af1ef4b29311c9f, type: 2}
+  - {fileID: 11400000, guid: 86b1324e96c157b4a883f9e62e47890c, type: 2}
+  _growthRequirement: 1500

@@ -587,7 +587,8 @@ MonoBehaviour:
   _mixer: {fileID: 24100000, guid: a3495b24786414349b31eccaba6dc915, type: 2}
   _musicSource: {fileID: 1817746692596521617}
   _sfxSource: {fileID: 3618093612464839236}
-  _reusableMusicClips: []
+  _reusableMusicClips:
+  - {fileID: 8300000, guid: 0392e5b7fa22f554ab3b53719d831077, type: 3}
   _reusableSoundClips: []
 --- !u!114 &2261904142477979083
 MonoBehaviour:
@@ -682,7 +683,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 3
+  m_ScaleFactor: 1
   m_ReferenceResolution: {x: 640, y: 360}
   m_ScreenMatchMode: 2
   m_MatchWidthOrHeight: 0.498

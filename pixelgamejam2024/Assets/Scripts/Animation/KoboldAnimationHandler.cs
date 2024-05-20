@@ -42,8 +42,7 @@ public class KoboldAnimationHandler : MonoBehaviour
         
         var xMove = Math.Round(Vector3.Dot(playerMovement, camRight), 2);
         var zMove =  Math.Round(Vector3.Dot(playerMovement, camForward), 2);
-        
-        
+
         _spriteRenderer.flipX = xMove < 0f;
         _animator.SetFloat("Horizontal", (float)xMove); // left or right of us
         _animator.SetFloat("Vertical", (float)zMove); // towards or away from us
@@ -52,11 +51,14 @@ public class KoboldAnimationHandler : MonoBehaviour
         bool isCarrying = false; // todo local player
         
         if (PlayroomKit.IsRunningInBrowser())
+        {
             isCarrying = _playerNetworkController.RepresentsPlayer.GetState<bool>(
                 GameConstants.PlayerStateData.IsCarrying.ToString());
-
+		}
+		
         if (!PlayroomKit.IsRunningInBrowser())
             isCarrying = _playerTreasurePickup.IsCarrying();
+        
         
         _animator.SetBool("Carrying", isCarrying); // carry state flag
         

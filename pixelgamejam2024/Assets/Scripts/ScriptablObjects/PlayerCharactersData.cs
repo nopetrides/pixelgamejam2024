@@ -15,9 +15,10 @@ public class PlayerCharactersData : ScriptableObject
         get => _characterTypes;
         private set => _characterTypes = value;
     }
-
+    
     private void Awake()
     {
+        if (!Application.isPlaying) return;
         _charactersDictionary = new();
         foreach(var c in _characterTypes) 
             _charactersDictionary.Add(c.CharacterType, c);
