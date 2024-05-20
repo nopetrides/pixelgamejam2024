@@ -84,6 +84,7 @@ GameObject:
   - component: {fileID: 114318903812174364}
   - component: {fileID: 1661406962757023327}
   - component: {fileID: 3203595007294424535}
+  - component: {fileID: 2118231393150171762}
   - component: {fileID: 7968271390307247071}
   m_Layer: 0
   m_Name: ThirdPersonWalker_C
@@ -200,6 +201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 4
+  baseSpeed: 0
   airControlRate: 2
   jumpSpeed: 3
   jumpDuration: 0.1
@@ -241,8 +243,8 @@ MonoBehaviour:
   _controller: {fileID: 114954128155224326}
   _inputHandler: {fileID: 114318903812174364}
   _cameraRoot: {fileID: 1383884771870452}
+  _treasurePickup: {fileID: 0}
   _sceneLoadDelay: 1
-  _highlight: {fileID: 8016777230968953158}
   _playerSpriteRenderer: {fileID: 1869321639488621889}
   _positionSmoother: {fileID: 114019615616029806}
 --- !u!114 &3203595007294424535
@@ -260,6 +262,20 @@ MonoBehaviour:
   lockCursorAtGameStart: 1
   unlockKeyCode: 27
   lockKeyCode: 323
+--- !u!114 &2118231393150171762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1186418702867920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08b3b6a7300ebfb4c9b0c0e84ff0fc59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _threshold: 0
+  _weightText: {fileID: 0}
 --- !u!95 &7968271390307247071
 Animator:
   serializedVersion: 5
@@ -812,7 +828,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   freezeXZAxis: 1
-  _cam: {fileID: 20228805629089024}
 --- !u!95 &3778229143312689839
 Animator:
   serializedVersion: 5
@@ -1020,7 +1035,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   freezeXZAxis: 1
-  _cam: {fileID: 0}
 --- !u!114 &8016777230968953158
 MonoBehaviour:
   m_ObjectHideFlags: 0

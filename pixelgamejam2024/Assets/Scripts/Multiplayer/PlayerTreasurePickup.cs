@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using CMF;
 using Multiplayer;
 using Playroom;
+using TMPro;
 using UnityEngine;
 
 public class PlayerTreasurePickup : MonoBehaviour
@@ -15,6 +16,9 @@ public class PlayerTreasurePickup : MonoBehaviour
     [SerializeField]
     private int _threshold = 30;
     private List<Vector3> _pickedUpTreasureCoordinates = new();
+
+    [SerializeField]
+    private TMP_Text _weightText;
     
     private void Awake()
     {
@@ -29,6 +33,7 @@ public class PlayerTreasurePickup : MonoBehaviour
         if (_carriedWeight >= _threshold) _carriedWeight = _threshold;
         if (_carriedWeight < 0) _carriedWeight = 0;
         _pickedUpTreasureCoordinates.Add(location);
+        Debug.Log($"{_carriedWeight.ToString()}");
         _controller.SetMoveSpeed(1 - ((float)_carriedWeight/(float)_threshold));
         if(PlayroomKit.IsRunningInBrowser() && _carriedWeight > _threshold) PlayroomKit.Me().SetState(GameConstants.PlayerStateData.IsCarrying.ToString(), true);
     }
@@ -50,5 +55,6 @@ public class PlayerTreasurePickup : MonoBehaviour
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Alpha1)) DropTreasure();
+        _weightText.text = _carriedWeight.ToString();
     }
 }

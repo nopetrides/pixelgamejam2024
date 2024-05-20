@@ -22,7 +22,7 @@ public class TreasureManager : MonoBehaviour
     
     public static TreasureManager Instance;
 
-    public PlayerTreasurePickup _localPlayer { get; private set; }
+    public PlayerTreasurePickup _localPlayer; //{ get; private set; }
 
     [SerializeField]
     private List<TreasureTypesSO> _treasureTypes;
