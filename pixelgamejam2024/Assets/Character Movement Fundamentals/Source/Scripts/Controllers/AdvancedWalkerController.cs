@@ -634,6 +634,7 @@ namespace CMF
 		{
 			movementSpeed = baseSpeed * _speedChange;
 			if(movementSpeed <= minSpeed) movementSpeed = minSpeed;
+			Debug.Log($"{movementSpeed}");
 		}
 	}
 }

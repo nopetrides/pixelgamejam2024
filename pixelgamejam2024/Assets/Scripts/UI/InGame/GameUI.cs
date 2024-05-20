@@ -13,6 +13,7 @@ public class GameUI : MonoBehaviour
     [SerializeField] private Slider[] _statVisuals;
     [SerializeField] private DragonNetworkController _dragonController;
     [SerializeField] private TMP_Text _dragonStateText;
+    [SerializeField] private TMP_Text _weightText;
     [FormerlySerializedAs("_portaits")] [SerializeField] private Image[] _portraits;
 
     [SerializeField] private RectTransform _minimap;
@@ -104,6 +105,8 @@ public class GameUI : MonoBehaviour
     private void Update()
     {
         MinimapIndicators();
+        _weightText.text = TreasureManager.Instance._localPlayer.GetWeight() + " / " +
+                           TreasureManager.Instance._localPlayer.GetCarryLimit();
     }
 
     private void MinimapIndicators()

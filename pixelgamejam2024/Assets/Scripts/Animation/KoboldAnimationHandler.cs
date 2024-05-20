@@ -9,6 +9,7 @@ public class KoboldAnimationHandler : MonoBehaviour
     [SerializeField] private SpriteRenderer _spriteRenderer;
 
     [SerializeField] private PlayerNetworkControllerV2 _playerNetworkController;
+    [SerializeField] private PlayerTreasurePickup _playerTreasurePickup; 
     
     private Camera _cam;
     private Vector3 _posLastFrame = Vector3.zero;
@@ -53,7 +54,11 @@ public class KoboldAnimationHandler : MonoBehaviour
         {
             isCarrying = _playerNetworkController.RepresentsPlayer.GetState<bool>(
                 GameConstants.PlayerStateData.IsCarrying.ToString());
-        }
+		}
+		
+        if (!PlayroomKit.IsRunningInBrowser())
+            isCarrying = _playerTreasurePickup.IsCarrying();
+        
         
         _animator.SetBool("Carrying", isCarrying); // carry state flag
         
