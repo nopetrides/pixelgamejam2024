@@ -44,6 +44,7 @@ public class GameStateManager : MonoBehaviour
             if (PlayroomKit.Me() == p)
             {
                 _gameUI.SetPlayer(newPlayerObject);
+                TreasureManager.Instance.SetLocalPlayerPickup(newPlayerObject.LocalPickupLogic);
             }
         }
 

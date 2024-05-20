@@ -19,9 +19,6 @@ public class PlayerTreasurePickup : MonoBehaviour
     private int _carryThreshold;
     
     private List<Vector3> _pickedUpTreasureCoordinates = new();
-
-    [SerializeField]
-    private TMP_Text _weightText;
     
     private void Awake()
     {
@@ -44,8 +41,8 @@ public class PlayerTreasurePickup : MonoBehaviour
     }
     
     public int GetWeight() => _carriedWeight;
-    public int GetThreshold() => _carryLimit;
-    public void SetThreshold(int capacity)
+    public int GetCarryLimit() => _carryLimit;
+    public void SetLimitAndThreshold(int capacity)
     {
         _carryLimit = capacity;
         _carryThreshold = _carryLimit / 2;
@@ -62,6 +59,7 @@ public class PlayerTreasurePickup : MonoBehaviour
         _carriedWeight = _baseWeight;
         _controller.SetMoveSpeed(1);
         if (PlayroomKit.IsRunningInBrowser()) PlayroomKit.Me().SetState(GameConstants.PlayerStateData.IsCarrying.ToString(), false);
+        Debug.Log($"Treasure Dropped");
     }
 
     public bool IsCarrying() => _carriedWeight >= _carryThreshold;
@@ -69,6 +67,5 @@ public class PlayerTreasurePickup : MonoBehaviour
     private void Update()
     {
         //if(Input.GetKeyDown(KeyCode.Alpha1)) Debug.Log($"Speed mod: {1 - (float)_carryThreshold/(float)_carryLimit}");
-        _weightText.text = _carriedWeight.ToString() + " / " + _carryLimit.ToString();
     }
 }

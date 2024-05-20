@@ -77,7 +77,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
+  m_ScaleFactor: 3
   m_ReferenceResolution: {x: 640, y: 360}
   m_ScreenMatchMode: 2
   m_MatchWidthOrHeight: 0.498
@@ -149,36 +149,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4310401764804682764, guid: bfbad79de6b41ba41a0ce151c87dc41e,
-        type: 3}
-      propertyPath: m_Pivot.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4310401764804682764, guid: bfbad79de6b41ba41a0ce151c87dc41e,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4310401764804682764, guid: bfbad79de6b41ba41a0ce151c87dc41e,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4310401764804682764, guid: bfbad79de6b41ba41a0ce151c87dc41e,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 34
-      objectReference: {fileID: 0}
-    - target: {fileID: 4310401764804682764, guid: bfbad79de6b41ba41a0ce151c87dc41e,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 43
-      objectReference: {fileID: 0}
-    - target: {fileID: 4310401764804682764, guid: bfbad79de6b41ba41a0ce151c87dc41e,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: 4964122625999437968, guid: bfbad79de6b41ba41a0ce151c87dc41e,
         type: 3}
@@ -290,17 +260,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7313103225476223492, guid: bfbad79de6b41ba41a0ce151c87dc41e,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -9142830020477327247, guid: 2169ac8b1ead37a47b9c2fd71d05995c,
-        type: 3}
-    - target: {fileID: 7313103225476223492, guid: bfbad79de6b41ba41a0ce151c87dc41e,
-        type: 3}
-      propertyPath: m_PreserveAspect
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8617099068192673293, guid: bfbad79de6b41ba41a0ce151c87dc41e,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -311,156 +270,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3705960644772967506, guid: bfbad79de6b41ba41a0ce151c87dc41e, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3333595451172467587, guid: bfbad79de6b41ba41a0ce151c87dc41e,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5189116096889414562}
-    - targetCorrespondingSourceObject: {fileID: 3333595451172467587, guid: bfbad79de6b41ba41a0ce151c87dc41e,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4792324941497395724}
-    - targetCorrespondingSourceObject: {fileID: 2763451486456709127, guid: bfbad79de6b41ba41a0ce151c87dc41e,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7633112514874305039}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfbad79de6b41ba41a0ce151c87dc41e, type: 3}
---- !u!1 &2845309431601106402 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2763451486456709127, guid: bfbad79de6b41ba41a0ce151c87dc41e,
-    type: 3}
-  m_PrefabInstance: {fileID: 82561941966425573}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &7633112514874305039
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2845309431601106402}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c088a2339bf4d264f84db121f0215b21, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!1 &3415451179623005798 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3333595451172467587, guid: bfbad79de6b41ba41a0ce151c87dc41e,
-    type: 3}
-  m_PrefabInstance: {fileID: 82561941966425573}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5189116096889414562
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3415451179623005798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdd0e978101afb94aa4c8edb4b34c145, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _dragonNetworkController: {fileID: 0}
-  _dragonAnimator: {fileID: 7633112514874305039}
-  _uiImage: {fileID: 0}
---- !u!114 &4792324941497395724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3415451179623005798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a132ebb16d23354b841b6618f4fa0e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 693e6385dbc5a424c8bcc27a7ca81333, type: 2}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 1488254694502697627, guid: 4b5ce4fab3ba2514c80d9e0f6a1dd2aa,
-    type: 3}
-  m_Type: 2
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 0.5
-  colorMode: 0
-  secondColor: {r: 1, g: 1, b: 1, a: 1}
-  materialProperties:
-    FloatProperties:
-    - Name: Hue
-      Value: 0.65
-      PropertyMap: 0
-      Min: 0
-      Max: 1
-    - Name: Saturation
-      Value: 0.3
-      PropertyMap: 1
-      Min: 0
-      Max: 0
-    - Name: Brightness
-      Value: 0.3
-      PropertyMap: 2
-      Min: 0
-      Max: 0
-  materialType: Hue Saturation Brightness
-  materialEffect: 0
-  materialProperty1: 0.65
-  materialProperty2: 0.3
-  materialProperty3: 0.3
-  keepBorderAspectRatio: 0
-  spriteBorderScaleFallback:
-    screenConfigName: 
-    OptimizedSize: {x: 1, y: 1}
-    MinSize: {x: 0, y: 0}
-    MaxSize: {x: 3, y: 3}
-    UseMinSize: 0
-    UseMaxSize: 0
-    ModX:
-      ExponentialScale: 1
-      SizeModifiers:
-      - Mode: 0
-        Impact: 1
-    ModY:
-      ExponentialScale: 1
-      SizeModifiers:
-      - Mode: 0
-        Impact: 1
-  customBorderScales:
-    items: []
-  fallbackSpriteSettings:
-    Sprite: {fileID: 1488254694502697627, guid: 4b5ce4fab3ba2514c80d9e0f6a1dd2aa,
-      type: 3}
-    ColorMode: 0
-    PrimaryColor: {r: 1, g: 1, b: 1, a: 1}
-    SecondaryColor: {r: 1, g: 1, b: 1, a: 1}
-    screenConfigName: 
-  customSpriteSettings:
-    items: []
 --- !u!224 &6345751434014613436 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6428311124872909401, guid: bfbad79de6b41ba41a0ce151c87dc41e,
