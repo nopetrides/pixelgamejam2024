@@ -1,10 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using CMF;
 using Multiplayer;
 using Playroom;
-using TMPro;
 using UnityEngine;
 
 public class PlayerTreasurePickup : MonoBehaviour
@@ -51,7 +47,6 @@ public class PlayerTreasurePickup : MonoBehaviour
             PoolSystem.Instance.Spawn("Treasure", VARIABLE);
         }*/
         int carried = _carriedWeight;
-        _pickedUpTreasureCoordinates.Clear();
         _carriedWeight = _baseWeight;
         _controller.SetMoveSpeed(1);
         if (PlayroomKit.IsRunningInBrowser()) PlayroomKit.Me().SetState(GameConstants.PlayerStateData.IsCarrying.ToString(), false);
