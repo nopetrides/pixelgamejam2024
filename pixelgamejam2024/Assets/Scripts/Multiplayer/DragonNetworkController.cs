@@ -17,6 +17,7 @@ public class DragonNetworkController : MonoBehaviour
 
     private ConcurrentDictionary<string, int> _currentDragonChange = new();
     private Dictionary<string, int> _networkedDragonData = new();
+    private Dictionary<string, int> _networkedDragonOther = new();
 
     private bool _initialized; // host only, client wait for state
     private const string DragonReady = "DragonReady";
@@ -55,6 +56,9 @@ public class DragonNetworkController : MonoBehaviour
         _networkedDragonData.Add(TemperStat.ToString(), 0);
         _networkedDragonData.Add(EnergyStat.ToString(), 0);
         _networkedDragonData.Add(ChewingStat.ToString(), 0);
+        _networkedDragonOther.Add(GameConstants.OtherDragonData.Age.ToString(), 0);
+        _networkedDragonOther.Add(GameConstants.OtherDragonData.Growth.ToString(), 0);
+        _networkedDragonOther.Add(GameConstants.OtherDragonData.Health.ToString(), 0);
     }
 
     /// <summary>
@@ -99,9 +103,16 @@ public class DragonNetworkController : MonoBehaviour
         }
 
         _networkedDragonData = PlayroomKit.GetStateDict<int>(nameof(_networkedDragonData));
+        _networkedDragonOther = PlayroomKit.GetStateDict<int>(nameof(_networkedDragonOther));
         ApplyDragonDataFromNetwork();
         UpdateDragonFiniteStateMachine();
         InformListeners();
+
+        if (_dragonStats.Health <= 0)
+        {
+            _initialized = false;
+            LoadingManager.Instance.LoadScene("GameOverScene");
+        }
     }
 
     private void ApplyDragonDataFromNetwork()
@@ -113,7 +124,12 @@ public class DragonNetworkController : MonoBehaviour
             var updated = _networkedDragonData[kvp.Key];
             stat.Current = updated;
             stat.ChangeThisFrame = updated - lastValue;
+            _dragonStats.CurrentAgeData.CurrentStats[kvp.Key] = stat;
         }
+
+        _dragonStats.Age = _networkedDragonOther[GameConstants.OtherDragonData.Age.ToString()];
+        _dragonStats.Growth = _networkedDragonOther[GameConstants.OtherDragonData.Growth.ToString()];
+        _dragonStats.Health = _networkedDragonOther[GameConstants.OtherDragonData.Health.ToString()];
     }
 
     private void WaitForDragonReadyStateCallback(string callbackOrigin)
@@ -175,8 +191,12 @@ public class DragonNetworkController : MonoBehaviour
             _networkedDragonData[key] = dragonStatus;
         }
 
-        PlayroomKit.SetState(nameof(_networkedDragonData), _networkedDragonData, true);
-        
+        PlayroomKit.SetState(nameof(_networkedDragonData), _networkedDragonData);
+
+        _networkedDragonOther[GameConstants.OtherDragonData.Age.ToString()] = _dragonStats.Age;
+        _networkedDragonOther[GameConstants.OtherDragonData.Growth.ToString()] = _dragonStats.Growth;
+        _networkedDragonOther[GameConstants.OtherDragonData.Health.ToString()] = _dragonStats.Health;
+        PlayroomKit.SetState(nameof(_networkedDragonOther), _networkedDragonOther, true);
     }
     
 
@@ -241,8 +261,10 @@ public class DragonNetworkController : MonoBehaviour
             case FiniteDragonState.Eating:
                 // Chewing --
                 // Heat ++
+                // Cranky --
                 _currentDragonChange[ChewingStat.ToString()]--;
                 _currentDragonChange[HeatStat.ToString()] += 5;
+                _currentDragonChange[TemperStat.ToString()]--;
                 break;
             case FiniteDragonState.Idle:
                 // Cranky ++
@@ -388,35 +410,6 @@ public class DragonNetworkController : MonoBehaviour
     private bool IsStatMaxed(GameConstants.DragonStats stat)
     {
         return _dragonStats.CurrentAgeData.CurrentStats[stat.ToString()].Current >= _dragonStats.CurrentAgeData.CurrentStats[stat.ToString()].Max;
-    }
-
-    private void OnDragonIdle()
-    {
-        
-    }
-
-    private void OnTiredMax()
-    {
-        // Enter Sleep State
-        // Won't eat
-    }
-
-    private void OnHeatMax()
-    {
-        // Enter Flaming State
-        // Won't eat
-    }
-
-    private void OnChewingMax()
-    {
-        // Heat Rapidly Increases
-        // Won't eat
-    }
-
-    private void OnCrankyMax()
-    {
-        // Spills treasure?
-        // Won't eat
     }
 
 #endregion

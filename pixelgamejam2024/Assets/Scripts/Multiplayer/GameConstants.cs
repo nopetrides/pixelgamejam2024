@@ -38,6 +38,13 @@ namespace Multiplayer
             Energy = 4,
             Chewing = 8, 
         }
+        
+        public enum OtherDragonData
+        {
+            Age = 1,
+            Growth = 2,
+            Health = 3,
+        }
     }
     public static class Extensions
     {
