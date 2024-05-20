@@ -30,6 +30,7 @@ public class GameUI : MonoBehaviour
     public void SetPlayer(PlayerNetworkControllerV2 localPlayerController)
     {
         _localPlayer = localPlayerController;
+        _cam = _localPlayer.MainPlayerCamera;
         var players = PlayroomKit.GetPlayersOrNull();
         if (players == null)
         {
@@ -42,6 +43,7 @@ public class GameUI : MonoBehaviour
 
     private void SetupPortrait(PlayerNetworkControllerV2 mockLocalPlayer)
     {
+        _cam = mockLocalPlayer.MainPlayerCamera;
         for (var i = 0; i < _portaits.Length; i++)
         {
             var image = _portaits[i];
@@ -89,14 +91,16 @@ public class GameUI : MonoBehaviour
         _statusSliders.Add(GameConstants.DragonStats.Chewing.ToString(), _statVisuals[3]);
     }
 
-    private void DragonStatusRefresh(ConcurrentDictionary<string, DragonNetworkController.DragonStatus> dragonData)
+    private void DragonStatusRefresh(DragonData dragonData)
     {
-        foreach (var kvp in dragonData)
+        foreach (var kvp in dragonData.CurrentAgeData.CurrentStats)
         {
             _statusSliders[kvp.Key].value = (float)kvp.Value.Current / kvp.Value.Max;
         }
+
+        var state = _dragonController.DragonState;
         
-        _dragonStateText.text = _dragonController.DragonStateDebug;
+        _dragonStateText.text = state != DragonNetworkController.FiniteDragonState.Idle ? _dragonController.DragonState.ToString() : "Normal";
     }
 
     private void Update()
@@ -108,11 +112,27 @@ public class GameUI : MonoBehaviour
     {
         if (_localPlayer == null) return;
         
-        // dragon direction indicator
-        Vector3 playerPosition = _localPlayer.transform.position;
+        DragonDirectionIndicator();
+
+        FacingDirectionIndicator();
+    }
+
+    /// <summary>
+    /// Direction to Dragon indicator
+    /// </summary>
+    private void DragonDirectionIndicator()
+    {
+        Vector3 playerPosition;
+        if (!PlayroomKit.IsRunningInBrowser())
+            playerPosition = _localPlayer.transform.position;
+        else
+        {
+            playerPosition = PlayroomKit.Me().GetState<Vector3>(GameConstants.PlayerStateData.Position.ToString());
+        }
+
         var dPos = _dragonController.transform.position;
-        
-        Vector2 dirToDragon = new Vector2(playerPosition.x - dPos.x ,playerPosition.z - dPos.z);
+
+        Vector2 dirToDragon = new Vector2(playerPosition.x - dPos.x, playerPosition.z - dPos.z);
         Vector2 dragonDirNormal = dirToDragon.normalized;
 
         var rect = _minimap.rect;
@@ -121,26 +141,23 @@ public class GameUI : MonoBehaviour
         float mapWidth = minimapSize.x / 2;
         float mapHeight = minimapSize.y / 2;
 
-        
         float scale = Mathf.Min(mapWidth / Mathf.Abs(dragonDirNormal.x), mapHeight / Mathf.Abs(dragonDirNormal.y));
         Vector2 edgePosition = minimapCenter + dragonDirNormal * scale;
-        
+
         edgePosition.x = Mathf.Clamp(edgePosition.x, -minimapSize.x, minimapSize.x / 2);
         edgePosition.y = Mathf.Clamp(edgePosition.y, -minimapSize.y / 2, minimapSize.y);
 
         _minimapDragonIndicator.transform.localPosition = edgePosition;
         _minimapDragonIndicator.transform.up = dirToDragon;
-        
-        // facing indicator
-        if (_cam == null)
-            try
-            {
-                _cam = Camera.main;
-            }
-            catch
-            {
-                Debug.LogWarning("Camera not yet ready");
-            }
+    }
+    
+    /// <summary>
+    ///     Facing Indicator
+    /// </summary>
+    private void FacingDirectionIndicator()
+    {
+        if (_cam == null) return;
+
         var camForward = _cam.transform.forward;
         Vector2 cameraForward2D = new Vector2(camForward.x, camForward.z).normalized;
         Vector2 northDirection = Vector2.down;

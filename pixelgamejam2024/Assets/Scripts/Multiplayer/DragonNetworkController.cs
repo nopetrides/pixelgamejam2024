@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Linq;
 using Multiplayer;
 using Playroom;
 using UnityEngine;
@@ -12,20 +11,11 @@ using UnityEngine;
 /// </summary>
 public class DragonNetworkController : MonoBehaviour
 {
-    [Serializable]
-    public class DragonStatus
-    {
-        public GameConstants.DragonStats Stat;
-        public int Max;
-        [NonSerialized] public int Current;
-        [NonSerialized] public int ChangeThisFrame;
-    }
+    [SerializeField] private DragonData _dragonStats;
 
-    [SerializeField] private DragonStatus[] DragonStats;
+    public Action<DragonData> OnDragonDataRefresh;
 
-    public Action<ConcurrentDictionary<string, DragonStatus>> OnDragonDataRefresh;
-
-    private ConcurrentDictionary<string, DragonStatus> _currentDragonStatus = new();
+    private ConcurrentDictionary<string, int> _currentDragonChange = new();
     private Dictionary<string, int> _networkedDragonData = new();
 
     private bool _initialized; // host only, client wait for state
@@ -38,7 +28,7 @@ public class DragonNetworkController : MonoBehaviour
 
     private void Awake()
     {
-        InitializeDragonStatusDict();
+        InitializeDragonStats();
         
         if (!PlayroomKit.IsRunningInBrowser() || PlayroomKit.IsHost())
         {
@@ -50,17 +40,15 @@ public class DragonNetworkController : MonoBehaviour
         PlayroomKit.WaitForState(DragonReady, WaitForDragonReadyStateCallback);
     }
 
-    private void InitializeDragonStatusDict()
+    private void InitializeDragonStats()
     {
-        var heatStat = DragonStats.FirstOrDefault(stat => stat.Stat == HeatStat);
-        var temperStat = DragonStats.FirstOrDefault(stat => stat.Stat == TemperStat);
-        var energyStat = DragonStats.FirstOrDefault(stat => stat.Stat == EnergyStat);
-        var chewingStat = DragonStats.FirstOrDefault(stat => stat.Stat == ChewingStat);
-
-        _currentDragonStatus.TryAdd(HeatStat.ToString(), heatStat);
-        _currentDragonStatus.TryAdd(TemperStat.ToString(), temperStat);
-        _currentDragonStatus.TryAdd(EnergyStat.ToString(), energyStat);
-        _currentDragonStatus.TryAdd(ChewingStat.ToString(), chewingStat);
+        foreach(var age in _dragonStats.DragonAges)
+            age.SetupStats();
+        
+        _currentDragonChange.TryAdd(HeatStat.ToString(), 0);
+        _currentDragonChange.TryAdd(TemperStat.ToString(), 0);
+        _currentDragonChange.TryAdd(EnergyStat.ToString(), 0);
+        _currentDragonChange.TryAdd(ChewingStat.ToString(), 0);
         
         _networkedDragonData.Add(HeatStat.ToString(), 0);
         _networkedDragonData.Add(TemperStat.ToString(), 0);
@@ -68,8 +56,10 @@ public class DragonNetworkController : MonoBehaviour
         _networkedDragonData.Add(ChewingStat.ToString(), 0);
     }
 
-    // Update is called once per frame
-    private void Update()
+    /// <summary>
+    ///     Fixed Update so the dragon stat rises more consistently
+    /// </summary>
+    private void FixedUpdate()
     {
         if (!PlayroomKit.IsRunningInBrowser())
             MockDragon();
@@ -90,7 +80,7 @@ public class DragonNetworkController : MonoBehaviour
         else
             GetDragonState();
     }
-    
+
     private void InitComplete()
     {
         Debug.Log("Init Complete");
@@ -114,21 +104,13 @@ public class DragonNetworkController : MonoBehaviour
 
     private void ApplyDragonDataFromNetwork()
     {
-        if (_currentDragonStatus.Count != _networkedDragonData.Count)
+        foreach (var kvp in _networkedDragonData)
         {
-            Debug.LogError("[ApplyDragonDataFromNetwork] Mismatched data");
-            return;
-        }
-
-        foreach (var kvp in _currentDragonStatus)
-        {
-            var original = _currentDragonStatus[kvp.Key];
-            var copy = _currentDragonStatus[kvp.Key];
-            var lastValue = _currentDragonStatus[kvp.Key].Current;
+            var stat = _dragonStats.CurrentAgeData.CurrentStats[kvp.Key];
+            var lastValue = stat.Current;
             var updated = _networkedDragonData[kvp.Key];
-            copy.Current = updated;
-            copy.ChangeThisFrame = updated - lastValue;
-            _currentDragonStatus.TryUpdate(kvp.Key, copy, original);
+            stat.Current = updated;
+            stat.ChangeThisFrame = updated - lastValue;
         }
     }
 
@@ -152,7 +134,7 @@ public class DragonNetworkController : MonoBehaviour
 
     private void InformListeners()
     {
-        OnDragonDataRefresh?.Invoke(_currentDragonStatus);
+        OnDragonDataRefresh?.Invoke(_dragonStats);
     }
 
 #endregion
@@ -180,15 +162,15 @@ public class DragonNetworkController : MonoBehaviour
 
     private void SendDragonStatusToNetwork()
     {
-        if (_currentDragonStatus.Count != _networkedDragonData.Count)
+        if (_currentDragonChange.Count != _networkedDragonData.Count)
         {
             Debug.LogError("[SendDragonStatusToNetwork] Mismatched data");
             return;
         }
         
-        foreach (var (key, dragonStatus) in _currentDragonStatus)
+        foreach (var (key, dragonStatus) in _currentDragonChange)
         {
-            _networkedDragonData[key] = dragonStatus.Current;
+            _networkedDragonData[key] = dragonStatus;
         }
 
         PlayroomKit.SetState(nameof(_networkedDragonData), _networkedDragonData, true);
@@ -204,11 +186,14 @@ public class DragonNetworkController : MonoBehaviour
         // calculate automatic change based on state
         ModifyStatusBasedOnState();
 
-        foreach (var stat in _currentDragonStatus)
+        // host modifies the authoritative version of the stats
+        foreach (var stat in _currentDragonChange)
         {
-            int change = stat.Value.ChangeThisFrame;
-            stat.Value.Current = Mathf.Clamp(stat.Value.Current + change, 0, stat.Value.Max);
-            stat.Value.ChangeThisFrame = 0;
+            _dragonStats.CurrentAgeData.CurrentStats[stat.Key].ChangeThisFrame = stat.Value;
+            int current = _dragonStats.CurrentAgeData.CurrentStats[stat.Key].Current;
+            int max = _dragonStats.CurrentAgeData.CurrentStats[stat.Key].Max;
+            _dragonStats.CurrentAgeData.CurrentStats[stat.Key].Current = Mathf.Clamp(current + stat.Value, 0, max);
+            _currentDragonChange[stat.Key] = 0;
         }
     }
 
@@ -219,30 +204,32 @@ public class DragonNetworkController : MonoBehaviour
             case FiniteDragonState.Overheated:
                 // Tired ++
                 // Cranky ++
-                _currentDragonStatus[EnergyStat.ToString()].ChangeThisFrame++;
-                _currentDragonStatus[TemperStat.ToString()].ChangeThisFrame++;
+                _currentDragonChange[EnergyStat.ToString()]++;
+                _currentDragonChange[TemperStat.ToString()]++;
                 break;
             case FiniteDragonState.Cranky:
                 // Tired ++
-                _currentDragonStatus[EnergyStat.ToString()].ChangeThisFrame++;
+                _currentDragonChange[EnergyStat.ToString()]++;
                 break;
             case FiniteDragonState.Sleeping:
                 // Cranky ++
-                _currentDragonStatus[TemperStat.ToString()].ChangeThisFrame++;
+                _currentDragonChange[TemperStat.ToString()]++;
                 break;
             case FiniteDragonState.Chewing:
-                // Heat ++
+                // Heat ++++
                 // Tired ++
-                _currentDragonStatus[TemperStat.ToString()].ChangeThisFrame++;
-                _currentDragonStatus[EnergyStat.ToString()].ChangeThisFrame++;
+                _currentDragonChange[HeatStat.ToString()] += 2;
+                _currentDragonChange[EnergyStat.ToString()]++;
                 break;
             case FiniteDragonState.Eating:
-                // Chewing ++
-                _currentDragonStatus[ChewingStat.ToString()].ChangeThisFrame++;
+                // Chewing ++++
+                // Heat ++
+                _currentDragonChange[ChewingStat.ToString()] += 2;
+                _currentDragonChange[HeatStat.ToString()]++;
                 break;
             case FiniteDragonState.Idle:
                 // Cranky ++
-                _currentDragonStatus[TemperStat.ToString()].ChangeThisFrame++;
+                _currentDragonChange[TemperStat.ToString()]++;
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
@@ -263,23 +250,24 @@ public class DragonNetworkController : MonoBehaviour
             return false;
         }
 
-        bool hasEffect = stationDataAffectValue > 0 && _currentDragonStatus[stat].Current > 0;
+        Debug.Log("[OnDragonStationUsed] thead safe?");
+        bool hasEffect = stationDataAffectValue > 0 && _dragonStats.CurrentAgeData.CurrentStats[stat].Current > 0;
 
         // Need to always set the state if that station will effect the dragon
         if (PlayroomKit.IsRunningInBrowser())
             PlayroomKit.SetState(stat, hasEffect, true);
 
-        _currentDragonStatus[stat].ChangeThisFrame -= stationDataAffectValue;
+        _currentDragonChange[stat] -= stationDataAffectValue;
 
         if (!hasEffect) return false;
         
         if (stat != TemperStat.ToString())
         {
             // if not Temper, Cranky ++
-            _currentDragonStatus[TemperStat.ToString()].ChangeThisFrame++;
+            _currentDragonChange[TemperStat.ToString()]++;
         }
 
-        return hasEffect;
+        return true;
     }
 
 
@@ -293,7 +281,7 @@ public class DragonNetworkController : MonoBehaviour
     ///         Highest
     ///     e.g. if the dragon can eat, it will, otherwise it is idle
     /// </summary>
-    private enum FiniteDragonState
+    public enum FiniteDragonState
     {
         Idle = 0,
         Eating = 1,
@@ -305,35 +293,51 @@ public class DragonNetworkController : MonoBehaviour
 
     private FiniteDragonState _dragonAnimationState = FiniteDragonState.Idle;
 
-    public string DragonStateDebug => _dragonAnimationState.ToString();
+    public FiniteDragonState DragonState => _dragonAnimationState;
 
     private void UpdateDragonFiniteStateMachine()
     {
+        if (_dragonAnimationState == FiniteDragonState.Overheated)
+        {
+            if (!IsStatZeroed(HeatStat)) return;
+        }
         if (IsStatMaxed(HeatStat))
         {
             _dragonAnimationState = FiniteDragonState.Overheated;
             return;
         }
-
-        if (IsStatMaxed(GameConstants.DragonStats.Temper))
+        
+        if (_dragonAnimationState == FiniteDragonState.Cranky)
+        {
+            if (!IsStatZeroed(TemperStat)) return;
+        }
+        if (IsStatMaxed(TemperStat))
         {
             _dragonAnimationState = FiniteDragonState.Cranky;
             return;
         }
 
-        if (IsStatMaxed(GameConstants.DragonStats.Energy))
+        if (_dragonAnimationState == FiniteDragonState.Sleeping)
+        {
+            if (!IsStatZeroed(EnergyStat)) return;
+        }
+        if (IsStatMaxed(EnergyStat))
         {
             _dragonAnimationState = FiniteDragonState.Sleeping;
             return;
         }
 
-        if (IsStatMaxed(GameConstants.DragonStats.Chewing))
+        if (_dragonAnimationState == FiniteDragonState.Chewing)
+        {
+            if (!IsStatZeroed(ChewingStat)) return;
+        }
+        if (IsStatMaxed(ChewingStat))
         {
             _dragonAnimationState = FiniteDragonState.Chewing;
             return;
         }
 
-        if (false) // todo food check
+        if (_dragonStats.CurrentAgeData.CurrentStats[ChewingStat.ToString()].Current > 0)
         {
             _dragonAnimationState = FiniteDragonState.Eating;
             return;
@@ -342,9 +346,19 @@ public class DragonNetworkController : MonoBehaviour
         _dragonAnimationState = FiniteDragonState.Idle;
     }
 
+    /// <summary>
+    ///     A stat must return to zero after being maxed
+    /// </summary>
+    /// <param name="stat"></param>
+    /// <returns></returns>
+    private bool IsStatZeroed(GameConstants.DragonStats stat)
+    {
+        return _dragonStats.CurrentAgeData.CurrentStats[stat.ToString()].Current <= 0;
+    }
+    
     private bool IsStatMaxed(GameConstants.DragonStats stat)
     {
-        return _currentDragonStatus[stat.ToString()].Current >= _currentDragonStatus[stat.ToString()].Max;
+        return _dragonStats.CurrentAgeData.CurrentStats[stat.ToString()].Current >= _dragonStats.CurrentAgeData.CurrentStats[stat.ToString()].Max;
     }
 
     private void OnDragonEat()

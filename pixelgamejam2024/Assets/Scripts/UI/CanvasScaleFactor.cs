@@ -34,7 +34,7 @@ public class CanvasScaleFactor : MonoBehaviour
 
     private void Update()
     {
-        if (Math.Abs(_previousWidth - Screen.width) > 1 && Math.Abs(_previousHeight - Screen.height) > 1)
+        if (Math.Abs(_previousWidth - Screen.width) > 1 || Math.Abs(_previousHeight - Screen.height) > 1)
             UpdateScale();
     }
 
@@ -43,7 +43,7 @@ public class CanvasScaleFactor : MonoBehaviour
         _previousWidth = Screen.width;
         _previousHeight = Screen.height;
 
-        float scaleFactor = Mathf.Min(_previousWidth / _referenceWidth, _previousWidth / _referenceHeight);
+        float scaleFactor = Mathf.Min(_previousWidth / _referenceWidth, _previousHeight / _referenceHeight);
         _canvasScaler.scaleFactor = Mathf.Max(1f, Mathf.FloorToInt(scaleFactor));
         Debug.Log($"{_previousHeight} / {_referenceWidth} x {_previousHeight} / {_referenceHeight} scale {scaleFactor}");
     }

@@ -1,7 +1,6 @@
 using System;
 using AOT;
 using CMF;
-using HighlightPlus;
 using Multiplayer;
 using Playroom;
 using UnityEngine;
@@ -19,6 +18,9 @@ public class PlayerNetworkControllerV2 : MonoBehaviour
     //[SerializeField] private HighlightEffect _highlight;
     [SerializeField] private SpriteRenderer _playerSpriteRenderer;
     [SerializeField] private SmoothPosition _positionSmoother;
+    [SerializeField] private Camera _primaryCamera;
+    public Camera MainPlayerCamera => _primaryCamera;
+    [SerializeField] private Camera _minimapCamera;
 
     // todo, player controller that handles the other game mechanics
     
@@ -99,6 +101,13 @@ public class PlayerNetworkControllerV2 : MonoBehaviour
         {
             // we are this player
             _playroomPlayer.SetState(GameConstants.PlayerStateData.Position.ToString(), transform.position);
+
+            float scaleFactor = Mathf.Min(Screen.width / 640, Screen.height / 360);
+            
+            // Set the camera's viewport rect to position it in the bottom right corner
+            float normalizedWidth = (100f * Mathf.Max(1f, Mathf.FloorToInt(scaleFactor))) / Screen.width;
+            float normalizedHeight = (100f * Mathf.Max(1f, Mathf.FloorToInt(scaleFactor))) / Screen.height;
+            _minimapCamera.rect = new Rect(1 - normalizedWidth, 0, normalizedWidth, normalizedHeight);
             return;
         }
 

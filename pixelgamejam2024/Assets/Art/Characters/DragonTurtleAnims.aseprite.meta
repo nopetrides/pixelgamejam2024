@@ -1,0 +1,1525 @@
+fileFormatVersion: 2
+guid: 2169ac8b1ead37a47b9c2fd71d05995c
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
+    isReadable: 0
+    streamingMipmaps: 0
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMipmapLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 0
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  previousAsepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 0
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  asepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 0
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 638517579787319704
+  textureAssetName: 
+  singleSpriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  animatedSpriteImportData:
+  - name: Idle_Baby_1
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 276
+      y: 841
+      width: 34
+      height: 43
+    spriteID: 44904b719982b0244ae81edf3994a145
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 276, y: 841}
+  - name: Idle_Baby_2
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 328
+      y: 633
+      width: 34
+      height: 39
+    spriteID: 06b70c11453a21e448bc74991a3a67ab
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 328, y: 633}
+  - name: Eating_Baby_1
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 276
+      y: 737
+      width: 34
+      height: 44
+    spriteID: a24852c0e3d342149aabe5e298b313e6
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 276, y: 737}
+  - name: Eating_Baby_2
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 276
+      y: 892
+      width: 34
+      height: 42
+    spriteID: 68b0ee65671ebc048aee56eb23f1bd02
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 276, y: 892}
+  - name: Overheated_Baby_1
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 276
+      y: 789
+      width: 34
+      height: 44
+    spriteID: 816d75057bb07c948aa2fb51900333ac
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 276, y: 789}
+  - name: Overheated_Baby_2
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 276
+      y: 942
+      width: 34
+      height: 42
+    spriteID: 7a25c536b9cf2f946a9f57c1c91e0f92
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 276, y: 942}
+  - name: Cranky_Baby_1
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 276
+      y: 584
+      width: 44
+      height: 43
+    spriteID: 36f078ae8c644aa4f99cde6184be7522
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 276, y: 584}
+  - name: Cranky_Baby_2
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 276
+      y: 635
+      width: 44
+      height: 43
+    spriteID: d195ace3a9ab21645bf4ec87b3c23b77
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 276, y: 635}
+  - name: Tired_Baby_1
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 276
+      y: 992
+      width: 32
+      height: 27
+    spriteID: 1858df28590d0ae42b993c5fc213f6ef
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 276, y: 992}
+  - name: Tired_Baby_2
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 140
+      y: 983
+      width: 32
+      height: 25
+    spriteID: 49660aef03582ee409783b40135c720b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 140, y: 983}
+  - name: Chewing_Baby_1
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 276
+      y: 686
+      width: 38
+      height: 43
+    spriteID: 46b296013400d8d428e52428a778befc
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 276, y: 686}
+  - name: Chewing_Baby_1 Copy
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 328
+      y: 584
+      width: 34
+      height: 41
+    spriteID: e3a081d186469254a9159980ea38df76
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 328, y: 584}
+  - name: Idle_Juvenile_1
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 276
+      y: 192
+      width: 96
+      height: 82
+    spriteID: ba9682a11dc0bb242b6dd463cdc45135
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 276, y: 192}
+  - name: Idle_Juvenile_2
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 276
+      y: 282
+      width: 96
+      height: 80
+    spriteID: 704a8b99493b1fb418ab900c90dba969
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 276, y: 282}
+  - name: Eating_Juvenile_1
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 140
+      y: 791
+      width: 96
+      height: 88
+    spriteID: 1b874ceda9aad484e8b65d7a19182b30
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 140, y: 791}
+  - name: Eating_Juvenile_2
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 276
+      y: 4
+      width: 96
+      height: 86
+    spriteID: f4bcc70f648d7e947814098cd2d2a0d1
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 276, y: 4}
+  - name: Overheated_Juvenile_1
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 140
+      y: 887
+      width: 96
+      height: 88
+    spriteID: bdb312868b963bd41b7efefc5935edfa
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 140, y: 887}
+  - name: Overheated_Juvenile_2
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 276
+      y: 98
+      width: 96
+      height: 86
+    spriteID: 62e437bd1b6a99f419dd76e02fd9d480
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 276, y: 98}
+  - name: Cranky_Juvenile_1
+    originalName: 
+    pivot: {x: 0.48214287, y: 0.114583336}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 140
+      y: 583
+      width: 112
+      height: 96
+    spriteID: 72d15b3fdf8ad7746904524938c95477
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 140, y: 583}
+  - name: Cranky_Juvenile_2
+    originalName: 
+    pivot: {x: 0.4774775, y: 0.114583336}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 140
+      y: 687
+      width: 111
+      height: 96
+    spriteID: 465f3980131053b449ed99de9030c0c7
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 140, y: 687}
+  - name: Tired_Juvenile_1
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 276
+      y: 448
+      width: 96
+      height: 62
+    spriteID: 5655b8e1357659b4aa73a87d3155bbf1
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 276, y: 448}
+  - name: Tired_Juvenile_1 Copy
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 276
+      y: 518
+      width: 96
+      height: 58
+    spriteID: 07e209f56531f4247bbb4b563c79f6cd
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 276, y: 518}
+  - name: Chewing_Juvenile_1
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 276
+      y: 370
+      width: 96
+      height: 70
+    spriteID: 924883eba6114544e8b22d67ebc7e948
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 276, y: 370}
+  - name: Chewing_Juvenile_2
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 944
+      width: 96
+      height: 74
+    spriteID: 809c79ddb4e4fa1409fb8131c7eb1d14
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 944}
+  - name: Idle_Adult_1
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 548
+      width: 128
+      height: 124
+    spriteID: 439f8f710cf36544d9491fd96786b519
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 548}
+  - name: Idle_Adult_2
+    originalName: 
+    pivot: {x: 0.5, y: 0.016666668}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 140
+      y: 136
+      width: 128
+      height: 120
+    spriteID: 4f68e727ba96afa4097853c3efabef40
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 140, y: 136}
+  - name: Eating_Adult_1
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 680
+      width: 128
+      height: 124
+    spriteID: 0824564af249a36468a8880669e7f4a5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 680}
+  - name: Eating_Adult_2
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 128
+      height: 128
+    spriteID: d8bd924479c68464aa48eaf42b395829
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+  - name: Overheated_Adult_1
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 812
+      width: 128
+      height: 124
+    spriteID: d682d4d52d62d774f82b3b5963b7c7b4
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 812}
+  - name: Overheated_Adult_2
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 140
+      width: 128
+      height: 128
+    spriteID: 0b55fa267cd1e494fa21b89e4528bace
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 140}
+  - name: Cranky_Adult_1
+    originalName: 
+    pivot: {x: 0.50793654, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 276
+      width: 126
+      height: 128
+    spriteID: 17244338dfe0c924fbb3de371f0ef1b5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 276}
+  - name: Cranky_Adult_2
+    originalName: 
+    pivot: {x: 0.49206352, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 412
+      width: 126
+      height: 128
+    spriteID: 4528129a4aba4be42aca98f50f563e82
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 412}
+  - name: Tired_Adult_1
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 140
+      y: 391
+      width: 128
+      height: 90
+    spriteID: fe7e3e58078e0114cb7b92f6f8a4aef3
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 140, y: 391}
+  - name: Tired_Adult_2
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 140
+      y: 489
+      width: 128
+      height: 86
+    spriteID: 61dd1c339f310524bb2524294d7c83ea
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 140, y: 489}
+  - name: Chewing_Adult_1
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 140
+      y: 4
+      width: 128
+      height: 124
+    spriteID: dc5f30d43a540224f8261bd153ac67ad
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 140, y: 4}
+  - name: Chewing_Adult_2
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 140
+      y: 264
+      width: 128
+      height: 119
+    spriteID: f8fe91d64f719a345b52bad2157bc9e4
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 140, y: 264}
+  spriteSheetImportData: []
+  asepriteLayers:
+  - layerIndex: 0
+    guid: 1971936574
+    name: Baby
+    layerFlags: 3
+    layerType: 1
+    blendMode: 0
+    cells: []
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 1
+    guid: 500957336
+    name: Idle_Baby_1
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Idle_Baby_1
+      frameIndex: 0
+      cellRect:
+        x: 47
+        y: 0
+        width: 34
+        height: 43
+      spriteId: 44904b719982b0244ae81edf3994a145
+    linkedCells: []
+    parentIndex: 0
+  - layerIndex: 2
+    guid: 500956942
+    name: Idle_Baby_2
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Idle_Baby_2
+      frameIndex: 0
+      cellRect:
+        x: 47
+        y: 0
+        width: 34
+        height: 39
+      spriteId: 06b70c11453a21e448bc74991a3a67ab
+    linkedCells: []
+    parentIndex: 0
+  - layerIndex: 3
+    guid: -31925102
+    name: Eating_Baby_1
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Eating_Baby_1
+      frameIndex: 0
+      cellRect:
+        x: 47
+        y: 0
+        width: 34
+        height: 44
+      spriteId: a24852c0e3d342149aabe5e298b313e6
+    linkedCells: []
+    parentIndex: 0
+  - layerIndex: 4
+    guid: -31923908
+    name: Eating_Baby_2
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Eating_Baby_2
+      frameIndex: 0
+      cellRect:
+        x: 47
+        y: 0
+        width: 34
+        height: 42
+      spriteId: 68b0ee65671ebc048aee56eb23f1bd02
+    linkedCells: []
+    parentIndex: 0
+  - layerIndex: 5
+    guid: 1410097113
+    name: Overheated_Baby_1
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Overheated_Baby_1
+      frameIndex: 0
+      cellRect:
+        x: 47
+        y: 0
+        width: 34
+        height: 44
+      spriteId: 816d75057bb07c948aa2fb51900333ac
+    linkedCells: []
+    parentIndex: 0
+  - layerIndex: 6
+    guid: 1410097519
+    name: Overheated_Baby_2
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Overheated_Baby_2
+      frameIndex: 0
+      cellRect:
+        x: 47
+        y: 0
+        width: 34
+        height: 42
+      spriteId: 7a25c536b9cf2f946a9f57c1c91e0f92
+    linkedCells: []
+    parentIndex: 0
+  - layerIndex: 7
+    guid: -177802474
+    name: Cranky_Baby_1
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Cranky_Baby_1
+      frameIndex: 0
+      cellRect:
+        x: 42
+        y: 0
+        width: 44
+        height: 43
+      spriteId: 36f078ae8c644aa4f99cde6184be7522
+    linkedCells: []
+    parentIndex: 0
+  - layerIndex: 8
+    guid: -177802868
+    name: Cranky_Baby_2
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Cranky_Baby_2
+      frameIndex: 0
+      cellRect:
+        x: 42
+        y: 0
+        width: 44
+        height: 43
+      spriteId: d195ace3a9ab21645bf4ec87b3c23b77
+    linkedCells: []
+    parentIndex: 0
+  - layerIndex: 9
+    guid: -637880482
+    name: Tired_Baby_1
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Tired_Baby_1
+      frameIndex: 0
+      cellRect:
+        x: 48
+        y: 0
+        width: 32
+        height: 27
+      spriteId: 1858df28590d0ae42b993c5fc213f6ef
+    linkedCells: []
+    parentIndex: 0
+  - layerIndex: 10
+    guid: -1828047746
+    name: Tired_Baby_2
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Tired_Baby_2
+      frameIndex: 0
+      cellRect:
+        x: 48
+        y: 0
+        width: 32
+        height: 25
+      spriteId: 49660aef03582ee409783b40135c720b
+    linkedCells: []
+    parentIndex: 0
+  - layerIndex: 11
+    guid: 95262727
+    name: Chewing_Baby_1
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Chewing_Baby_1
+      frameIndex: 0
+      cellRect:
+        x: 45
+        y: 0
+        width: 38
+        height: 43
+      spriteId: 46b296013400d8d428e52428a778befc
+    linkedCells: []
+    parentIndex: 0
+  - layerIndex: 12
+    guid: 623375049
+    name: Chewing_Baby_1 Copy
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Chewing_Baby_1 Copy
+      frameIndex: 0
+      cellRect:
+        x: 47
+        y: 0
+        width: 34
+        height: 41
+      spriteId: e3a081d186469254a9159980ea38df76
+    linkedCells: []
+    parentIndex: 0
+  - layerIndex: 13
+    guid: -1455711563
+    name: Juvenile
+    layerFlags: 3
+    layerType: 1
+    blendMode: 0
+    cells: []
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 14
+    guid: 189164769
+    name: Idle_Juvenile_1
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Idle_Juvenile_1
+      frameIndex: 0
+      cellRect:
+        x: 16
+        y: 0
+        width: 96
+        height: 82
+      spriteId: ba9682a11dc0bb242b6dd463cdc45135
+    linkedCells: []
+    parentIndex: 13
+  - layerIndex: 15
+    guid: 189164397
+    name: Idle_Juvenile_2
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Idle_Juvenile_2
+      frameIndex: 0
+      cellRect:
+        x: 16
+        y: 0
+        width: 96
+        height: 80
+      spriteId: 704a8b99493b1fb418ab900c90dba969
+    linkedCells: []
+    parentIndex: 13
+  - layerIndex: 16
+    guid: 262438883
+    name: Eating_Juvenile_1
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Eating_Juvenile_1
+      frameIndex: 0
+      cellRect:
+        x: 16
+        y: 0
+        width: 96
+        height: 88
+      spriteId: 1b874ceda9aad484e8b65d7a19182b30
+    linkedCells: []
+    parentIndex: 13
+  - layerIndex: 17
+    guid: 262440075
+    name: Eating_Juvenile_2
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Eating_Juvenile_2
+      frameIndex: 0
+      cellRect:
+        x: 16
+        y: 0
+        width: 96
+        height: 86
+      spriteId: f4bcc70f648d7e947814098cd2d2a0d1
+    linkedCells: []
+    parentIndex: 13
+  - layerIndex: 18
+    guid: -1295306880
+    name: Overheated_Juvenile_1
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Overheated_Juvenile_1
+      frameIndex: 0
+      cellRect:
+        x: 16
+        y: 0
+        width: 96
+        height: 88
+      spriteId: bdb312868b963bd41b7efefc5935edfa
+    linkedCells: []
+    parentIndex: 13
+  - layerIndex: 19
+    guid: -1295306484
+    name: Overheated_Juvenile_2
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Overheated_Juvenile_2
+      frameIndex: 0
+      cellRect:
+        x: 16
+        y: 0
+        width: 96
+        height: 86
+      spriteId: 62e437bd1b6a99f419dd76e02fd9d480
+    linkedCells: []
+    parentIndex: 13
+  - layerIndex: 20
+    guid: 1656162771
+    name: Cranky_Juvenile_1
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Cranky_Juvenile_1
+      frameIndex: 0
+      cellRect:
+        x: 10
+        y: -11
+        width: 112
+        height: 96
+      spriteId: 72d15b3fdf8ad7746904524938c95477
+    linkedCells: []
+    parentIndex: 13
+  - layerIndex: 21
+    guid: 1656162351
+    name: Cranky_Juvenile_2
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Cranky_Juvenile_2
+      frameIndex: 0
+      cellRect:
+        x: 11
+        y: -11
+        width: 111
+        height: 96
+      spriteId: 465f3980131053b449ed99de9030c0c7
+    linkedCells: []
+    parentIndex: 13
+  - layerIndex: 22
+    guid: 1543040543
+    name: Tired_Juvenile_1
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Tired_Juvenile_1
+      frameIndex: 0
+      cellRect:
+        x: 16
+        y: 0
+        width: 96
+        height: 62
+      spriteId: 5655b8e1357659b4aa73a87d3155bbf1
+    linkedCells: []
+    parentIndex: 13
+  - layerIndex: 23
+    guid: 727696719
+    name: Tired_Juvenile_1 Copy
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Tired_Juvenile_1 Copy
+      frameIndex: 0
+      cellRect:
+        x: 16
+        y: 0
+        width: 96
+        height: 58
+      spriteId: 07e209f56531f4247bbb4b563c79f6cd
+    linkedCells: []
+    parentIndex: 13
+  - layerIndex: 24
+    guid: -1251834182
+    name: Chewing_Juvenile_1
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Chewing_Juvenile_1
+      frameIndex: 0
+      cellRect:
+        x: 16
+        y: 0
+        width: 96
+        height: 70
+      spriteId: 924883eba6114544e8b22d67ebc7e948
+    linkedCells: []
+    parentIndex: 13
+  - layerIndex: 25
+    guid: -216900840
+    name: Chewing_Juvenile_2
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Chewing_Juvenile_2
+      frameIndex: 0
+      cellRect:
+        x: 16
+        y: 0
+        width: 96
+        height: 74
+      spriteId: 809c79ddb4e4fa1409fb8131c7eb1d14
+    linkedCells: []
+    parentIndex: 13
+  - layerIndex: 26
+    guid: 891757492
+    name: Adult
+    layerFlags: 3
+    layerType: 1
+    blendMode: 0
+    cells: []
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 27
+    guid: -1568925146
+    name: Idle_Adult_1
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Idle_Adult_1
+      frameIndex: 0
+      cellRect:
+        x: 0
+        y: 0
+        width: 128
+        height: 124
+      spriteId: 439f8f710cf36544d9491fd96786b519
+    linkedCells: []
+    parentIndex: 26
+  - layerIndex: 28
+    guid: 1691108802
+    name: Idle_Adult_2
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Idle_Adult_2
+      frameIndex: 0
+      cellRect:
+        x: 0
+        y: -2
+        width: 128
+        height: 120
+      spriteId: 4f68e727ba96afa4097853c3efabef40
+    linkedCells: []
+    parentIndex: 26
+  - layerIndex: 29
+    guid: -1925655592
+    name: Eating_Adult_1
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Eating_Adult_1
+      frameIndex: 0
+      cellRect:
+        x: 0
+        y: 0
+        width: 128
+        height: 124
+      spriteId: 0824564af249a36468a8880669e7f4a5
+    linkedCells: []
+    parentIndex: 26
+  - layerIndex: 30
+    guid: 1179144444
+    name: Eating_Adult_2
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Eating_Adult_2
+      frameIndex: 0
+      cellRect:
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      spriteId: d8bd924479c68464aa48eaf42b395829
+    linkedCells: []
+    parentIndex: 26
+  - layerIndex: 31
+    guid: -818634965
+    name: Overheated_Adult_1
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Overheated_Adult_1
+      frameIndex: 0
+      cellRect:
+        x: 0
+        y: 0
+        width: 128
+        height: 124
+      spriteId: d682d4d52d62d774f82b3b5963b7c7b4
+    linkedCells: []
+    parentIndex: 26
+  - layerIndex: 32
+    guid: -1853568267
+    name: Overheated_Adult_2
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Overheated_Adult_2
+      frameIndex: 0
+      cellRect:
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      spriteId: 0b55fa267cd1e494fa21b89e4528bace
+    linkedCells: []
+    parentIndex: 26
+  - layerIndex: 33
+    guid: 802261604
+    name: Cranky_Adult_1
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Cranky_Adult_1
+      frameIndex: 0
+      cellRect:
+        x: 0
+        y: 0
+        width: 126
+        height: 128
+      spriteId: 17244338dfe0c924fbb3de371f0ef1b5
+    linkedCells: []
+    parentIndex: 26
+  - layerIndex: 34
+    guid: -232671804
+    name: Cranky_Adult_2
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Cranky_Adult_2
+      frameIndex: 0
+      cellRect:
+        x: 2
+        y: 0
+        width: 126
+        height: 128
+      spriteId: 4528129a4aba4be42aca98f50f563e82
+    linkedCells: []
+    parentIndex: 26
+  - layerIndex: 35
+    guid: -1989416580
+    name: Tired_Adult_1
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Tired_Adult_1
+      frameIndex: 0
+      cellRect:
+        x: 0
+        y: 0
+        width: 128
+        height: 90
+      spriteId: fe7e3e58078e0114cb7b92f6f8a4aef3
+    linkedCells: []
+    parentIndex: 26
+  - layerIndex: 36
+    guid: -1989416970
+    name: Tired_Adult_2
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Tired_Adult_2
+      frameIndex: 0
+      cellRect:
+        x: 0
+        y: 0
+        width: 128
+        height: 86
+      spriteId: 61dd1c339f310524bb2524294d7c83ea
+    linkedCells: []
+    parentIndex: 26
+  - layerIndex: 37
+    guid: -684761907
+    name: Chewing_Adult_1
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Chewing_Adult_1
+      frameIndex: 0
+      cellRect:
+        x: 0
+        y: 0
+        width: 128
+        height: 124
+      spriteId: dc5f30d43a540224f8261bd153ac67ad
+    linkedCells: []
+    parentIndex: 26
+  - layerIndex: 38
+    guid: -684760663
+    name: Chewing_Adult_2
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Chewing_Adult_2
+      frameIndex: 0
+      cellRect:
+        x: 0
+        y: 0
+        width: 128
+        height: 119
+      spriteId: f8fe91d64f719a345b52bad2157bc9e4
+    linkedCells: []
+    parentIndex: 26
+  platformSettings:
+  - name: DefaultTexturePlatform
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Standalone
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: WebGL
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  generatePhysicsShape: 0
+  secondarySpriteTextures: []
+  spritePackingTag: 
+  canvasSize: {x: 128, y: 128}
