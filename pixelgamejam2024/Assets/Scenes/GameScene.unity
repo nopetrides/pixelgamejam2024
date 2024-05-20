@@ -2435,11 +2435,6 @@ PrefabInstance:
       objectReference: {fileID: 691524664}
     - target: {fileID: 4216733725197885004, guid: 17a246dc4d579c94aadeff60a0227d3e,
         type: 3}
-      propertyPath: _uiImage
-      value: 
-      objectReference: {fileID: 1295626804}
-    - target: {fileID: 4216733725197885004, guid: 17a246dc4d579c94aadeff60a0227d3e,
-        type: 3}
       propertyPath: _dragonNetworkController
       value: 
       objectReference: {fileID: 691524664}
@@ -20070,18 +20065,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 1
   m_TargetDisplay: 0
---- !u!114 &1295626804 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7230543517115097057, guid: 17a246dc4d579c94aadeff60a0227d3e,
-    type: 3}
-  m_PrefabInstance: {fileID: 670718388}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1307355522
 GameObject:
   m_ObjectHideFlags: 0
