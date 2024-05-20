@@ -53,8 +53,16 @@ public class PlayerNetworkControllerV2 : MonoBehaviour
     {
         _positionSmoother.enabled = !isLocalPlayer;
         _cameraRoot.SetActive(isLocalPlayer);
+        SetMinimapRotation();
         if (!PlayroomKit.IsRunningInBrowser()) return;
         _playroomPlayer.OnQuit(RemovePlayer);
+    }
+
+    private void SetMinimapRotation()
+    {
+        var transformRotation = _minimapCamera.transform.rotation;
+        transformRotation.eulerAngles = new Vector3(90, 0, 180);
+        _minimapCamera.transform.rotation = transformRotation;
     }
 
     [MonoPInvokeCallback(typeof(Action<string>))]
