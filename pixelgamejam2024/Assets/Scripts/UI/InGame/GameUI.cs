@@ -5,6 +5,7 @@ using Multiplayer;
 using Playroom;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class GameUI : MonoBehaviour
@@ -12,7 +13,7 @@ public class GameUI : MonoBehaviour
     [SerializeField] private Slider[] _statVisuals;
     [SerializeField] private DragonNetworkController _dragonController;
     [SerializeField] private TMP_Text _dragonStateText;
-    [SerializeField] private Image[] _portaits;
+    [FormerlySerializedAs("_portaits")] [SerializeField] private Image[] _portraits;
 
     [SerializeField] private RectTransform _minimap;
     [SerializeField] private RectTransform _minimapFacingVisual;
@@ -24,13 +25,11 @@ public class GameUI : MonoBehaviour
 
     // todo make a custom monoBehaviour instead of image
     private readonly Dictionary<string, Image> _playerPortraits = new();
-    
-    private Camera _cam;
 
     public void SetPlayer(PlayerNetworkControllerV2 localPlayerController)
     {
         _localPlayer = localPlayerController;
-        _cam = _localPlayer.MainPlayerCamera;
+        Debug.Log("**************" + _localPlayer.RepresentsPlayer.id);
         var players = PlayroomKit.GetPlayersOrNull();
         if (players == null)
         {
@@ -43,10 +42,9 @@ public class GameUI : MonoBehaviour
 
     private void SetupPortrait(PlayerNetworkControllerV2 mockLocalPlayer)
     {
-        _cam = mockLocalPlayer.MainPlayerCamera;
-        for (var i = 0; i < _portaits.Length; i++)
+        for (var i = 0; i < _portraits.Length; i++)
         {
-            var image = _portaits[i];
+            var image = _portraits[i];
             if (i == 0)
             {
                 image.gameObject.SetActive(true);
@@ -61,9 +59,9 @@ public class GameUI : MonoBehaviour
 
     private void SetupPlayerPortraits(PlayroomKit.Player[] players)
     {
-        for (var i = 0; i < _portaits.Length; i++)
+        for (var i = 0; i < _portraits.Length; i++)
         {
-            var image = _portaits[i];
+            var image = _portraits[i];
             if (i < players.Length)
             {
                 image.gameObject.SetActive(true);
@@ -122,13 +120,13 @@ public class GameUI : MonoBehaviour
     /// </summary>
     private void DragonDirectionIndicator()
     {
-        Vector3 playerPosition;
-        if (!PlayroomKit.IsRunningInBrowser())
+        Vector3 playerPosition = _localPlayer.transform.position;
+        /*if (!PlayroomKit.IsRunningInBrowser())
             playerPosition = _localPlayer.transform.position;
         else
         {
             playerPosition = PlayroomKit.Me().GetState<Vector3>(GameConstants.PlayerStateData.Position.ToString());
-        }
+        }*/
 
         var dPos = _dragonController.transform.position;
 
@@ -156,9 +154,13 @@ public class GameUI : MonoBehaviour
     /// </summary>
     private void FacingDirectionIndicator()
     {
-        if (_cam == null) return;
+        if (_localPlayer == null)
+        {
+            Debug.LogWarning("FacingDirectionIndicator player null");
+            return;
+        }
 
-        var camForward = _cam.transform.forward;
+        var camForward = _localPlayer.MainPlayerCamera.transform.forward;
         Vector2 cameraForward2D = new Vector2(camForward.x, camForward.z).normalized;
         Vector2 northDirection = Vector2.down;
         float angle = Vector2.SignedAngle(northDirection, cameraForward2D);

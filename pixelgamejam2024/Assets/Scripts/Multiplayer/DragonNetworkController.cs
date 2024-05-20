@@ -250,7 +250,7 @@ public class DragonNetworkController : MonoBehaviour
             return false;
         }
 
-        Debug.Log("[OnDragonStationUsed] thead safe?");
+        //Debug.Log("[OnDragonStationUsed] thead safe?");
         bool hasEffect = stationDataAffectValue > 0 && _dragonStats.CurrentAgeData.CurrentStats[stat].Current > 0;
 
         // Need to always set the state if that station will effect the dragon
