@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: KoboldTintPurple
+  m_Name: KoboldTintBlue
   m_Shader: {fileID: -6465566751694194690, guid: a2f37ebd17dee0442a0527a9b26dfd73,
     type: 3}
   m_Parent: {fileID: 0}
@@ -58,5 +58,5 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Color: {r: 0.46207705, g: 0.33245158, b: 0.63075733, a: 1}
+    - _Color: {r: 0.042311423, g: 0.31854683, b: 0.5520116, a: 1}
   m_BuildTextureStacks: []

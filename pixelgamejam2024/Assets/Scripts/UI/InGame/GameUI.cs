@@ -14,11 +14,15 @@ public class GameUI : MonoBehaviour
     [SerializeField] private DragonNetworkController _dragonController;
     [SerializeField] private TMP_Text _dragonStateText;
     [SerializeField] private TMP_Text _weightText;
+    [SerializeField] private GameObject[] _playerContainers;
     [FormerlySerializedAs("_portaits")] [SerializeField] private Image[] _portraits;
 
     [SerializeField] private RectTransform _minimap;
     [SerializeField] private RectTransform _minimapFacingVisual;
     [SerializeField] private RectTransform _minimapDragonIndicator;
+
+    [Header("HP")] [SerializeField] private Image _hpFill;
+    [Header("Growth")] [SerializeField] private TMP_Text _growthText;
 
     private PlayerNetworkControllerV2 _localPlayer;
 
@@ -87,6 +91,10 @@ public class GameUI : MonoBehaviour
         _statusSliders.Add(GameConstants.DragonStats.Temper.ToString(), _statVisuals[1]);
         _statusSliders.Add(GameConstants.DragonStats.Energy.ToString(), _statVisuals[2]);
         _statusSliders.Add(GameConstants.DragonStats.Chewing.ToString(), _statVisuals[3]);
+        
+        _hpFill.fillAmount = 1f;
+
+        _growthText.text = "";
     }
 
     private void DragonStatusRefresh(DragonData dragonData)
@@ -99,19 +107,21 @@ public class GameUI : MonoBehaviour
         var state = _dragonController.DragonState;
         
         _dragonStateText.text = state != DragonNetworkController.FiniteDragonState.Idle ? _dragonController.DragonState.ToString() : "Normal";
+
+        _hpFill.fillAmount = (float)dragonData.MaxHealth / dragonData.Health;
+        
+        _growthText.text = $"{dragonData.Growth} / {dragonData.CurrentAgeData.GrowthRequirement}";
     }
 
     private void Update()
     {
+        if (_localPlayer == null) return;
         MinimapIndicators();
-        _weightText.text = TreasureManager.Instance._localPlayer.GetWeight() + " / " +
-                           TreasureManager.Instance._localPlayer.GetCarryLimit();
+        _weightText.text = $"{_localPlayer.LocalPickupLogic.GetWeight()} / {_localPlayer.LocalPickupLogic.GetCarryLimit()} lbs";
     }
 
     private void MinimapIndicators()
     {
-        if (_localPlayer == null) return;
-        
         DragonDirectionIndicator();
 
         FacingDirectionIndicator();

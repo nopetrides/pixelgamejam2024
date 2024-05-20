@@ -17,4 +17,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5d4c74e0e23b4d5459717d9d39e26a8c, type: 2}
   - {fileID: 11400000, guid: c7b31d03868ffce43af1ef4b29311c9f, type: 2}
   - {fileID: 11400000, guid: 86b1324e96c157b4a883f9e62e47890c, type: 2}
-  _growthRequirement: 1500
+  _growthRequirement: 3000

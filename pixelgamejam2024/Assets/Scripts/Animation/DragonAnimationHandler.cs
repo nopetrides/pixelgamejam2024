@@ -17,10 +17,12 @@ public class DragonAnimationHandler : MonoBehaviour
         {
             _uiImage.SetNativeSize();
         }
+
+        _dragonNetworkController.OnDragonDataRefresh += CheckDragonAnimations;
     }
 
     // Update is called once per frame
-    private void LateUpdate()
+    private void CheckDragonAnimations(DragonData dragonData)
     {
         var state = _dragonNetworkController.DragonState;
         if (state != _previousDragonState)
@@ -31,6 +33,13 @@ public class DragonAnimationHandler : MonoBehaviour
             {
                 _uiImage.SetNativeSize();
             }
+        }
+
+        var age = dragonData.Age;
+        if (age > _previousDragonAge)
+        {
+            _dragonAnimator.SetInteger("Age", (int)state);
+            _previousDragonAge = age;
         }
     }
 }

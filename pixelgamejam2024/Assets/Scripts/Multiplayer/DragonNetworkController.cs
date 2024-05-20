@@ -188,6 +188,17 @@ public class DragonNetworkController : MonoBehaviour
         ModifyStatusBasedOnState();
 
         // host modifies the authoritative version of the stats
+        if (_currentDragonChange[ChewingStat.ToString()] > 0)
+        {
+            var growth = _currentDragonChange[ChewingStat.ToString()];
+            _dragonStats.Growth += growth;
+            if (_dragonStats.Growth >= _dragonStats.CurrentAgeData.GrowthRequirement)
+            {
+                _dragonStats.Age++;
+                _dragonStats.Growth = 0;
+            }
+        }
+
         foreach (var stat in _currentDragonChange)
         {
             _dragonStats.CurrentAgeData.CurrentStats[stat.Key].ChangeThisFrame = stat.Value;

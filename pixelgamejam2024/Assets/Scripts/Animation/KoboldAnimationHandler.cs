@@ -7,6 +7,8 @@ public class KoboldAnimationHandler : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
     [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private SpriteRenderer _spriteColored;
+    [SerializeField] private SpriteRenderer _carriedTreasure;
 
     [SerializeField] private PlayerNetworkControllerV2 _playerNetworkController;
     [SerializeField] private PlayerTreasurePickup _playerTreasurePickup; 
@@ -44,6 +46,9 @@ public class KoboldAnimationHandler : MonoBehaviour
         var zMove =  Math.Round(Vector3.Dot(playerMovement, camForward), 2);
 
         _spriteRenderer.flipX = xMove < 0f;
+        _spriteColored.flipX = xMove < 0f;
+        
+        
         _animator.SetFloat("Horizontal", (float)xMove); // left or right of us
         _animator.SetFloat("Vertical", (float)zMove); // towards or away from us
         _animator.SetFloat("Speed", playerMovement.magnitude); // did they move
@@ -61,7 +66,15 @@ public class KoboldAnimationHandler : MonoBehaviour
         
         
         _animator.SetBool("Carrying", isCarrying); // carry state flag
-        
+        _carriedTreasure.gameObject.SetActive(isCarrying);
+        if (isCarrying)
+        {
+            _carriedTreasure.flipX = xMove < 0f;
+            var t = _carriedTreasure.transform.localPosition;
+            t.z = zMove > 0f ? -0.15f : 0.15f;
+            _carriedTreasure.transform.localPosition = t;
+        }
+
         _posLastFrame = posThisFrame;
     }
 }

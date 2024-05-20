@@ -20,11 +20,12 @@ public class PlayerNetworkControllerV2 : MonoBehaviour
     [SerializeField] private float _sceneLoadDelay = 1f;
     //[SerializeField] private PlayerHealth _playerHealth;
     //[SerializeField] private HighlightEffect _highlight;
-    [SerializeField] private SpriteRenderer _playerSpriteRenderer;
+    [SerializeField] private SpriteRenderer _characterSpriteRenderer;
     [SerializeField] private SmoothPosition _positionSmoother;
     [SerializeField] private Camera _primaryCamera;
     public Camera MainPlayerCamera => _primaryCamera;
     [SerializeField] private Camera _minimapCamera;
+    [SerializeField] private Material[] _characterMaterial;
 
     // todo, player controller that handles the other game mechanics
     
@@ -94,6 +95,7 @@ public class PlayerNetworkControllerV2 : MonoBehaviour
         Debug.Log($"{characterData.MoveSpeed}");
         _controller.baseSpeed = characterData.MoveSpeed;
         _treasurePickup.SetLimitAndThreshold(characterData.CarryCapacity);
+        _characterSpriteRenderer.material = _characterMaterial[(int)characterData.CharacterType];
     }
 
     public void Update()

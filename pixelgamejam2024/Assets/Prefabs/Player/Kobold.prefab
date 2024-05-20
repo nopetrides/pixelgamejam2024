@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 59631291595433196}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.387, z: 0}
+  m_LocalPosition: {x: 0, y: 0.387, z: 0.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 4116113727972056645, guid: e2a3fd7fda559f743a946111b723fd28,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -137,7 +137,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a4d65ae2ebdc77947936e864a81f7a79, type: 2}
+  - {fileID: 2100000, guid: 7e08ce8b4fc7bc447a0cded23d4a7913, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -157,8 +157,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 0}
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 1869546076, guid: 5e58ebe2c3fa69748a396a907704bed9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -166,7 +166,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1001 &7791854411941959567
@@ -275,10 +275,51 @@ PrefabInstance:
       propertyPath: _treasurePickup
       value: 
       objectReference: {fileID: 8162565929869749757}
+    - target: {fileID: 1661406962757023327, guid: 02db1269cd824a742a44596330eb0f28,
+        type: 3}
+      propertyPath: _characterSpriteRenderer
+      value: 
+      objectReference: {fileID: 934717495795814134}
+    - target: {fileID: 1661406962757023327, guid: 02db1269cd824a742a44596330eb0f28,
+        type: 3}
+      propertyPath: _characterMaterial.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1661406962757023327, guid: 02db1269cd824a742a44596330eb0f28,
+        type: 3}
+      propertyPath: _characterMaterial.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: dc588f568a4b5394a9fde98bd87be559, type: 2}
+    - target: {fileID: 1661406962757023327, guid: 02db1269cd824a742a44596330eb0f28,
+        type: 3}
+      propertyPath: _characterMaterial.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: a4d65ae2ebdc77947936e864a81f7a79, type: 2}
+    - target: {fileID: 1661406962757023327, guid: 02db1269cd824a742a44596330eb0f28,
+        type: 3}
+      propertyPath: _characterMaterial.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 69970d1edc8b7ec438153da6ec7d20dd, type: 2}
+    - target: {fileID: 1661406962757023327, guid: 02db1269cd824a742a44596330eb0f28,
+        type: 3}
+      propertyPath: _characterMaterial.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: 59b80932e46d7bc4ab8a706984be2767, type: 2}
+    - target: {fileID: 1869321639488621889, guid: 02db1269cd824a742a44596330eb0f28,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 337619358, guid: c9187363956ddb24293309cdf789d452,
+        type: 3}
     - target: {fileID: 1908449654393963324, guid: 02db1269cd824a742a44596330eb0f28,
         type: 3}
       propertyPath: m_Name
       value: Kobold_Sprite
+      objectReference: {fileID: 0}
+    - target: {fileID: 2118231393150171762, guid: 02db1269cd824a742a44596330eb0f28,
+        type: 3}
+      propertyPath: _carryThreshold
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4421758520085350183, guid: 02db1269cd824a742a44596330eb0f28,
         type: 3}
@@ -446,6 +487,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 9024979000353467727}
   _spriteRenderer: {fileID: 8490147784907283150}
+  _spriteColored: {fileID: 934717495795814134}
+  _carriedTreasure: {fileID: 9223274936897618151}
   _playerNetworkController: {fileID: 8875674134066127312}
   _playerTreasurePickup: {fileID: 8162565929869749757}
 --- !u!114 &8875674134066127312 stripped
