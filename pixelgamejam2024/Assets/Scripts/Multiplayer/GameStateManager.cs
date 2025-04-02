@@ -54,6 +54,10 @@ public class GameStateManager : MonoBehaviour
         
         MapManager.enabled = true;
         MapManager.InitializeMapChunks();
-        
     }
+
+	public bool IsMapReady()
+	{
+		return MapManager.MapReady;
+	}
 }

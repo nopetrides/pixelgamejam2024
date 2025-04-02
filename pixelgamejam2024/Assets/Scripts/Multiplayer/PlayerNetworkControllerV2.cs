@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using AOT;
 using CMF;
 using Multiplayer;
@@ -66,14 +67,27 @@ public class PlayerNetworkControllerV2 : MonoBehaviour
     {
         _positionSmoother.enabled = !isLocalPlayer;
         _cameraRoot.SetActive(isLocalPlayer);
-        _playerCollider.enabled = isLocalPlayer;
-        _inputHandler.enabled = isLocalPlayer;
-        _mover.enabled = isLocalPlayer;
-        
+		_controller.enabled = false;
+        _playerCollider.enabled = false;
+        _inputHandler.enabled = false;
+		_mover.enabled = false;
+		StartCoroutine(WaitForMap(isLocalPlayer));
+		
         SetMinimapRotation();
         if (!PlayroomKit.IsRunningInBrowser()) return;
         _playroomPlayer.OnQuit(RemovePlayer);
     }
+
+	private IEnumerator WaitForMap(bool isLocalPlayer)
+	{
+		yield return new WaitForSeconds(5f);
+		yield return new WaitUntil(() => _manager.IsMapReady());
+		_controller.enabled = true;
+		_playerCollider.enabled = isLocalPlayer;
+		_inputHandler.enabled = isLocalPlayer;
+		_mover.enabled = isLocalPlayer;
+		Debug.Log("Map Ready!");
+	}
 
     private void SetMinimapRotation()
     {
@@ -108,13 +122,16 @@ public class PlayerNetworkControllerV2 : MonoBehaviour
             return;
         }
 
+		if (_manager.IsMapReady() == false)
+			return;
+
         if (!PlayroomKit.IsRunningInBrowser()) return;
         
         if (_playroomPlayer == PlayroomKit.Me())
         {
             // we are this player
             _playroomPlayer.SetState(GameConstants.PlayerStateData.Position.ToString(), transform.position);
-
+			
             float scaleFactor = Mathf.Min(Screen.width / 640, Screen.height / 360);
             
             // Set the camera's viewport rect to position it in the bottom right corner

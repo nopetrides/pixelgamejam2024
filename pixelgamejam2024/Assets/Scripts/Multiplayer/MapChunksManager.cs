@@ -27,6 +27,8 @@ public class MapChunksManager : MonoBehaviour
     private bool _graphRunnerActive;
     private Rect _chunkSpawningArea;
 
+	public bool MapReady => _setupComplete && !_graphRunnerActive;
+	
     private void Awake()
     {
         Debug.Log("[MapChunksManager] Awake");
@@ -146,7 +148,8 @@ public class MapChunksManager : MonoBehaviour
             catch
             {
                 Debug.LogWarning("Camera not yet ready");
-            }
+				return;
+			}
         
         var camPos = _cam.transform.position;
         
